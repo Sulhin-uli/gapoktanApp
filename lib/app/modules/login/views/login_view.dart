@@ -1,3 +1,4 @@
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -8,146 +9,97 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Container(
-            decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage('assets/images/sawah.jpg'),
-                    fit: BoxFit.cover)),
-          ),
-          Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-              Colors.transparent,
-              Colors.transparent,
-              Color(0xff161d27).withOpacity(0.9),
-              Color(0xff161d27),
-            ], begin: Alignment.topCenter, end: Alignment.bottomCenter)),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Text(
-                  "Welcome!",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 38,
-                      fontWeight: FontWeight.bold),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+          'Masuk',
+          style: TextStyle(color: Colors.black, fontSize: 16),
+        ),
+        elevation: 0.5,
+      ),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 50),
+              Text(
+                "Email atau Nomor Ponsel",
+                style: TextStyle(
+                  color: Color(0xff919A92),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Time to cook, let's Sign in",
-                  style: TextStyle(color: Colors.grey.shade500, fontSize: 16),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 50,
-                  margin: EdgeInsets.only(left: 40, right: 40),
-                  child: TextField(
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                    decoration: InputDecoration(
-                      hintText: "Email",
-                      hintStyle: TextStyle(color: Colors.grey.shade700),
-                      filled: true,
-                      fillColor: Color(0xff161d27).withOpacity(0.9),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(color: Color(0xff16A085))),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(color: Color(0xff16A085))),
+              ),
+              TextFormField(
+                cursorColor: Color(0xff16A085),
+                decoration: InputDecoration(
+                  helperText: 'Contoh: 08123456789',
+                  // fillColor: Color(0xff919A92),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff919A92),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Container(
-                  height: 50,
-                  margin: EdgeInsets.only(left: 40, right: 40),
-                  child: TextField(
-                    obscureText: true,
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                    decoration: InputDecoration(
-                      hintText: "Password",
-                      hintStyle: TextStyle(color: Colors.grey.shade700),
-                      filled: true,
-                      fillColor: Color(0xff161d27).withOpacity(0.9),
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(color: Color(0xff16A085))),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(color: Color(0xff16A085))),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                Text(
-                  "Forgot Password?",
-                  style: TextStyle(
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
                       color: Color(0xff16A085),
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Container(
-                  height: 50,
-                  width: double.infinity,
-                  margin: EdgeInsets.only(left: 40, right: 40),
-                  child: FlatButton(
-                    onPressed: () {},
-                    color: Color(0xff16A085),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Text(
-                      "SIGN IN",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16),
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 16,
+              ),
+              const SizedBox(height: 30),
+              Text(
+                "Kata Sandi",
+                style: TextStyle(
+                  color: Color(0xff919A92),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "It's your first time here?",
-                      style: TextStyle(color: Colors.white),
+              ),
+              TextFormField(
+                cursorColor: Colors.black,
+                decoration: InputDecoration(
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff919A92),
                     ),
-                    SizedBox(
-                      width: 8,
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff16A085),
                     ),
-                    Text(
-                      "Sign up",
-                      style: TextStyle(
-                          color: Color(0xff16A085),
-                          fontWeight: FontWeight.bold),
-                    )
-                  ],
+                  ),
                 ),
-                SizedBox(
-                  height: 30,
+              ),
+              const SizedBox(height: 30),
+              Container(
+                margin: EdgeInsets.only(bottom: 15),
+                alignment: Alignment.topRight,
+                child: TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    "Lupa Kata Sandi?",
+                    style: TextStyle(
+                      color: Color(0xff16A085),
+                    ),
+                  ),
                 ),
-              ],
-            ),
+              ),
+              Center(
+                child: SizedBox(
+                  height: 46, //height of button
+                  width: 300,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xff16A085), // background
+                    ),
+                    onPressed: () => Get.toNamed(Routes.HOME),
+                    child: Text('Masuk'),
+                  ),
+                ),
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
