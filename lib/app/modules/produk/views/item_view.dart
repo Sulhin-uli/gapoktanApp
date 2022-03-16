@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
@@ -6,8 +7,8 @@ class ItemView extends GetView {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () => Get.toNamed(Routes.DETAIL_EDUKASI),
-      onTap: () {},
+      onTap: () => Get.toNamed(Routes.DETAIL_PRODUK),
+      // onTap: () {},
       child: Card(
         clipBehavior: Clip.antiAlias,
         child: Column(

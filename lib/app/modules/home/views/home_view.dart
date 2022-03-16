@@ -1,4 +1,5 @@
-import 'package:gapoktan_app/app/modules/produk/views/produk_view.dart';
+import 'package:gapoktan_app/app/modules/edukasi/views/index_edukasi_view.dart';
+import 'package:gapoktan_app/app/modules/produk/views/index_produk_view.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -135,7 +136,8 @@ class HomeView extends GetView<HomeController> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             TextButton(
-                                onPressed: () => Get.toNamed(Routes.PRODUK),
+                                onPressed: () =>
+                                    Get.toNamed(Routes.INDEX_PRODUK),
                                 child: Text(
                                   "Lihat Semua",
                                   style: TextStyle(
@@ -238,12 +240,14 @@ class HomeView extends GetView<HomeController> {
                             ),
                           )
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
               ],
             ),
+            IndexProdukView(),
+            IndexEdukasiView()
           ],
         ),
       ),

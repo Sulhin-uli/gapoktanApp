@@ -4,7 +4,7 @@ import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
-class DetailView extends GetView<EdukasiController> {
+class DetailEdukasiView extends GetView<EdukasiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +90,7 @@ class DetailView extends GetView<EdukasiController> {
                   child: ListTile(
                     onTap: () => Get.toNamed(Routes.EDIT_EDUKASI),
                     leading: Icon(Icons.edit),
-                    title: Text('Edit'),
+                    title: Text('Ubah'),
                   ),
                 ),
                 PopupMenuItem(

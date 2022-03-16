@@ -1,10 +1,13 @@
-import 'package:gapoktan_app/app/modules/edukasi/views/add_view.dart';
-import 'package:gapoktan_app/app/modules/edukasi/views/detail_view.dart';
-import 'package:gapoktan_app/app/modules/edukasi/views/edit_view.dart';
+import 'package:gapoktan_app/app/modules/edukasi/views/add_edukasi_view.dart';
+import 'package:gapoktan_app/app/modules/edukasi/views/detail_edukasi_view.dart';
+import 'package:gapoktan_app/app/modules/edukasi/views/edit_edukasi_view.dart';
+import 'package:gapoktan_app/app/modules/produk/views/add_produk_view.dart';
+import 'package:gapoktan_app/app/modules/produk/views/detail_produk.dart';
+import 'package:gapoktan_app/app/modules/produk/views/edit_produk_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/edukasi/bindings/edukasi_binding.dart';
-import '../modules/edukasi/views/edukasi_view.dart';
+import '../modules/edukasi/views/index_edukasi_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/kegiatan/bindings/kegiatan_binding.dart';
@@ -14,7 +17,7 @@ import '../modules/login/views/login_view.dart';
 import '../modules/poktan/bindings/poktan_binding.dart';
 import '../modules/poktan/views/poktan_view.dart';
 import '../modules/produk/bindings/produk_binding.dart';
-import '../modules/produk/views/produk_view.dart';
+import '../modules/produk/views/index_produk_view.dart';
 import '../modules/tandur/bindings/tandur_binding.dart';
 import '../modules/tandur/views/tandur_view.dart';
 
@@ -39,31 +42,46 @@ class AppPages {
 
     // Edukasi
     GetPage(
-      name: _Paths.EDUKASI,
-      page: () => EdukasiView(),
+      name: _Paths.INDEX_EDUKASI,
+      page: () => IndexEdukasiView(),
       binding: EdukasiBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_EDUKASI,
-      page: () => DetailView(),
+      page: () => DetailEdukasiView(),
       binding: EdukasiBinding(),
     ),
     GetPage(
       name: _Paths.ADD_EDUKASI,
-      page: () => AddView(),
+      page: () => AddEdukasiView(),
       // binding: EdukasiBinding(),
     ),
     GetPage(
       name: _Paths.EDIT_EDUKASI,
-      page: () => EditView(),
+      page: () => EditEdukasiView(),
       // binding: EdukasiBinding(),
     ),
 
     // Produk
     GetPage(
-      name: _Paths.PRODUK,
-      page: () => ProdukView(),
+      name: _Paths.INDEX_PRODUK,
+      page: () => IndexProdukView(),
       binding: ProdukBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_PRODUK,
+      page: () => DetailProdukView(),
+      binding: ProdukBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_PRODUK,
+      page: () => AddProdukView(),
+      // binding: PRODUKBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PRODUK,
+      page: () => EditProdukView(),
+      // binding: EdukasiBinding(),
     ),
 
     GetPage(

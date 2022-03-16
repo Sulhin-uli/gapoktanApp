@@ -6,14 +6,14 @@ import 'package:get/get.dart';
 
 import '../controllers/edukasi_controller.dart';
 
-class EdukasiView extends GetView<EdukasiController> {
+class IndexEdukasiView extends GetView<EdukasiController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xff5D8BF4),
-        elevation: 0,
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Color(0xff5D8BF4),
+      //   elevation: 0,
+      // ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
@@ -36,7 +36,7 @@ class EdukasiView extends GetView<EdukasiController> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff5D8BF4),
+        backgroundColor: const Color(0xff16A085),
         foregroundColor: Colors.white,
         // mini: true,
         onPressed: () => Get.toNamed(Routes.ADD_EDUKASI),
