@@ -18,7 +18,12 @@ abstract class Routes {
   static const ADD_PRODUK = _Paths.ADD_PRODUK;
   static const EDIT_PRODUK = _Paths.EDIT_PRODUK;
 
-  static const INDEX_KEGIATAN = _Paths.KEGIATAN;
+  // Kegiatan
+  static const INDEX_KEGIATAN = _Paths.INDEX_KEGIATAN;
+  static const DETAIL_KEGIATAN = _Paths.DETAIL_KEGIATAN;
+  static const ADD_KEGIATAN = _Paths.ADD_KEGIATAN;
+  static const EDIT_KEGIATAN = _Paths.EDIT_KEGIATAN;
+
   static const TANDUR = _Paths.TANDUR;
   static const POKTAN = _Paths.POKTAN;
 }
@@ -28,16 +33,22 @@ abstract class _Paths {
   static const HOME = '/home';
   static const LOGIN = '/login';
   // edukasi
-  static const INDEX_EDUKASI = '/edukasi';
+  static const INDEX_EDUKASI = '/index-edukasi';
   static const DETAIL_EDUKASI = '/detail-edukasi';
   static const ADD_EDUKASI = '/add-edukasi';
   static const EDIT_EDUKASI = '/edit-edukasi';
 
   // produk
-  static const INDEX_PRODUK = '/produk';
+  static const INDEX_PRODUK = '/index-produk';
   static const DETAIL_PRODUK = '/detail-produk';
   static const ADD_PRODUK = '/add-produk';
   static const EDIT_PRODUK = '/edit-produk';
+
+  // Kegiatan
+  static const INDEX_KEGIATAN = '/index-kegiatan';
+  static const DETAIL_KEGIATAN = '/detail-kegiatan';
+  static const ADD_KEGIATAN = '/add-kegiatan';
+  static const EDIT_KEGIATAN = '/edit-kegiatan';
 
   static const KEGIATAN = '/kegiatan';
   static const TANDUR = '/tandur';
