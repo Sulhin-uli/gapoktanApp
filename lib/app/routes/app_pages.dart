@@ -1,3 +1,8 @@
+import 'package:gapoktan_app/app/modules/poktan/bindings/poktan_binding.dart';
+import 'package:gapoktan_app/app/modules/poktan/views/add_poktan_view.dart';
+import 'package:gapoktan_app/app/modules/poktan/views/detail_poktan_view.dart';
+import 'package:gapoktan_app/app/modules/poktan/views/edit_poktan_view.dart';
+import 'package:gapoktan_app/app/modules/poktan/views/index_poktan_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/edukasi/bindings/edukasi_binding.dart';
@@ -19,11 +24,7 @@ import '../modules/notifikasi/views/index_notifikasi_view.dart';
 import '../modules/panen/bindings/panen_binding.dart';
 import '../modules/panen/views/detail_detail_view.dart';
 import '../modules/panen/views/index_panen_view.dart';
-import '../modules/poktan/bindings/poktan_binding.dart';
-import '../modules/poktan/views/add_poktan_view.dart';
-import '../modules/poktan/views/detail_poktan_view.dart';
-import '../modules/poktan/views/edit_poktan_view.dart';
-import '../modules/poktan/views/index_poktan_view.dart';
+
 import '../modules/produk/bindings/produk_binding.dart';
 import '../modules/produk/views/add_produk_view.dart';
 import '../modules/produk/views/detail_produk.dart';

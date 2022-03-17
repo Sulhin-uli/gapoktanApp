@@ -24,11 +24,11 @@ abstract class Routes {
   static const ADD_KEGIATAN = _Paths.ADD_KEGIATAN;
   static const EDIT_KEGIATAN = _Paths.EDIT_KEGIATAN;
 
-  // Kegiatan
+  // Tandur
   static const INDEX_TANDUR = _Paths.INDEX_TANDUR;
   static const DETAIL_TANDUR = _Paths.DETAIL_TANDUR;
 
-  // Kegiatan
+  // Panen
   static const INDEX_PANEN = _Paths.INDEX_PANEN;
   static const DETAIL_PANEN = _Paths.DETAIL_PANEN;
 
@@ -45,6 +45,7 @@ abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const LOGIN = '/login';
+
   // edukasi
   static const INDEX_EDUKASI = '/index-edukasi';
   static const DETAIL_EDUKASI = '/detail-edukasi';

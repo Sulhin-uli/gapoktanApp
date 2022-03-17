@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gapoktan_app/app/modules/poktan/views/item_view.dart';
+import 'package:gapoktan_app/app/modules/edukasi/views/item_view.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
