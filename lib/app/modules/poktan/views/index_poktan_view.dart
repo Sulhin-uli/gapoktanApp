@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gapoktan_app/app/modules/edukasi/views/item_view.dart';
+import 'package:gapoktan_app/app/modules/poktan/views/item_view.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
@@ -11,8 +11,13 @@ class IndexPoktanView extends GetView<PoktanController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff16A085),
-        elevation: 0,
+        backgroundColor: Colors.white,
+        leading: BackButton(color: Colors.black),
+        title: Text(
+          'Poktan',
+          style: TextStyle(color: Colors.black, fontSize: 16),
+        ),
+        elevation: 0.5,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(

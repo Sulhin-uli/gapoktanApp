@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/home/Models/menu_home_model.dart';
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -10,79 +11,119 @@ class HomeController extends GetxController {
     tabIndex.value = index;
   }
 
-  void getData() {
-    final data = MenuHome(
+  void getDataItemMenu() {
+    final data1 = MenuHome(
       id: "1",
       image:
-          "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-      title: "Menu 1",
-      color: Colors.red,
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Jadwal Tandur",
+      color: Colors.green,
+      route: Routes.INDEX_TANDUR,
     );
-    menu_home.add(data);
-  }
+    menu_home.add(data1);
 
-  List<MenuHome> getMenuHome() {
-    return [
-      MenuHome(
-        image:
-            "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-        title: "Menu 1",
-        color: Colors.red,
-      ),
-      MenuHome(
-          image:
-              "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-          title: "Menu 2",
-          color: Colors.yellow),
-      MenuHome(
-        image:
-            "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-        title: "Menu 3",
-        color: Colors.green,
-      ),
-      MenuHome(
-        image:
-            "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-        title: "Menu 4",
-        color: Colors.purple,
-      ),
-      MenuHome(
-        image:
-            "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-        title: "Menu 5",
-        color: Colors.cyan,
-      ),
-      MenuHome(
-        image:
-            "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-        title: "Menu 6",
-        color: Colors.lightBlue,
-      ),
-      MenuHome(
-        image:
-            "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-        title: "Menu 7",
-        color: Colors.pinkAccent,
-      ),
-      MenuHome(
-        image:
-            "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-        title: "Menu 8",
-        color: Colors.pinkAccent,
-      ),
-      MenuHome(
-        image:
-            "https://cdn2.iconfinder.com/data/icons/maps-navigation-linear-black/614/3683_-_Marker_I-512.png",
-        title: "Menu 9",
-        color: Colors.pinkAccent,
-      ),
-    ];
+    final data2 = MenuHome(
+      id: "2",
+      image:
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Jadwal Panen",
+      color: Colors.green,
+      route: Routes.INDEX_PANEN,
+    );
+    menu_home.add(data2);
+
+    final data3 = MenuHome(
+      id: "3",
+      image:
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Edukasi",
+      color: Colors.green,
+      route: Routes.INDEX_EDUKASI,
+    );
+    menu_home.add(data3);
+
+    final data4 = MenuHome(
+      id: "4",
+      image:
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Kegiatan",
+      color: Colors.green,
+      route: Routes.INDEX_KEGIATAN,
+    );
+    menu_home.add(data4);
+
+    final data5 = MenuHome(
+      id: "5",
+      image:
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Poktan",
+      color: Colors.green,
+      route: Routes.INDEX_POKTAN,
+    );
+    menu_home.add(data5);
+
+    final data6 = MenuHome(
+      id: "6",
+      image:
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Saya",
+      color: Colors.green,
+      route: Routes.INDEX_SAYA,
+    );
+    menu_home.add(data6);
+
+    final data7 = MenuHome(
+      id: "7",
+      image:
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Notifikasi",
+      color: Colors.green,
+      route: Routes.INDEX_NOTIFIKASI,
+    );
+    menu_home.add(data7);
+
+    final data8 = MenuHome(
+      id: "8",
+      image:
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Menu",
+      color: Colors.green,
+      route: Routes.INDEX_PRODUK,
+    );
+    menu_home.add(data8);
+    // final datas = [
+    //   {
+    //     "id": "1",
+    //     "image":
+    //         "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+    //     "title": "Jadwal Tandur",
+    //     "color": "32a86d",
+    //     "route": Routes.INDEX_EDUKASI,
+    //   },
+    //   {
+    //     "id": "1",
+    //     "image":
+    //         "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+    //     "title": "Jadwal Tandur",
+    //     "color": "32a86d",
+    //     "route": Routes.INDEX_EDUKASI,
+    //   }
+    // ];
+
+    // for (var i = 0; i < datas.length; i++) {
+    //   final data = MenuHome(
+    //     id: datas[i]["id"].toString(),
+    //     image: datas[i]["image"].toString(),
+    //     color: datas[i]["color"].toString(),
+    //     route: datas[i]["route"].toString(),
+    //   );
+    //   menu_home.add(data);
+    // }
   }
 
   @override
   void onInit() {
-    getData();
-    getMenuHome();
+    getDataItemMenu();
     super.onInit();
   }
 }

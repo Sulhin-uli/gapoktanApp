@@ -1,5 +1,5 @@
 import 'package:gapoktan_app/app/modules/edukasi/views/index_edukasi_view.dart';
-import 'package:gapoktan_app/app/modules/home/views/item_menu_view.dart';
+import 'package:gapoktan_app/app/modules/home/views/widget/item_menu_view.dart';
 import 'package:gapoktan_app/app/modules/notifikasi/views/index_notifikasi_view.dart';
 import 'package:gapoktan_app/app/modules/produk/views/index_produk_view.dart';
 import 'package:gapoktan_app/app/modules/saya/views/index_saya_view.dart';
