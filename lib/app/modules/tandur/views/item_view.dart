@@ -7,7 +7,7 @@ class ItemView extends GetView {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.DETAIL_POKTAN),
+      onTap: () => Get.toNamed(Routes.DETAIL_TANDUR),
       child: Card(
         clipBehavior: Clip.antiAlias,
         child: Column(
@@ -19,7 +19,7 @@ class ItemView extends GetView {
               ),
               title: const Text('Name Poktan'),
               subtitle: Text(
-                'Secondary Text',
+                '10 Januari 2022',
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
             ),

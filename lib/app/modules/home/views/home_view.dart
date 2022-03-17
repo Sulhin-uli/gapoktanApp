@@ -1,5 +1,8 @@
 import 'package:gapoktan_app/app/modules/edukasi/views/index_edukasi_view.dart';
+import 'package:gapoktan_app/app/modules/home/views/item_menu_view.dart';
+import 'package:gapoktan_app/app/modules/notifikasi/views/index_notifikasi_view.dart';
 import 'package:gapoktan_app/app/modules/produk/views/index_produk_view.dart';
+import 'package:gapoktan_app/app/modules/saya/views/index_saya_view.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,7 +42,7 @@ class HomeView extends GetView<HomeController> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Get.toNamed(Routes.INDEX_NOTIFIKASI),
             icon: Icon(
               Icons.notifications,
               color: Colors.amber,
@@ -86,44 +89,13 @@ class HomeView extends GetView<HomeController> {
                         child: GridView.builder(
                           padding: EdgeInsets.symmetric(horizontal: 12),
                           scrollDirection: Axis.horizontal,
-                          itemCount: 8,
+                          itemCount: controller.menu_home.length,
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                                   crossAxisCount: 2, childAspectRatio: 1.25),
                           itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Container(
-                                  // color: index % 2 == 0 ? Colors.amber : Colors.red,
-                                  width: 45,
-                                  height: 45,
-                                  child: FlatButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(14),
-                                        side:
-                                            BorderSide(color: Colors.black12)),
-                                    padding: EdgeInsets.all(8),
-                                    color: Colors.white,
-                                    onPressed: () =>
-                                        Get.toNamed(Routes.INDEX_KEGIATAN),
-                                    child: Image.network(
-                                      "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-                                      color: Colors.green,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 11,
-                                ),
-                                Text(
-                                  "Menu Title",
-                                  maxLines: 2,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 12, color: Colors.amber[700]),
-                                ),
-                              ],
-                            );
+                            final data = controller.menu_home[index];
+                            return ItemMenuView(data);
                           },
                         ),
                       ),
@@ -248,7 +220,8 @@ class HomeView extends GetView<HomeController> {
               ],
             ),
             IndexProdukView(),
-            IndexEdukasiView()
+            IndexEdukasiView(),
+            IndexSayaView()
           ],
         ),
       ),
