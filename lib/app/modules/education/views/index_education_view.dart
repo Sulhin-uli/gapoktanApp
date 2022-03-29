@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:gapoktan_app/app/modules/edukasi/views/item_view.dart';
+import 'package:gapoktan_app/app/modules/education/views/item_view.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/edukasi_controller.dart';
+import '../controllers/education_controller.dart';
 
-class IndexEdukasiView extends GetView<EdukasiController> {
+class IndexEducationView extends GetView<EducationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class IndexEdukasiView extends GetView<EdukasiController> {
       // ),
       backgroundColor: Colors.white,
       body: Obx(
-        () => controller.edukasi.isEmpty
+        () => controller.education.isEmpty
             ? Center(
                 child: CircularProgressIndicator(),
               )
@@ -29,12 +29,12 @@ class IndexEdukasiView extends GetView<EdukasiController> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2, childAspectRatio: 1 / 1.2),
-                        itemCount: controller.edukasi.length,
+                        itemCount: controller.education.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, i) {
                           // final product = productList[index];
-                          final data = controller.edukasi[i];
+                          final data = controller.education[i];
                           return ItemView(data);
                         },
                       )
@@ -46,6 +46,7 @@ class IndexEdukasiView extends GetView<EdukasiController> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xff16A085),
         foregroundColor: Colors.white,
+        heroTag: 'add',
         // mini: true,
         onPressed: () => Get.toNamed(Routes.ADD_EDUCATION),
         child: Icon(Icons.add),

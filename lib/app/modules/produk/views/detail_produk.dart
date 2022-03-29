@@ -26,7 +26,7 @@ class DetailProdukView extends GetView<ProdukController> {
                   child: ListTile(
                     onTap: () => Get.toNamed(Routes.EDIT_PRODUK),
                     leading: Icon(Icons.edit),
-                    title: Text('Ubah'),
+                    title: Text('Ubah Produk'),
                   ),
                 ),
                 PopupMenuItem(

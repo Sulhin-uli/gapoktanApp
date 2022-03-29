@@ -11,6 +11,9 @@ void main() {
       title: "Application",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      theme: ThemeData(
+        primaryColor: Color(0xff16A085),
+      ),
     ),
   );
 }

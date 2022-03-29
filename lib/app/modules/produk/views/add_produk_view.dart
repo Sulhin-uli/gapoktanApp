@@ -10,7 +10,7 @@ class AddProdukView extends GetView {
         backgroundColor: Colors.white,
         leading: BackButton(color: Colors.black),
         title: Text(
-          'Tambah Edukasi',
+          'Tambah Produk',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
         elevation: 0.5,

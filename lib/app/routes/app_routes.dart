@@ -7,10 +7,10 @@ abstract class Routes {
   static const LOGIN = _Paths.LOGIN;
 
   // Edukasi
-  static const INDEX_EDUKASI = _Paths.INDEX_EDUKASI;
-  static const DETAIL_EDUKASI = _Paths.DETAIL_EDUKASI;
-  static const ADD_EDUKASI = _Paths.ADD_EDUKASI;
-  static const EDIT_EDUKASI = _Paths.EDIT_EDUKASI;
+  static const INDEX_EDUCATION = _Paths.INDEX_EDUCATION;
+  static const DETAIL_EDUCATION = _Paths.DETAIL_EDUCATION;
+  static const ADD_EDUCATION = _Paths.ADD_EDUCATION;
+  static const EDIT_EDUCATION = _Paths.EDIT_EDUCATION;
 
   // Produk
   static const INDEX_PRODUK = _Paths.INDEX_PRODUK;
@@ -47,10 +47,10 @@ abstract class _Paths {
   static const LOGIN = '/login';
 
   // edukasi
-  static const INDEX_EDUKASI = '/index-edukasi';
-  static const DETAIL_EDUKASI = '/detail-edukasi';
-  static const ADD_EDUKASI = '/add-edukasi';
-  static const EDIT_EDUKASI = '/edit-edukasi';
+  static const INDEX_EDUCATION = '/index-education';
+  static const DETAIL_EDUCATION = '/detail-education';
+  static const ADD_EDUCATION = '/add-education';
+  static const EDIT_EDUCATION = '/edit-education';
 
   // produk
   static const INDEX_PRODUK = '/index-produk';

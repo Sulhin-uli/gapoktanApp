@@ -17,7 +17,7 @@ class ItemView extends GetView {
           children: [
             Expanded(
               child: Hero(
-                tag: data.slug!,
+                tag: data.id,
                 child: Center(
                   child: Image.network(
                     "https://www.thehindu.com/sci-tech/agriculture/87sx5z/article30131510.ece/alternates/LANDSCAPE_615/NEWS2FARMER",

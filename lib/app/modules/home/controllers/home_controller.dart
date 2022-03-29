@@ -38,7 +38,7 @@ class HomeController extends GetxController {
           "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
       title: "Edukasi",
       color: Colors.green,
-      route: Routes.INDEX_EDUKASI,
+      route: Routes.INDEX_EDUCATION,
     );
     menu_home.add(data3);
 

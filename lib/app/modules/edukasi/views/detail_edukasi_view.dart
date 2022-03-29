@@ -3,10 +3,13 @@ import 'package:gapoktan_app/app/modules/edukasi/controllers/edukasi_controller.
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
+import 'package:video_player/video_player.dart';
 
 class DetailEdukasiView extends GetView<EdukasiController> {
   @override
   Widget build(BuildContext context) {
+    final data = controller.findByid(Get.arguments);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -16,10 +19,15 @@ class DetailEdukasiView extends GetView<EdukasiController> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Hero(
-                  tag: "data.slug!",
+                  tag: data.slug.toString(),
                   child: Center(
-                    child: Image.network(
-                      "https://www.thehindu.com/sci-tech/agriculture/87sx5z/article30131510.ece/alternates/LANDSCAPE_615/NEWS2FARMER",
+                    // child: Image.network(
+                    //   "https://www.thehindu.com/sci-tech/agriculture/87sx5z/article30131510.ece/alternates/LANDSCAPE_615/NEWS2FARMER",
+                    // ),
+                    child: AspectRatio(
+                      aspectRatio: controller.dummyVideo.value.aspectRatio,
+                      // Use the VideoPlayer widget to display the video.
+                      child: VideoPlayer(controller.dummyVideo),
                     ),
                   ),
                 ),
@@ -27,7 +35,7 @@ class DetailEdukasiView extends GetView<EdukasiController> {
                   padding: const EdgeInsets.fromLTRB(17, 17, 17, 0),
                   child: Text(
                     // "data.title!",
-                    "Greyhound divisively hello coldly wonderfully",
+                    data.title.toString(),
                     style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.bold,
@@ -56,9 +64,8 @@ class DetailEdukasiView extends GetView<EdukasiController> {
                 // ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(17, 5, 17, 0),
-                  child: Text(
-                      // "data.content!",
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                  child: Text(data.desc.toString(),
+                      // "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                       textAlign: TextAlign.justify,
                       style: TextStyle(fontSize: 14.0, height: 1.5)),
                 ),
@@ -88,7 +95,7 @@ class DetailEdukasiView extends GetView<EdukasiController> {
               itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                 PopupMenuItem(
                   child: ListTile(
-                    onTap: () => Get.toNamed(Routes.EDIT_EDUKASI),
+                    onTap: () => Get.toNamed(Routes.EDIT_EDUCATION),
                     leading: Icon(Icons.edit),
                     title: Text('Ubah'),
                   ),

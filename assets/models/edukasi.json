@@ -1,0 +1,12 @@
+{
+  "id": 3,
+  "user_id": 1,
+  "category_education_id": 1,
+  "title": "Tes Education2",
+  "slug": "tes-education-2",
+  "date": "2022-03-23 00:00:00",
+  "file": "tes-edukasi.jpg",
+  "desc": "desc of edukasi",
+  "created_at": "2022-03-24T00:37:33.000000Z",
+  "updated_at": "2022-03-24T00:37:33.000000Z"
+}
