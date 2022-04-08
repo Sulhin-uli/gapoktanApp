@@ -43,13 +43,12 @@ class HomeController extends GetxController {
     menu_home.add(data3);
 
     final data4 = MenuHome(
-      id: "4",
-      image:
-          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-      title: "Kegiatan",
-      color: Colors.green,
-      route: Routes.INDEX_KEGIATAN,
-    );
+        id: "4",
+        image:
+            "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+        title: "Kegiatan",
+        color: Colors.green,
+        route: Routes.INDEX_ACTIVITY);
     menu_home.add(data4);
 
     final data5 = MenuHome(

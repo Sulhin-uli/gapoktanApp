@@ -12,17 +12,17 @@ abstract class Routes {
   static const ADD_EDUCATION = _Paths.ADD_EDUCATION;
   static const EDIT_EDUCATION = _Paths.EDIT_EDUCATION;
 
+  // kegiatan
+  static const INDEX_ACTIVITY = _Paths.INDEX_ACTIVITY;
+  static const DETAIL_ACTIVITY = _Paths.DETAIL_ACTIVITY;
+  static const ADD_ACTIVITY = _Paths.ADD_ACTIVITY;
+  static const EDIT_ACTIVITY = _Paths.EDIT_ACTIVITY;
+
   // Produk
   static const INDEX_PRODUK = _Paths.INDEX_PRODUK;
   static const DETAIL_PRODUK = _Paths.DETAIL_PRODUK;
   static const ADD_PRODUK = _Paths.ADD_PRODUK;
   static const EDIT_PRODUK = _Paths.EDIT_PRODUK;
-
-  // Kegiatan
-  static const INDEX_KEGIATAN = _Paths.INDEX_KEGIATAN;
-  static const DETAIL_KEGIATAN = _Paths.DETAIL_KEGIATAN;
-  static const ADD_KEGIATAN = _Paths.ADD_KEGIATAN;
-  static const EDIT_KEGIATAN = _Paths.EDIT_KEGIATAN;
 
   // Tandur
   static const INDEX_TANDUR = _Paths.INDEX_TANDUR;
@@ -39,6 +39,7 @@ abstract class Routes {
   static const EDIT_POKTAN = _Paths.EDIT_POKTAN;
   static const INDEX_SAYA = _Paths.INDEX_SAYA;
   static const INDEX_NOTIFIKASI = _Paths.INDEX_NOTIFIKASI;
+  static const EDUCATION_CATEGORY = _Paths.EDUCATION_CATEGORY;
 }
 
 abstract class _Paths {
@@ -52,17 +53,17 @@ abstract class _Paths {
   static const ADD_EDUCATION = '/add-education';
   static const EDIT_EDUCATION = '/edit-education';
 
+  // Kegiatan
+  static const INDEX_ACTIVITY = '/index-activity';
+  static const DETAIL_ACTIVITY = '/detail-activity';
+  static const ADD_ACTIVITY = '/add-activity';
+  static const EDIT_ACTIVITY = '/edit-activity';
+
   // produk
   static const INDEX_PRODUK = '/index-produk';
   static const DETAIL_PRODUK = '/detail-produk';
   static const ADD_PRODUK = '/add-produk';
   static const EDIT_PRODUK = '/edit-produk';
-
-  // Kegiatan
-  static const INDEX_KEGIATAN = '/index-kegiatan';
-  static const DETAIL_KEGIATAN = '/detail-kegiatan';
-  static const ADD_KEGIATAN = '/add-kegiatan';
-  static const EDIT_KEGIATAN = '/edit-kegiatan';
 
   // Tandur
   static const INDEX_TANDUR = '/index-tandur';
@@ -83,4 +84,5 @@ abstract class _Paths {
 
   // Notifikasi
   static const INDEX_NOTIFIKASI = '/index-notifikasi';
+  static const EDUCATION_CATEGORY = '/education-category';
 }

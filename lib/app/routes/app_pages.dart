@@ -1,23 +1,22 @@
-import 'package:gapoktan_app/app/modules/education/bindings/form_education_binding.dart';
-import 'package:gapoktan_app/app/modules/poktan/bindings/poktan_binding.dart';
-import 'package:gapoktan_app/app/modules/poktan/views/add_poktan_view.dart';
-import 'package:gapoktan_app/app/modules/poktan/views/detail_poktan_view.dart';
-import 'package:gapoktan_app/app/modules/poktan/views/edit_poktan_view.dart';
-import 'package:gapoktan_app/app/modules/poktan/views/index_poktan_view.dart';
+import 'package:gapoktan_app/app/modules/activity/bindings/activity_binding.dart';
+import 'package:gapoktan_app/app/modules/activity/bindings/form_activity_binding.dart';
+import 'package:gapoktan_app/app/modules/activity/views/add_activity_view.dart';
+import 'package:gapoktan_app/app/modules/activity/views/detail_activity_view.dart';
+import 'package:gapoktan_app/app/modules/activity/views/edit_activity_view.dart';
+import 'package:gapoktan_app/app/modules/activity/views/index_activity_view.dart';
+import 'package:gapoktan_app/app/modules/home/views/index_home_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/education/bindings/education_binding.dart';
+import '../modules/education/bindings/form_education_binding.dart';
 import '../modules/education/views/add_education_view.dart';
 import '../modules/education/views/detail_education_view.dart';
 import '../modules/education/views/edit_education_view.dart';
 import '../modules/education/views/index_education_view.dart';
+import '../modules/education_category/bindings/education_category_binding.dart';
+import '../modules/education_category/views/education_category_view.dart';
 import '../modules/home/bindings/home_binding.dart';
-import '../modules/home/views/home_view.dart';
-import '../modules/kegiatan/bindings/kegiatan_binding.dart';
-import '../modules/kegiatan/views/add_kegiatan_view.dart';
-import '../modules/kegiatan/views/detail_kegiatan_view.dart';
-import '../modules/kegiatan/views/edit_kegiatan_view.dart';
-import '../modules/kegiatan/views/index_kegiatan_view.dart';
+import '../modules/home/views/home_view_old.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/notifikasi/bindings/notifikasi_binding.dart';
@@ -25,7 +24,11 @@ import '../modules/notifikasi/views/index_notifikasi_view.dart';
 import '../modules/panen/bindings/panen_binding.dart';
 import '../modules/panen/views/detail_detail_view.dart';
 import '../modules/panen/views/index_panen_view.dart';
-
+import '../modules/poktan/bindings/poktan_binding.dart';
+import '../modules/poktan/views/add_poktan_view.dart';
+import '../modules/poktan/views/detail_poktan_view.dart';
+import '../modules/poktan/views/edit_poktan_view.dart';
+import '../modules/poktan/views/index_poktan_view.dart';
 import '../modules/produk/bindings/produk_binding.dart';
 import '../modules/produk/views/add_produk_view.dart';
 import '../modules/produk/views/detail_produk.dart';
@@ -47,7 +50,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => HomeView(),
+      page: () => IndexHomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -102,24 +105,24 @@ class AppPages {
 
     // Kegiatan
     GetPage(
-      name: _Paths.INDEX_KEGIATAN,
-      page: () => IndexKegiatanView(),
-      // binding: ProdukBinding(),
+      name: _Paths.INDEX_ACTIVITY,
+      page: () => IndexActivityView(),
+      binding: ActivityBinding(),
     ),
     GetPage(
-      name: _Paths.DETAIL_KEGIATAN,
-      page: () => DetailKegiatanView(),
-      binding: KegiatanBinding(),
+      name: _Paths.DETAIL_ACTIVITY,
+      page: () => DetailActivityView(),
+      binding: ActivityBinding(),
     ),
     GetPage(
-      name: _Paths.ADD_KEGIATAN,
-      page: () => AddKegiatanView(),
-      // binding: PRODUKBinding(),
+      name: _Paths.ADD_ACTIVITY,
+      page: () => AddActivityView(),
+      binding: FormActivityBinding(),
     ),
     GetPage(
-      name: _Paths.EDIT_KEGIATAN,
-      page: () => EditKegiatanView(),
-      // binding: EdukasiBinding(),
+      name: _Paths.EDIT_ACTIVITY,
+      page: () => EditActivityView(),
+      binding: FormActivityBinding(),
     ),
 
     // Tandur
@@ -186,6 +189,11 @@ class AppPages {
       name: _Paths.INDEX_NOTIFIKASI,
       page: () => IndexNotifikasiView(),
       binding: NotifikasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDUCATION_CATEGORY,
+      page: () => EducationCategoryView(),
+      binding: EducationCategoryBinding(),
     ),
   ];
 }

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/education/controllers/education_controller.dart';
 import 'package:gapoktan_app/app/modules/education/controllers/form_education_controller.dart';
+import 'package:gapoktan_app/app/modules/education_category/controllers/education_category_controller.dart';
 
 import 'package:get/get.dart';
 
 class EditEducationView extends GetView<FormEducationController> {
   final educationC = Get.find<EducationController>();
+  final educationCategoryC = Get.find<EducationCategoryController>();
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class EditEducationView extends GetView<FormEducationController> {
     controller.title.text = data.title!;
     controller.file.text = data.file!;
     controller.desc.text = data.desc!;
+    educationCategoryC.changeEditCategory(data.categoryEducationId!);
 
     return Scaffold(
       appBar: AppBar(
@@ -39,24 +42,52 @@ class EditEducationView extends GetView<FormEducationController> {
                   color: Color(0xff919A92),
                 ),
               ),
-              TextFormField(
-                controller: controller.category_education_id,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
-                  helperText: 'Contoh: Label',
-                  // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff919A92),
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff16A085),
-                    ),
-                  ),
-                ),
+              // TextFormField(
+              //   controller: controller.category_education_id,
+              //   cursorColor: Color(0xff16A085),
+              //   decoration: InputDecoration(
+              //     helperText: 'Contoh: Label',
+              //     // fillColor: Color(0xff919A92),
+              //     enabledBorder: UnderlineInputBorder(
+              //       borderSide: BorderSide(
+              //         color: Color(0xff919A92),
+              //       ),
+              //     ),
+              //     focusedBorder: UnderlineInputBorder(
+              //       borderSide: BorderSide(
+              //         color: Color(0xff16A085),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              Obx(
+                () => educationCategoryC.education_category.isEmpty
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : DropdownButtonHideUnderline(
+                        child: new DropdownButton(
+                          items:
+                              educationCategoryC.education_category.map((item) {
+                            return new DropdownMenuItem(
+                              child: new Text(
+                                item.name!.toString(),
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              value: item.id!.toString(),
+                            );
+                          }).toList(),
+                          onChanged: (newVal) {
+                            educationCategoryC.onSelected(newVal.toString());
+                          },
+                          value:
+                              educationCategoryC.selectedEditValue.value != null
+                                  ? educationCategoryC.selectedEditValue.value
+                                  : null,
+                        ),
+                      ),
               ),
+              Divider(color: Color(0xff919A92)),
               const SizedBox(height: 30),
               Text(
                 "Judul",
@@ -143,7 +174,7 @@ class EditEducationView extends GetView<FormEducationController> {
                     ),
                     onPressed: () => educationC.edit(
                       Get.arguments,
-                      int.parse(controller.category_education_id.text),
+                      controller.category_education_id.text,
                       controller.title.text,
                       controller.file.text,
                       controller.desc.text,

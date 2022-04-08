@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gapoktan_app/app/modules/kegiatan/controllers/kegiatan_controller.dart';
+import 'package:gapoktan_app/app/modules/panen/controllers/panen_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
-class DetailPanenView extends GetView<KegiatanController> {
+class DetailPanenView extends GetView<PanenController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,23 +24,23 @@ class DetailPanenView extends GetView<KegiatanController> {
                 color: Colors.black,
               ),
               itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                PopupMenuItem(
-                  child: ListTile(
-                    onTap: () => Get.toNamed(Routes.EDIT_KEGIATAN),
-                    leading: Icon(Icons.edit),
-                    title: Text('Ubah'),
-                  ),
-                ),
-                PopupMenuItem(
-                  child: ListTile(
-                    onTap: () {
-                      controller.dialogQuestion(
-                          "Hapus", "Yakin menghapus data?", context);
-                    },
-                    leading: Icon(Icons.delete),
-                    title: Text('Delete'),
-                  ),
-                ),
+                // PopupMenuItem(
+                //   child: ListTile(
+                //     onTap: () => Get.toNamed(Routes.EDIT_KEGIATAN),
+                //     leading: Icon(Icons.edit),
+                //     title: Text('Ubah'),
+                //   ),
+                // ),
+                // PopupMenuItem(
+                //   child: ListTile(
+                //     onTap: () {
+                //       controller.dialogQuestion(
+                //           "Hapus", "Yakin menghapus data?", context);
+                //     },
+                //     leading: Icon(Icons.delete),
+                //     title: Text('Delete'),
+                //   ),
+                // ),
               ],
             ),
           ),

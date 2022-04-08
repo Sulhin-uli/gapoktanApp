@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:gapoktan_app/app/modules/education/models/education_model.dart';
 import 'package:gapoktan_app/app/modules/education/providers/education_provider.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
@@ -13,6 +17,14 @@ class EducationController extends GetxController {
   // show video
   late VideoPlayerController videoPlayerController;
   ChewieController? cheviewController;
+
+  // upload image
+  var selectedImagePath = ''.obs;
+  var selectedImageSize = ''.obs;
+
+  // Compress code
+  var compressImagePath = ''.obs;
+  var compressImageSize = ''.obs;
 
   @override
   void onInit() {
@@ -71,22 +83,25 @@ class EducationController extends GetxController {
   // dialog sukses
   void dialogSuccess(String msg) {
     Get.defaultDialog(
-        title: "Berhasil",
-        content: Text(
-          msg,
-          textAlign: TextAlign.center,
-        ));
+      title: "Berhasil",
+      content: Text(
+        msg,
+        textAlign: TextAlign.center,
+      ),
+    );
   }
 
   // get data
   Future fetchData() async {
     return EducationProvider().fetchData().then((response) {
-      // print(response);
+      // print(response[0][0]["category_education_id"]["name"]);
       for (var i = 0; i < response[0].length; i++) {
         final data = Education(
           id: response[0][i]["id"],
-          userId: response[0][i]["user_id"],
-          categoryEducationId: response[0][i]["category_education_id"],
+          // userId: response[0][i]["user_id"],
+          userId: 1,
+          categoryEducationId: 1,
+          // categoryEducationId: response[0][i]["category_education_id"]["id"],
           title: response[0][i]["title"],
           slug: response[0][i]["slug"],
           date: response[0][i]["date"],
@@ -104,38 +119,68 @@ class EducationController extends GetxController {
   void add(
     int category_education_id,
     String title,
-    String file,
+    var compressedFile,
     String desc,
-  ) {
-    int user_id = 1;
-    if (category_education_id != '' &&
-        title != '' &&
-        file != '' &&
-        desc != '') {
+  ) async {
+    int userId = 1;
+    // final pickedFile = await ImagePicker().getImage(source: imageSource);
+
+    if (compressedFile != null && title != '' && desc != '') {
       EducationProvider()
-          .postData(user_id, category_education_id, title, file, desc)
+          .postData(userId, category_education_id, title, compressedFile, desc)
           .then((response) {
-        final data = Education(
-          id: response[1]["id"],
-          userId: response[1]["user_id"],
-          categoryEducationId: response[1]["category_education_id"],
-          title: response[1]["title"],
-          slug: response[1]["slug"],
-          date: response[1]["date"],
-          file: response[1]["file"],
-          desc: response[1]["desc"],
-          createdAt: response[1]["created_at"],
-          updatedAt: response[1]["updated_at"],
-        );
-        education..insert(0, data);
+        print(response);
+        // final data = Education(
+        //   id: response[1]["id"],
+        //   userId: response[1]["user_id"],
+        //   categoryEducationId: response[1]["category_education_id"]["id"],
+        //   title: response[1]["title"],
+        //   slug: response[1]["slug"],
+        //   date: response[1]["date"],
+        //   file: response[1]["file"],
+        //   desc: response[1]["desc"],
+        //   createdAt: response[1]["created_at"],
+        //   updatedAt: response[1]["updated_at"],
+        // );
+        // education.insert(0, data);
         // print(response[1]["id"]);
         Get.back();
         //  Get.offAllNamed(Routes.MENU);
         dialogSuccess("data berhasil ditambahkan!");
       });
-    } else {
-      dialogError("Semua Input Harus Diisi");
-    }
+    } else {}
+
+    // print(category_education_id);
+    // print(title);
+    // print(file);
+    // print(desc);
+    // int user_id = 1;
+    // if (title != '' && file != '' && desc != '') {
+    //   EducationProvider()
+    //       .postData(user_id, category_education_id, title, file, desc)
+    //       .then((response) {
+    //     // print(response);
+    //     final data = Education(
+    //       id: response[1]["id"],
+    //       userId: response[1]["user_id"],
+    //       categoryEducationId: response[1]["category_education_id"]["id"],
+    //       title: response[1]["title"],
+    //       slug: response[1]["slug"],
+    //       date: response[1]["date"],
+    //       file: response[1]["file"],
+    //       desc: response[1]["desc"],
+    //       createdAt: response[1]["created_at"],
+    //       updatedAt: response[1]["updated_at"],
+    //     );
+    //     education.insert(0, data);
+    //     // print(response[1]["id"]);
+    //     Get.back();
+    //     //  Get.offAllNamed(Routes.MENU);
+    //     dialogSuccess("data berhasil ditambahkan!");
+    //   });
+    // } else {
+    //   dialogError("Semua Input Harus Diisi");
+    // }
   }
 
   // cari berdasarka id
@@ -145,24 +190,24 @@ class EducationController extends GetxController {
 
   void edit(
     int id,
-    int category_education_id,
+    String category_education_id,
     String title,
     String file,
     String desc,
   ) {
-    int user_id = 1;
-    final data = findByid(id);
-    EducationProvider()
-        .updateData(id, user_id, category_education_id, title, file, desc)
-        .then((_) {
-      data.categoryEducationId = category_education_id;
-      data.title = title;
-      data.file = file;
-      data.desc = desc;
-      education.refresh();
-      fetchData();
-      Get.back();
-    });
+    // int user_id = 1;
+    // final data = findByid(id);
+    // EducationProvider()
+    //     .updateData(id, user_id, category_education_id, title, file, desc)
+    //     .then((_) {
+    //   data.categoryEducationId = category_education_id;
+    //   data.title = title;
+    //   data.file = file;
+    //   data.desc = desc;
+    //   education.refresh();
+    //   fetchData();
+    //   Get.back();
+    // });
   }
 
   // void delete(int? id) {

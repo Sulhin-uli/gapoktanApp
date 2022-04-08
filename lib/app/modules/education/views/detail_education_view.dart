@@ -1,15 +1,20 @@
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/education/controllers/education_controller.dart';
+import 'package:gapoktan_app/app/modules/education/models/education_model.dart';
+import 'package:gapoktan_app/app/modules/education_category/controllers/education_category_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class DetailEducationView extends GetView<EducationController> {
+  final educationCategoryC = Get.find<EducationCategoryController>();
+
   @override
   Widget build(BuildContext context) {
     final data = controller.findByid(Get.arguments);
+    // final dataC = educationCategoryC.findByid(data.categoryEducationId!);
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -70,16 +75,35 @@ class DetailEducationView extends GetView<EducationController> {
                         //     ),
                         //   ),
                         // ),
-                        // Padding(
-                        //   padding: const EdgeInsets.fromLTRB(17, 1, 17, 2),
-                        //   child: Text(
-                        //     "data.date!",
-                        //     style: TextStyle(
-                        //       color: Colors.black38,
-                        //       fontSize: 12.0,
-                        //     ),
-                        //   ),
-                        // ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(17, 1, 17, 2),
+                          child: Text(
+                            data.date!,
+                            style: TextStyle(
+                              color: Colors.black38,
+                              fontSize: 12.0,
+                            ),
+                          ),
+                        ),
+                        Obx(
+                          () => educationCategoryC.isLoading.isFalse
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(17, 1, 17, 2),
+                                  child: Text(
+                                    educationCategoryC
+                                        .findByid(data.categoryEducationId!)
+                                        .name!,
+                                    style: TextStyle(
+                                      color: Colors.black38,
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
+                                )
+                              : Center(
+                                  child: CircularProgressIndicator(),
+                                ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(17, 5, 17, 0),
                           child: Text(data.desc!,

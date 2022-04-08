@@ -38,7 +38,8 @@ class ItemMenuView extends GetView<HomeController> {
               data.title!,
               maxLines: 2,
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 12, color: Colors.amber[700]),
+              style:
+                  TextStyle(fontSize: 12, color: Colors.black.withOpacity(0.5)),
             ),
           ],
         ),

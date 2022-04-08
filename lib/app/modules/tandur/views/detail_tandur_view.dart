@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:gapoktan_app/app/modules/kegiatan/controllers/kegiatan_controller.dart';
+import 'package:gapoktan_app/app/modules/tandur/controllers/tandur_controller.dart';
+// import 'package:gapoktan_app/app/modules/kegiatan/controllers/kegiatan_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
-class DetailTandurView extends GetView<KegiatanController> {
+class DetailTandurView extends GetView<TandurController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,21 +27,21 @@ class DetailTandurView extends GetView<KegiatanController> {
               itemBuilder: (BuildContext context) => <PopupMenuEntry>[
                 PopupMenuItem(
                   child: ListTile(
-                    onTap: () => Get.toNamed(Routes.EDIT_KEGIATAN),
+                    onTap: () => {},
                     leading: Icon(Icons.edit),
                     title: Text('Ubah'),
                   ),
                 ),
-                PopupMenuItem(
-                  child: ListTile(
-                    onTap: () {
-                      controller.dialogQuestion(
-                          "Hapus", "Yakin menghapus data?", context);
-                    },
-                    leading: Icon(Icons.delete),
-                    title: Text('Delete'),
-                  ),
-                ),
+                // PopupMenuItem(
+                //   child: ListTile(
+                //     onTap: () {
+                //       controller.dialogQuestion(
+                //           "Hapus", "Yakin menghapus data?", context);
+                //     },
+                //     leading: Icon(Icons.delete),
+                //     title: Text('Delete'),
+                //   ),
+                // ),
               ],
             ),
           ),

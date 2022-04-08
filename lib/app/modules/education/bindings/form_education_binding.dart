@@ -1,4 +1,5 @@
 import 'package:gapoktan_app/app/modules/education/controllers/form_education_controller.dart';
+import 'package:gapoktan_app/app/modules/education_category/controllers/education_category_controller.dart';
 import 'package:get/get.dart';
 
 class FormEducationBinding extends Bindings {
@@ -6,6 +7,9 @@ class FormEducationBinding extends Bindings {
   void dependencies() {
     Get.lazyPut<FormEducationController>(
       () => FormEducationController(),
+    );
+    Get.lazyPut<EducationCategoryController>(
+      () => EducationCategoryController(),
     );
   }
 }
