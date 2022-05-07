@@ -21,7 +21,13 @@ class Body extends GetView<HomeController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           HeaderWithSearchBox(size: size),
-          TitleWithMoreBtn(title: "Menu", press: () {}),
+          Container(
+            margin: EdgeInsets.only(left: 16),
+            child: Text(
+              "Menu",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
           // RecomendsPlants(),
           // ItemMenuView(),
           SizedBox(
@@ -41,7 +47,14 @@ class Body extends GetView<HomeController> {
               },
             ),
           ),
-          TitleWithMoreBtn(title: "Title", press: () {}),
+          // TitleWithMoreBtn(title: "Title", press: () {}),
+          Container(
+            margin: EdgeInsets.only(left: 16),
+            child: Text(
+              "Title",
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
           SizedBox(
             height: 5,
           ),

@@ -183,18 +183,22 @@ class AddEducationView extends GetView<FormEducationController> {
                   ),
                 ),
               ),
-              // Obx(
-              //   () => controller.selectedImagePath.value == ''
-              //       ? Text("No image selected")
-              //       : Image.file(
-              //           File(controller.selectedImagePath.value),
-              //         ),
-              // ),
               Obx(
                 () => controller.selectedImagePath.value == ''
-                    ? Text("")
-                    : Text(controller.selectedImageSize.value),
+                    ? Text("No image selected")
+                    : Container(
+                        height: 50,
+                        width: 50,
+                        child: Image.file(
+                          File(controller.selectedImagePath.value),
+                        ),
+                      ),
               ),
+              // Obx(
+              //   () => controller.selectedImagePath.value == ''
+              //       ? Text("")
+              //       : Text(controller.selectedImageSize.value),
+              // ),
               const SizedBox(height: 30),
               Text(
                 "Deskripsi",
@@ -232,7 +236,7 @@ class AddEducationView extends GetView<FormEducationController> {
                     onPressed: () => Get.find<EducationController>().add(
                       int.parse(educationCategoryC.selectedValue.value),
                       controller.title.text,
-                      controller.compressedFile,
+                      File(controller.selectedImagePath.value),
                       controller.desc.text,
                     ),
                     child: Text('Tambah'),

@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:video_player/video_player.dart';
 
 class DetailEducationView extends GetView<EducationController> {
-  final educationCategoryC = Get.find<EducationCategoryController>();
+  // final educationCategoryC = Get.find<EducationCategoryController>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,31 +29,33 @@ class DetailEducationView extends GetView<EducationController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Hero(
-                        //   tag: "data.slug!",
-                        //   child: Center(
-                        //     child: Image.network(
-                        //       "https://www.thehindu.com/sci-tech/agriculture/87sx5z/article30131510.ece/alternates/LANDSCAPE_615/NEWS2FARMER",
-                        //     ),
-                        //   ),
-                        // ),
                         Hero(
                           tag: "data.slug!",
-                          child: controller.cheviewController != null &&
-                                  controller.cheviewController!
-                                      .videoPlayerController.value.isInitialized
-                              ? AspectRatio(
-                                  aspectRatio: 16 / 9,
-                                  child: Chewie(
-                                      controller:
-                                          controller.cheviewController!))
-                              : Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    CircularProgressIndicator(),
-                                  ],
-                                ),
+                          child: Center(
+                            child: Image.network(
+                              "http://192.168.43.38:8001/storage/edukasi/" +
+                                  data.file!,
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                         ),
+                        // Hero(
+                        //   tag: "data.slug!",
+                        //   child: controller.cheviewController != null &&
+                        //           controller.cheviewController!
+                        //               .videoPlayerController.value.isInitialized
+                        //       ? AspectRatio(
+                        //           aspectRatio: 16 / 9,
+                        //           child: Chewie(
+                        //               controller:
+                        //                   controller.cheviewController!))
+                        //       : Column(
+                        //           mainAxisAlignment: MainAxisAlignment.center,
+                        //           children: [
+                        //             CircularProgressIndicator(),
+                        //           ],
+                        //         ),
+                        // ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(17, 17, 17, 0),
                           child: Text(
@@ -85,25 +87,27 @@ class DetailEducationView extends GetView<EducationController> {
                             ),
                           ),
                         ),
-                        Obx(
-                          () => educationCategoryC.isLoading.isFalse
-                              ? Padding(
-                                  padding:
-                                      const EdgeInsets.fromLTRB(17, 1, 17, 2),
-                                  child: Text(
-                                    educationCategoryC
-                                        .findByid(data.categoryEducationId!)
-                                        .name!,
-                                    style: TextStyle(
-                                      color: Colors.black38,
-                                      fontSize: 12.0,
-                                    ),
-                                  ),
-                                )
-                              : Center(
-                                  child: CircularProgressIndicator(),
-                                ),
-                        ),
+                        // Obx(
+                        //   () => Get.find<EducationCategoryController>()
+                        //           .education_category
+                        //           .isEmpty
+                        //       ? Padding(
+                        //           padding:
+                        //               const EdgeInsets.fromLTRB(17, 1, 17, 2),
+                        //           child: Text(
+                        //             Get.find<EducationCategoryController>()
+                        //                 .findByid(data.categoryEducationId!)
+                        //                 .name!,
+                        //             style: TextStyle(
+                        //               color: Colors.black38,
+                        //               fontSize: 12.0,
+                        //             ),
+                        //           ),
+                        //         )
+                        //       : Center(
+                        //           child: CircularProgressIndicator(),
+                        //         ),
+                        // ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(17, 5, 17, 0),
                           child: Text(data.desc!,

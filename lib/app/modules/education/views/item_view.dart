@@ -20,7 +20,8 @@ class ItemView extends GetView {
                 tag: data.id,
                 child: Center(
                   child: Image.network(
-                    "https://www.thehindu.com/sci-tech/agriculture/87sx5z/article30131510.ece/alternates/LANDSCAPE_615/NEWS2FARMER",
+                    "http://192.168.43.38:8001/storage/edukasi/" + data.file!,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),

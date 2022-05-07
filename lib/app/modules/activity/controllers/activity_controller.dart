@@ -70,7 +70,7 @@ class ActivityController extends GetxController {
           id: response[0][i]["id"],
           // userId: response[0][i]["user_id"],
           userId: 1,
-          categoryActivityId: response[0][i]["category_activity_id"]["id"],
+          // categoryActivityId: response[0][i]["category_activity_id"]["id"],
           // categoryEducationId: response[0][i]["category_education_id"]["id"],
           title: response[0][i]["title"],
           slug: response[0][i]["slug"],

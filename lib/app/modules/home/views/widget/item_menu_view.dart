@@ -16,8 +16,8 @@ class ItemMenuView extends GetView<HomeController> {
           children: [
             Container(
               // color: index % 2 == 0 ? Colors.amber : Colors.red,
-              width: 45,
-              height: 45,
+              width: 37,
+              height: 37,
               child: FlatButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
@@ -39,7 +39,7 @@ class ItemMenuView extends GetView<HomeController> {
               maxLines: 2,
               textAlign: TextAlign.center,
               style:
-                  TextStyle(fontSize: 12, color: Colors.black.withOpacity(0.5)),
+                  TextStyle(fontSize: 10, color: Colors.black.withOpacity(0.5)),
             ),
           ],
         ),

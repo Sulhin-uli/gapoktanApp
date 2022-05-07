@@ -49,10 +49,10 @@ class EducationCategoryController extends GetxController {
   }
 
   EducationCategory findByid(int id) {
-    try {
-      isLoading(true);
-      return education_category.firstWhere((element) => element.id == id);
-    } catch (e) {}
+    // try {
+    //   isLoading(true);
+    //   return education_category.firstWhere((element) => element.id == id);
+    // } catch (e) {}
     return education_category.firstWhere((element) => element.id == id);
   }
 

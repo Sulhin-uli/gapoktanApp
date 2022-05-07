@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../models/education_model.dart';
 
 class EducationProvider extends GetConnect {
-  String url = "http://192.168.43.38:8001/api/education/";
+  String url = "http://192.168.43.38:8001/api/education";
 
   Future<dynamic> fetchData() async {
     // Printing is nice, but we want these messages in the UI
@@ -81,5 +81,5 @@ class EducationProvider extends GetConnect {
     return response.body;
   }
 
-  Future<void> deleteData(int? id) async => await delete('$url' + '$id');
+  Future<void> deleteData(int? id) async => await delete('$url/' + '$id');
 }

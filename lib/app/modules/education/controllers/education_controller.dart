@@ -119,15 +119,15 @@ class EducationController extends GetxController {
   void add(
     int category_education_id,
     String title,
-    var compressedFile,
+    File file,
     String desc,
   ) async {
     int userId = 1;
     // final pickedFile = await ImagePicker().getImage(source: imageSource);
 
-    if (compressedFile != null && title != '' && desc != '') {
+    if (file != null && title != '' && desc != '') {
       EducationProvider()
-          .postData(userId, category_education_id, title, compressedFile, desc)
+          .postData(userId, category_education_id, title, file, desc)
           .then((response) {
         print(response);
         // final data = Education(
@@ -144,11 +144,13 @@ class EducationController extends GetxController {
         // );
         // education.insert(0, data);
         // print(response[1]["id"]);
-        Get.back();
+        // Get.back();
         //  Get.offAllNamed(Routes.MENU);
-        dialogSuccess("data berhasil ditambahkan!");
+        // dialogSuccess("data berhasil ditambahkan!");
       });
-    } else {}
+    } else {
+      print("data Empty");
+    }
 
     // print(category_education_id);
     // print(title);
