@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gapoktan_app/app/modules/home/controllers/home_controller.dart';
-import 'package:gapoktan_app/app/modules/home/views/widget/body.dart';
-import 'package:gapoktan_app/app/modules/home/views/widget/constants.dart';
-import 'package:gapoktan_app/app/modules/home/views/widget/my_bottom_nav_bar.dart';
+import 'package:gapoktan_app/app/modules/home/views/widget/body_widget.dart';
+import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:gapoktan_app/app/modules/saya/views/index_saya_view.dart';
 import 'package:get/get.dart';
 

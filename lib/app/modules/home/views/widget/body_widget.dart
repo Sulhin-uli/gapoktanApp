@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/home/controllers/home_controller.dart';
 import 'package:gapoktan_app/app/modules/home/views/widget/carousel_widget.dart';
-import 'package:gapoktan_app/app/modules/home/views/widget/constants.dart';
+import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:gapoktan_app/app/modules/home/views/widget/item_menu_view.dart';
 import 'package:get/get.dart';
 
-import 'featurred_plants.dart';
 import 'header_with_seachbox.dart';
-import 'recomend_plants.dart';
-import 'title_with_more_bbtn.dart';
 
 class Body extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
-    // It will provie us total height  and width of our screen
     Size size = MediaQuery.of(context).size;
-    // it enable scrolling on small device
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          HeaderWithSearchBox(size: size),
+          Header(size: size),
           Container(
             margin: EdgeInsets.only(left: 16),
             child: Text(
@@ -28,8 +23,6 @@ class Body extends GetView<HomeController> {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          // RecomendsPlants(),
-          // ItemMenuView(),
           SizedBox(
             height: 15,
           ),

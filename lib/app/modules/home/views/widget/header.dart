@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gapoktan_app/app/modules/home/views/widget/constants.dart';
+import 'package:gapoktan_app/app/utils/constant.dart';
 
-class HeaderWithSearchBox extends StatelessWidget {
-  const HeaderWithSearchBox({
+class Header extends StatelessWidget {
+  const Header({
     Key? key,
     @required this.size,
   }) : super(key: key);
