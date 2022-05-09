@@ -65,9 +65,9 @@ class HomeController extends GetxController {
       id: "6",
       image:
           "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-      title: "Saya",
+      title: "Kategori Kegiatan",
       color: Colors.green,
-      route: Routes.INDEX_SAYA,
+      route: Routes.INDEX_ACTIVITY_CATEGORY,
     );
     menu_home.add(data6);
 

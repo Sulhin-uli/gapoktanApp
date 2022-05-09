@@ -17,6 +17,10 @@ abstract class Routes {
   static const DETAIL_ACTIVITY = _Paths.DETAIL_ACTIVITY;
   static const ADD_ACTIVITY = _Paths.ADD_ACTIVITY;
   static const EDIT_ACTIVITY = _Paths.EDIT_ACTIVITY;
+  // Kategori Kegiatan
+  static const INDEX_ACTIVITY_CATEGORY = _Paths.INDEX_ACTIVITY_CATEGORY;
+  static const ADD_ACTIVITY_CATEGORY = _Paths.ADD_ACTIVITY_CATEGORY;
+  static const EDIT_ACTIVITY_CATEGORY = _Paths.EDIT_ACTIVITY_CATEGORY;
 
   // Produk
   static const INDEX_PRODUK = _Paths.INDEX_PRODUK;
@@ -40,6 +44,7 @@ abstract class Routes {
   static const INDEX_SAYA = _Paths.INDEX_SAYA;
   static const INDEX_NOTIFIKASI = _Paths.INDEX_NOTIFIKASI;
   static const EDUCATION_CATEGORY = _Paths.EDUCATION_CATEGORY;
+  static const ACTIVITY_CATEGORY = _Paths.ACTIVITY_CATEGORY;
 }
 
 abstract class _Paths {
@@ -58,6 +63,10 @@ abstract class _Paths {
   static const DETAIL_ACTIVITY = '/detail-activity';
   static const ADD_ACTIVITY = '/add-activity';
   static const EDIT_ACTIVITY = '/edit-activity';
+  // Kategori kegiatan
+  static const INDEX_ACTIVITY_CATEGORY = '/index-activity-category';
+  static const ADD_ACTIVITY_CATEGORY = '/add-activity-category';
+  static const EDIT_ACTIVITY_CATEGORY = '/edit-activity-category';
 
   // produk
   static const INDEX_PRODUK = '/index-produk';
@@ -85,4 +94,5 @@ abstract class _Paths {
   // Notifikasi
   static const INDEX_NOTIFIKASI = '/index-notifikasi';
   static const EDUCATION_CATEGORY = '/education-category';
+  static const ACTIVITY_CATEGORY = '/activity-category';
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/home/controllers/home_controller.dart';
 import 'package:gapoktan_app/app/modules/home/views/widget/carousel_widget.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
-import 'package:gapoktan_app/app/modules/home/views/widget/item_menu_view.dart';
+import 'package:gapoktan_app/app/modules/home/views/widget/item_menu_widget.dart';
 import 'package:get/get.dart';
 
-import 'header_with_seachbox.dart';
+import 'header_widget.dart';
 
 class Body extends GetView<HomeController> {
   @override

@@ -1,12 +1,15 @@
-import 'package:gapoktan_app/app/modules/activity/bindings/activity_binding.dart';
-import 'package:gapoktan_app/app/modules/activity/bindings/form_activity_binding.dart';
-import 'package:gapoktan_app/app/modules/activity/views/add_activity_view.dart';
-import 'package:gapoktan_app/app/modules/activity/views/detail_activity_view.dart';
-import 'package:gapoktan_app/app/modules/activity/views/edit_activity_view.dart';
-import 'package:gapoktan_app/app/modules/activity/views/index_activity_view.dart';
-import 'package:gapoktan_app/app/modules/home/views/index_home_view.dart';
+import 'package:gapoktan_app/app/modules/activity_category/views/add_category_activity_view.dart';
+import 'package:gapoktan_app/app/modules/activity_category/views/edit_category_activity_view.dart';
 import 'package:get/get.dart';
 
+import '../modules/activity/bindings/activity_binding.dart';
+import '../modules/activity/bindings/form_activity_binding.dart';
+import '../modules/activity/views/add_activity_view.dart';
+import '../modules/activity/views/detail_activity_view.dart';
+import '../modules/activity/views/edit_activity_view.dart';
+import '../modules/activity/views/index_activity_view.dart';
+import '../modules/activity_category/bindings/activity_category_binding.dart';
+import '../modules/activity_category/views/activity_category_view.dart';
 import '../modules/education/bindings/education_binding.dart';
 import '../modules/education/bindings/form_education_binding.dart';
 import '../modules/education/views/add_education_view.dart';
@@ -17,6 +20,7 @@ import '../modules/education_category/bindings/education_category_binding.dart';
 import '../modules/education_category/views/education_category_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view_old.dart';
+import '../modules/home/views/index_home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/notifikasi/bindings/notifikasi_binding.dart';
@@ -124,6 +128,22 @@ class AppPages {
       page: () => EditActivityView(),
       binding: FormActivityBinding(),
     ),
+    // Kategori Kegiatan
+    GetPage(
+      name: _Paths.INDEX_ACTIVITY_CATEGORY,
+      page: () => ActivityCategoryView(),
+      binding: ActivityCategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_ACTIVITY_CATEGORY,
+      page: () => AddCategoryActivityView(),
+      binding: ActivityCategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_ACTIVITY_CATEGORY,
+      page: () => EditCategoryActivityView(),
+      binding: ActivityCategoryBinding(),
+    ),
 
     // Tandur
     GetPage(
@@ -194,6 +214,11 @@ class AppPages {
       name: _Paths.EDUCATION_CATEGORY,
       page: () => EducationCategoryView(),
       binding: EducationCategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.ACTIVITY_CATEGORY,
+      page: () => ActivityCategoryView(),
+      binding: ActivityCategoryBinding(),
     ),
   ];
 }

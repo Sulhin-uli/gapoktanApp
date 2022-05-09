@@ -8,16 +8,8 @@ class ActivityProvider extends GetConnect {
   String url = "http://192.168.43.38:8001/api/activity/";
 
   Future<dynamic> fetchData() async {
-    try {
-      final response = await get('$url');
-      return response.body;
-    } on SocketException {
-      print('No Internet connection ');
-    } on HttpException {
-      print("Couldn't find the post  ");
-    } on FormatException {
-      print("Bad response format  ");
-    }
+    final response = await get('$url');
+    return response.body;
   }
 
   Future<dynamic> postData(
