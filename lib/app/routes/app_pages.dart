@@ -121,12 +121,12 @@ class AppPages {
     GetPage(
       name: _Paths.ADD_ACTIVITY,
       page: () => AddActivityView(),
-      binding: FormActivityBinding(),
+      binding: ActivityBinding(),
     ),
     GetPage(
       name: _Paths.EDIT_ACTIVITY,
       page: () => EditActivityView(),
-      binding: FormActivityBinding(),
+      binding: ActivityBinding(),
     ),
     // Kategori Kegiatan
     GetPage(

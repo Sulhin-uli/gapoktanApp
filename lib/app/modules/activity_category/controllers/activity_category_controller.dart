@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/data/models/activity_category_model.dart';
 import 'package:gapoktan_app/app/data/providers/activity_category_provider.dart';
+import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -16,20 +16,6 @@ class ActivityCategoryController extends GetxController {
     name = TextEditingController();
     getData();
     super.onInit();
-  }
-
-  // dialog Error
-  void dialog(String title, String msg) {
-    Get.defaultDialog(
-      title: title,
-      content: Text(
-        msg,
-        textAlign: TextAlign.center,
-      ),
-    );
-    Future.delayed(Duration(seconds: 3), () {
-      Get.back();
-    });
   }
 
   // add data

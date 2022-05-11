@@ -25,4 +25,12 @@ class ActivityCategory {
     data['updated_at'] = updatedAt;
     return data;
   }
+
+  static List<ActivityCategory> fromJsonList(List data) {
+    if (data == null || data.length == 0) return [];
+    return data.map((e) => ActivityCategory.fromJson(e)).toList();
+  }
+
+  @override
+  String toString() => name!;
 }

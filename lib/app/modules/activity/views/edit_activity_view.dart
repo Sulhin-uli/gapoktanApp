@@ -1,20 +1,31 @@
+import 'package:dio/dio.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:gapoktan_app/app/data/models/activity_category_model.dart';
 import 'package:gapoktan_app/app/modules/activity/controllers/activity_controller.dart';
-import 'package:gapoktan_app/app/modules/activity/controllers/form_activity_controller.dart';
+import 'package:gapoktan_app/app/utils/base_url.dart';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:intl/intl.dart';
 
-class EditActivityView extends GetView<FormActivityController> {
+class EditActivityView extends GetView<ActivityController> {
   final activityC = Get.find<ActivityController>();
+  final box = GetStorage();
+
   // final educationCategoryC = Get.find<EducationCategoryController>();
 
   @override
   Widget build(BuildContext context) {
-    final data = activityC.findByid(Get.arguments);
+    final data = controller.findByid(Get.arguments);
     // controller.category_education_id.text = data.categoryEducationId.toString();
     // print(data.categoryEducationId.toString());
-    controller.categoryActivityId.text = data.categoryActivityId.toString();
+    controller.categoryActivityId.text =
+        data.categoryActivityId!.id!.toString();
     controller.title.text = data.title!;
+    String formattedDate =
+        DateFormat('yyyy-MM-dd').format(DateTime.tryParse(data.date!));
+    controller.date.text = formattedDate;
     controller.desc.text = data.desc!;
     // educationCategoryC.changeEditCategory(data.categoryEducationId!);
 
@@ -41,52 +52,54 @@ class EditActivityView extends GetView<FormActivityController> {
                   color: Color(0xff919A92),
                 ),
               ),
-              TextFormField(
-                controller: controller.categoryActivityId,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
-                  helperText: 'Contoh: Label',
-                  // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff919A92),
-                    ),
+              SizedBox(
+                height: 9,
+              ),
+              Container(
+                // padding: EdgeInsets.all(16),
+                child: DropdownSearch<ActivityCategory>(
+                  showSearchBox: true,
+                  popupItemBuilder: (context, item, isSelected) => ListTile(
+                    title: Text("${item.name}"),
                   ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff16A085),
+                  dropdownSearchDecoration: InputDecoration(
+                    labelText: "",
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 15,
                     ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff919A92),
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff16A085),
+                      ),
+                    ),
+                    // border: border,
                   ),
+                  onFind: (text) async {
+                    final data = box.read("userData") as Map<String, dynamic>;
+                    var token = data["token"];
+                    Dio dio = new Dio();
+
+                    dio.options.headers['content-Type'] = 'application/json';
+                    dio.options.headers["authorization"] =
+                        "Bearer ${data["token"]}";
+                    var response = await dio.get(baseUrl + "activity-category");
+                    return ActivityCategory.fromJsonList(response.data["data"]);
+                  },
+                  // onChanged: (value) => print(value?.toJson()["kota"]),
+                  onChanged: (e) {
+                    controller.categoryActivityId.text =
+                        e!.toJson()["id"].toString();
+                    // print(e!.toJson()["id"]);
+                  },
+                  selectedItem: data.categoryActivityId!,
                 ),
               ),
-              // Obx(
-              //   () => educationCategoryC.education_category.isEmpty
-              //       ? Center(
-              //           child: CircularProgressIndicator(),
-              //         )
-              //       : DropdownButtonHideUnderline(
-              //           child: new DropdownButton(
-              //             items:
-              //                 educationCategoryC.education_category.map((item) {
-              //               return new DropdownMenuItem(
-              //                 child: new Text(
-              //                   item.name!.toString(),
-              //                   style: TextStyle(fontSize: 15),
-              //                 ),
-              //                 value: item.id!.toString(),
-              //               );
-              //             }).toList(),
-              //             onChanged: (newVal) {
-              //               educationCategoryC.onSelected(newVal.toString());
-              //             },
-              //             value:
-              //                 educationCategoryC.selectedEditValue.value != null
-              //                     ? educationCategoryC.selectedEditValue.value
-              //                     : null,
-              //           ),
-              //         ),
-              // ),
-              // Divider(color: Color(0xff919A92)),
               const SizedBox(height: 30),
               Text(
                 "Judul",
@@ -98,7 +111,7 @@ class EditActivityView extends GetView<FormActivityController> {
                 controller: controller.title,
                 cursorColor: Color(0xff16A085),
                 decoration: InputDecoration(
-                  helperText: 'Contoh: Label',
+                  // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -114,16 +127,32 @@ class EditActivityView extends GetView<FormActivityController> {
               ),
               const SizedBox(height: 30),
               Text(
-                "Deskripsi",
+                "Tanggal",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
               TextFormField(
-                controller: controller.desc,
+                controller: controller.date,
+                readOnly: true,
                 cursorColor: Color(0xff16A085),
+                onTap: () async {
+                  DateTime? pickedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2000),
+                      lastDate: DateTime(2101));
+
+                  if (pickedDate != null) {
+                    String formattedDate =
+                        DateFormat('yyyy-MM-dd').format(pickedDate);
+                    controller.date.text = formattedDate;
+                  } else {
+                    print("Date is not selected");
+                  }
+                },
                 decoration: InputDecoration(
-                  helperText: 'Contoh: Label',
+                  // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -135,6 +164,41 @@ class EditActivityView extends GetView<FormActivityController> {
                       color: Color(0xff16A085),
                     ),
                   ),
+                  suffixIcon: Icon(
+                    Icons.date_range_rounded,
+                    color: Color(0xff919A92),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              Text(
+                "Deskripsi",
+                style: TextStyle(
+                  color: Color(0xff919A92),
+                ),
+              ),
+              SizedBox(
+                height: 9,
+              ),
+              TextFormField(
+                maxLines: 5,
+                controller: controller.desc,
+                cursorColor: Color(0xff16A085),
+                decoration: InputDecoration(
+                  // helperText: 'Contoh: Label',
+                  // fillColor: Color(0xff919A92),
+                  enabledBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff919A92),
+                    ),
+                  ),
+                  focusedBorder: UnderlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Color(0xff16A085),
+                    ),
+                  ),
+                  fillColor: Colors.grey[100],
+                  filled: true,
                 ),
               ),
               const SizedBox(height: 30),
@@ -146,11 +210,11 @@ class EditActivityView extends GetView<FormActivityController> {
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff16A085), // background
                     ),
-                    onPressed: () => activityC.edit(
+                    onPressed: () => activityC.updateData(
                       Get.arguments,
                       int.parse(controller.categoryActivityId.text),
                       controller.title.text,
-                      controller.file.text,
+                      controller.date.text,
                       controller.desc.text,
                     ),
                     child: Text('Ubah'),

@@ -1,40 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:gapoktan_app/app/modules/activity/models/activity_model.dart';
-import 'package:gapoktan_app/app/modules/activity/providers/activity_provider.dart';
+import 'package:gapoktan_app/app/data/models/activity_category_model.dart';
+import 'package:gapoktan_app/app/data/models/activity_model.dart';
+import 'package:gapoktan_app/app/data/models/user_model.dart';
+import 'package:gapoktan_app/app/data/providers/activity_provider.dart';
+import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 class ActivityController extends GetxController {
+  final box = GetStorage();
   // list education
   var activity = List<Activity>.empty().obs;
+  String selectedDate = "";
+
+  // form
+  late TextEditingController categoryActivityId;
+  late TextEditingController title;
+  late TextEditingController date;
+  late TextEditingController desc;
 
   @override
   void onInit() {
+    getData();
+
+    // form
+    categoryActivityId = TextEditingController();
+    title = TextEditingController();
+    date = TextEditingController();
+    desc = TextEditingController();
     super.onInit();
-    // panggil fetch data
-    fetchData();
-  }
-
-  // dialog Error
-  void dialogError(String msg) {
-    Get.defaultDialog(
-      title: "Terjadi Kesalahan",
-      content: Text(
-        msg,
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
-  // dialog sukses
-  void dialogSuccess(String msg) {
-    Get.defaultDialog(
-      title: "Berhasil",
-      content: Text(
-        msg,
-        textAlign: TextAlign.center,
-      ),
-    );
   }
 
   void dialogQuestion(String title, String msg, BuildContext context, int id) {
@@ -61,63 +56,81 @@ class ActivityController extends GetxController {
   }
 
   // get data
-  Future fetchData() async {
-    return ActivityProvider().fetchData().then((response) {
-      // print(response);
-      // print(response[0][0]["category_education_id"]["id"]);
-      for (var i = 0; i < response[0].length; i++) {
-        final data = Activity(
-          id: response[0][i]["id"],
-          // userId: response[0][i]["user_id"],
-          userId: 1,
-          // categoryActivityId: response[0][i]["category_activity_id"]["id"],
-          // categoryEducationId: response[0][i]["category_education_id"]["id"],
-          title: response[0][i]["title"],
-          slug: response[0][i]["slug"],
-          date: response[0][i]["date"],
-          desc: response[0][i]["desc"],
-          createdAt: response[0][i]["created_at"],
-          updatedAt: response[0][i]["updated_at"],
-        );
-        activity.add(data);
+  Future getData() async {
+    final data = box.read("userData") as Map<String, dynamic>;
+    return ActivityProvider().getData(data["token"]).then((response) {
+      try {
+        response["data"].map((e) {
+          final data = Activity(
+            id: e["id"],
+            userId: User(
+              id: e["user_id"]["id"],
+              name: e["user_id"]["name"],
+            ),
+            categoryActivityId: ActivityCategory(
+              id: e["category_activity_id"]["id"],
+              name: e["category_activity_id"]["name"],
+              createdAt: e["category_activity_id"]["created_at"],
+              updatedAt: e["category_activity_id"]["updated_at"],
+            ),
+            title: e["title"],
+            slug: e["slug"],
+            date: e["date"],
+            desc: e["desc"],
+            createdAt: e["created_at"],
+            updatedAt: e["updated_at"],
+          );
+          activity.add(data);
+        }).toList();
+      } catch (e) {
+        // Get.toNamed(Routes.ERROR, arguments: e.toString());
+        print("Error is : " + e.toString());
       }
     });
   }
 
   // add data
-  void add(
+  void postData(
     int category_activity_id,
     String title,
+    String date,
     String desc,
   ) async {
-    int userId = 1;
-    // final pickedFile = await ImagePicker().getImage(source: imageSource);
-
-    if (category_activity_id != null && title != '' && desc != '') {
+    final data = box.read("userData") as Map<String, dynamic>;
+    if (category_activity_id != null &&
+        title != '' &&
+        date != '' &&
+        desc != '') {
       ActivityProvider()
-          .postData(userId, category_activity_id, title, desc)
+          .postData(data["id"], category_activity_id, title, date, desc,
+              data["token"])
           .then((response) {
-        print(response);
-        // final data = Education(
-        //   id: response[1]["id"],
-        //   userId: response[1]["user_id"],
-        //   categoryEducationId: response[1]["category_education_id"]["id"],
-        //   title: response[1]["title"],
-        //   slug: response[1]["slug"],
-        //   date: response[1]["date"],
-        //   file: response[1]["file"],
-        //   desc: response[1]["desc"],
-        //   createdAt: response[1]["created_at"],
-        //   updatedAt: response[1]["updated_at"],
-        // );
-        // education.insert(0, data);
-        // print(response[1]["id"]);
+        // print(response);
+        final data = Activity(
+          userId: User(
+            id: response["data"]["user_id"]["id"],
+            name: response["data"]["user_id"]["name"],
+          ),
+          categoryActivityId: ActivityCategory(
+            id: response["data"]["category_activity_id"]["id"],
+            name: response["data"]["category_activity_id"]["name"],
+            createdAt: response["data"]["category_activity_id"]["created_at"],
+            updatedAt: response["data"]["category_activity_id"]["updated_at"],
+          ),
+          title: response["data"]["title"],
+          slug: response["data"]["slug"],
+          date: response["data"]["date"],
+          desc: response["data"]["desc"],
+          createdAt: response["data"]["created_at"],
+          updatedAt: response["data"]["updated_at"],
+        );
+        activity.insert(0, data);
+        // print(response);
         Get.back();
-        //  Get.offAllNamed(Routes.MENU);
-        dialogSuccess("data berhasil ditambahkan!");
+        dialog("Berhasil !", "data berhasil ditambahkan!");
       });
     } else {
-      dialogError("Semua Input Harus Diisi");
+      dialog("Terjadi Kesalahan", "Semua Input Harus Diisi");
     }
   }
 
@@ -126,33 +139,37 @@ class ActivityController extends GetxController {
     return activity.firstWhere((element) => element.id == id);
   }
 
-  void edit(
+  void updateData(
     int id,
     int categoryActivityId,
     String title,
-    String file,
+    String date,
     String desc,
   ) {
-    int user_id = 1;
-    final data = findByid(id);
+    final data = box.read("userData") as Map<String, dynamic>;
+    final item = findByid(id);
     ActivityProvider()
-        .updateData(id, user_id, categoryActivityId, file, desc)
-        .then((_) {
-      // print(respon);
-      // data.categoryActivityId = categoryActivityId;
-      // data.title = title;
-      // data.desc = desc;
-      // activity.refresh();
-      // fetchData();
+        .updateData(id, categoryActivityId, title, date, desc, data["token"])
+        .then((e) {
+      item.categoryActivityId!.id = categoryActivityId;
+      item.title = title;
+      item.date = date;
+      item.desc = desc;
+      activity.refresh();
       Get.back();
+      Get.back();
+      Get.back();
+      dialog("Berhasil !", "data berhasil diubah!");
     });
   }
 
   void delete(int id) {
+    final data = box.read("userData") as Map<String, dynamic>;
     ActivityProvider()
-        .deleteData(id)
+        .deleteData(id, data["token"])
         .then((_) => activity.removeWhere((element) => element.id == id));
     Get.back();
-    dialogSuccess("data berhasil dihapus!");
+    Get.back();
+    dialog("Berhasil !", "data berhasil dihapus!");
   }
 }
