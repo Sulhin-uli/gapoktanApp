@@ -55,9 +55,9 @@ class HomeController extends GetxController {
       id: "5",
       image:
           "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-      title: "Poktan",
+      title: "Kategori Edukasi",
       color: Colors.green,
-      route: Routes.INDEX_POKTAN,
+      route: Routes.EDUCATION_CATEGORY,
     );
     menu_home.add(data5);
 
@@ -85,9 +85,9 @@ class HomeController extends GetxController {
       id: "8",
       image:
           "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-      title: "Menu",
+      title: "Poktan",
       color: Colors.green,
-      route: Routes.INDEX_PRODUK,
+      route: Routes.INDEX_POKTAN,
     );
     menu_home.add(data8);
     // final datas = [

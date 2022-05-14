@@ -17,7 +17,7 @@ class EditEducationView extends GetView<FormEducationController> {
     controller.title.text = data.title!;
     controller.file.text = data.file!;
     controller.desc.text = data.desc!;
-    educationCategoryC.changeEditCategory(data.categoryEducationId!);
+    // educationCategoryC.changeEditCategory(data.categoryEducationId!);
 
     return Scaffold(
       appBar: AppBar(

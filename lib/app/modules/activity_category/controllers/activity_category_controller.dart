@@ -56,11 +56,8 @@ class ActivityCategoryController extends GetxController {
           activityCategory.add(data);
         }).toList();
       } catch (e) {
-        // Get.toNamed(Routes.ERROR, arguments: e.toString());
         print("Error is : " + e.toString());
       }
-
-      // print(product[0].categoryProductId!.id);
     });
   }
 

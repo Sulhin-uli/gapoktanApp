@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gapoktan_app/app/modules/education_category/views/widgets/item_view.dart';
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
@@ -9,14 +11,44 @@ class EducationCategoryView extends GetView<EducationCategoryController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('EducationCategoryView'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text(
-          'EducationCategoryView is working',
-          style: TextStyle(fontSize: 20),
+        backgroundColor: Colors.white,
+        leading: BackButton(color: Colors.black),
+        title: Text(
+          'Kategori Edukasi',
+          style: TextStyle(color: Colors.black, fontSize: 16),
         ),
+        elevation: 0.5,
+      ),
+      body: Obx(
+        () => controller.education_category.isEmpty
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                        itemCount: controller.education_category.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final data = controller.education_category[index];
+                          return ItemViewCategoryAeducation(data);
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: const Color(0xff16A085),
+        foregroundColor: Colors.white,
+        // mini: true,
+        onPressed: () => Get.toNamed(Routes.ADD_EDUCATION_CATEGORY),
+        child: Icon(Icons.add),
       ),
     );
   }

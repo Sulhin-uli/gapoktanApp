@@ -1,5 +1,7 @@
 import 'package:gapoktan_app/app/modules/activity_category/views/add_category_activity_view.dart';
 import 'package:gapoktan_app/app/modules/activity_category/views/edit_category_activity_view.dart';
+import 'package:gapoktan_app/app/modules/education_category/views/add_category_education_view.dart';
+import 'package:gapoktan_app/app/modules/education_category/views/edit_category_education_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/activity/bindings/activity_binding.dart';
@@ -84,7 +86,17 @@ class AppPages {
       page: () => EditEducationView(),
       binding: FormEducationBinding(),
     ),
-
+    // Edukasi Kategori
+    GetPage(
+      name: _Paths.ADD_EDUCATION_CATEGORY,
+      page: () => AddCategoryEducationView(),
+      binding: EducationCategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_EDUCATION_CATEGORY,
+      page: () => EditCategoryEducationView(),
+      binding: EducationCategoryBinding(),
+    ),
     // Produk
     GetPage(
       name: _Paths.INDEX_PRODUK,
