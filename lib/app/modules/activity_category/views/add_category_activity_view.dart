@@ -10,7 +10,7 @@ class AddCategoryActivityView extends GetView<ActivityCategoryController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: BackButton(color: Colors.black),
-        title: Text(
+        title: Text(  
           'Tambah Kategori Kegiatan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),

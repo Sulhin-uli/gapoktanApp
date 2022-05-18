@@ -25,4 +25,12 @@ class EducationCategory {
     data['updated_at'] = updatedAt;
     return data;
   }
+
+  static List<EducationCategory> fromJsonList(List data) {
+    if (data == null || data.length == 0) return [];
+    return data.map((e) => EducationCategory.fromJson(e)).toList();
+  }
+
+  @override
+  String toString() => name!;
 }

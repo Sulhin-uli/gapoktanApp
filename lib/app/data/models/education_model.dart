@@ -1,7 +1,10 @@
+import 'package:gapoktan_app/app/data/models/education_category_model.dart';
+import 'package:gapoktan_app/app/data/models/user_model.dart';
+
 class Education {
   int? id;
-  int? userId;
-  int? categoryEducationId;
+  User? userId;
+  EducationCategory? categoryEducationId;
   String? title;
   String? slug;
   String? date;
@@ -24,8 +27,10 @@ class Education {
 
   Education.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    userId = json['user_id'];
-    categoryEducationId = json['category_education_id'];
+    userId = json['user_id'] != null ? User?.fromJson(json['user_id']) : null;
+    categoryEducationId = json['category_education_id'] != null
+        ? EducationCategory?.fromJson(json['category_education_id'])
+        : null;
     title = json['title'];
     slug = json['slug'];
     date = json['date'];
@@ -38,8 +43,12 @@ class Education {
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
     data['id'] = id;
-    data['user_id'] = userId;
-    data['category_education_id'] = categoryEducationId;
+    if (userId != null) {
+      data['user_id'] = userId?.toJson();
+    }
+    if (categoryEducationId != null) {
+      data['category_education_id'] = categoryEducationId?.toJson();
+    }
     data['title'] = title;
     data['slug'] = slug;
     data['date'] = date;

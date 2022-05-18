@@ -1,30 +1,36 @@
+import 'dart:io';
+import 'package:better_player/better_player.dart';
+import 'package:dio/dio.dart';
+import 'package:dotted_border/dotted_border.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:gapoktan_app/app/data/models/education_category_model.dart';
 import 'package:gapoktan_app/app/modules/education/controllers/education_controller.dart';
-import 'package:gapoktan_app/app/modules/education/controllers/form_education_controller.dart';
-import 'package:gapoktan_app/app/modules/education_category/controllers/education_category_controller.dart';
-
+import 'package:gapoktan_app/app/utils/base_url.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart' as p;
 
-class EditEducationView extends GetView<FormEducationController> {
-  final educationC = Get.find<EducationController>();
-  final educationCategoryC = Get.find<EducationCategoryController>();
+import 'package:get_storage/get_storage.dart';
+
+class EditEducationView extends GetView<EducationController> {
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
-    final data = educationC.findByid(Get.arguments);
-    controller.category_education_id.text = data.categoryEducationId.toString();
-    // print(data.categoryEducationId.toString());
+    final data = controller.findByid(Get.arguments);
+    controller.category_education_id.text =
+        data.categoryEducationId!.id!.toString();
     controller.title.text = data.title!;
-    controller.file.text = data.file!;
     controller.desc.text = data.desc!;
-    // educationCategoryC.changeEditCategory(data.categoryEducationId!);
+    final path = data.file;
+    final extension = p.extension(path!);
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: BackButton(color: Colors.black),
         title: Text(
-          'Ubah Edukasi',
+          'Edit Edukasi',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
         elevation: 0.5,
@@ -42,52 +48,55 @@ class EditEducationView extends GetView<FormEducationController> {
                   color: Color(0xff919A92),
                 ),
               ),
-              // TextFormField(
-              //   controller: controller.category_education_id,
-              //   cursorColor: Color(0xff16A085),
-              //   decoration: InputDecoration(
-              //     helperText: 'Contoh: Label',
-              //     // fillColor: Color(0xff919A92),
-              //     enabledBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(
-              //         color: Color(0xff919A92),
-              //       ),
-              //     ),
-              //     focusedBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(
-              //         color: Color(0xff16A085),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              Obx(
-                () => educationCategoryC.education_category.isEmpty
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : DropdownButtonHideUnderline(
-                        child: new DropdownButton(
-                          items:
-                              educationCategoryC.education_category.map((item) {
-                            return new DropdownMenuItem(
-                              child: new Text(
-                                item.name!.toString(),
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              value: item.id!.toString(),
-                            );
-                          }).toList(),
-                          onChanged: (newVal) {
-                            educationCategoryC.onSelected(newVal.toString());
-                          },
-                          value:
-                              educationCategoryC.selectedEditValue.value != null
-                                  ? educationCategoryC.selectedEditValue.value
-                                  : null,
-                        ),
-                      ),
+              SizedBox(
+                height: 9,
               ),
-              Divider(color: Color(0xff919A92)),
+              Container(
+                // padding: EdgeInsets.all(16),
+                child: DropdownSearch<EducationCategory>(
+                  showSearchBox: true,
+                  popupItemBuilder: (context, item, isSelected) => ListTile(
+                    title: Text("${item.name}"),
+                  ),
+                  dropdownSearchDecoration: InputDecoration(
+                    labelText: "",
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 15,
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff919A92),
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff16A085),
+                      ),
+                    ),
+                    // border: border,
+                  ),
+                  onFind: (text) async {
+                    final data = box.read("userData") as Map<String, dynamic>;
+                    var token = data["token"];
+                    Dio dio = new Dio();
+
+                    dio.options.headers['content-Type'] = 'application/json';
+                    dio.options.headers["authorization"] =
+                        "Bearer ${data["token"]}";
+                    var response =
+                        await dio.get(baseUrl + "education-category");
+                    return EducationCategory.fromJsonList(
+                        response.data["data"]);
+                  },
+                  onChanged: (e) {
+                    controller.category_education_id.text =
+                        e!.toJson()["id"].toString();
+                    // print(e!.toJson()["id"]);
+                  },
+                  selectedItem: data.categoryEducationId!,
+                ),
+              ),
               const SizedBox(height: 30),
               Text(
                 "Judul",
@@ -115,28 +124,99 @@ class EditEducationView extends GetView<FormEducationController> {
               ),
               const SizedBox(height: 30),
               Text(
-                "Gambar atau Vidio",
+                "File",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              TextFormField(
-                controller: controller.file,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
-                  helperText: 'Contoh: Label',
-                  // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff919A92),
-                    ),
-                  ),
-                  focusedBorder: UnderlineInputBorder(
-                    borderSide: BorderSide(
-                      color: Color(0xff16A085),
+              InkWell(
+                onTap: () => controller.dialogUploadFile(),
+                child: Center(
+                  child: DottedBorder(
+                    color: Colors.green,
+                    strokeWidth: 1,
+                    dashPattern: [5, 5],
+                    child: Container(
+                      height: 80,
+                      width: 140,
+                      color: Colors.green[50],
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.drive_folder_upload,
+                            color: Colors.green,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            "Pilih file disini ...",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.black.withOpacity(0.5),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 ),
+              ),
+              SizedBox(
+                height: 3,
+              ),
+              const SizedBox(height: 30),
+              Obx(
+                () => controller.selectedImagePath.value != ''
+                    ? Obx(
+                        () => controller.selectedImagePath.value.isImageFileName
+                            ? Center(
+                                child: Container(
+                                  height: 300,
+                                  width: 300,
+                                  child: Image.file(
+                                    File(controller.selectedImagePath.value),
+                                  ),
+                                ),
+                              )
+                            : Hero(
+                                tag: "data.slug!",
+                                child: AspectRatio(
+                                  aspectRatio: 16 / 9,
+                                  child: BetterPlayer.file(
+                                    controller.selectedImagePath.value,
+                                    betterPlayerConfiguration:
+                                        BetterPlayerConfiguration(
+                                      aspectRatio: 16 / 9,
+                                      fit: BoxFit.scaleDown,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                      )
+                    : (extension == '.mp4')
+                        ? AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: BetterPlayer.network(
+                              baseUrlFile + "storage/edukasi/" + data.file!,
+                              betterPlayerConfiguration:
+                                  BetterPlayerConfiguration(
+                                aspectRatio: 16 / 9,
+                                fit: BoxFit.scaleDown,
+                              ),
+                            ),
+                          )
+                        : Hero(
+                            tag: data.slug!,
+                            child: Center(
+                              child: Image.network(
+                                "http://192.168.43.38:8001/storage/edukasi/" +
+                                    data.file!,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
               ),
               const SizedBox(height: 30),
               Text(
@@ -145,11 +225,15 @@ class EditEducationView extends GetView<FormEducationController> {
                   color: Color(0xff919A92),
                 ),
               ),
+              SizedBox(
+                height: 9,
+              ),
               TextFormField(
+                maxLines: 5,
                 controller: controller.desc,
                 cursorColor: Color(0xff16A085),
                 decoration: InputDecoration(
-                  helperText: 'Contoh: Label',
+                  // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -161,6 +245,8 @@ class EditEducationView extends GetView<FormEducationController> {
                       color: Color(0xff16A085),
                     ),
                   ),
+                  fillColor: Colors.grey[100],
+                  filled: true,
                 ),
               ),
               const SizedBox(height: 30),
@@ -172,14 +258,23 @@ class EditEducationView extends GetView<FormEducationController> {
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff16A085), // background
                     ),
-                    onPressed: () => educationC.edit(
-                      Get.arguments,
-                      controller.category_education_id.text,
-                      controller.title.text,
-                      controller.file.text,
-                      controller.desc.text,
+                    onPressed: () {
+                      controller.isLoadingButton.value = false;
+                      controller.editData(
+                        Get.arguments,
+                        int.parse(controller.category_education_id.text),
+                        controller.title.text,
+                        controller.selectedImagePath.value,
+                        controller.desc.text,
+                      );
+                    },
+                    child: Obx(
+                      () => controller.isLoadingButton.isTrue
+                          ? Text('Edit')
+                          : const CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
                     ),
-                    child: Text('Ubah'),
                   ),
                 ),
               )

@@ -1,53 +1,273 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:gapoktan_app/app/modules/education/models/education_model.dart';
-import 'package:gapoktan_app/app/modules/education/providers/education_provider.dart';
-import 'package:gapoktan_app/app/routes/app_pages.dart';
+import 'package:gapoktan_app/app/data/models/education_category_model.dart';
+import 'package:gapoktan_app/app/data/models/education_model.dart';
+import 'package:gapoktan_app/app/data/models/user_model.dart';
+import 'package:gapoktan_app/app/data/providers/education_provider.dart';
+import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
+import 'package:video_thumbnail/video_thumbnail.dart';
 
 class EducationController extends GetxController {
-  // list education
+  final box = GetStorage();
   var education = List<Education>.empty().obs;
-  // show video
-  late VideoPlayerController videoPlayerController;
-  ChewieController? cheviewController;
+  late TextEditingController category_education_id;
+  late TextEditingController title;
+  late TextEditingController desc;
+  String? thumbnail;
+  var isLoadingButton = true.obs;
 
   // upload image
   var selectedImagePath = ''.obs;
   var selectedImageSize = ''.obs;
 
-  // Compress code
-  var compressImagePath = ''.obs;
-  var compressImageSize = ''.obs;
+  // old
+  var isUpload = false.obs;
 
   @override
   void onInit() {
     super.onInit();
-    // panggil fetch data
-    fetchData();
-    // putar video
-    initializedPlayer();
+    category_education_id = TextEditingController();
+    title = TextEditingController();
+    desc = TextEditingController();
+    getData();
+    // getTumbnail();
   }
 
-  @override
-  void onClose() {
-    super.onClose();
-    videoPlayerController.dispose();
-    cheviewController!.dispose();
+  // add data
+  void postData(
+    int category_education_id,
+    String title,
+    String file,
+    String desc,
+  ) async {
+    final data = box.read("userData") as Map<String, dynamic>;
+    if (category_education_id != '' &&
+        file != '' &&
+        title != '' &&
+        desc != '') {
+      try {
+        Map<String, String> body = {
+          "user_id": data["id"].toString(),
+          "category_education_id": category_education_id.toString(),
+          "title": title,
+          "desc": desc,
+        };
+        EducationProvider()
+            .postData(body, file, data["token"])
+            .then((response) {
+          // print(response["data"]["id"]);
+          final data = Education(
+            id: response["data"]["id"],
+            userId: User(
+              id: response["data"]["user_id"]["id"],
+              name: response["data"]["user_id"]["name"],
+            ),
+            categoryEducationId: EducationCategory(
+              id: response["data"]["category_education_id"]["id"],
+              name: response["data"]["category_education_id"]["name"],
+              createdAt: response["data"]["category_education_id"]
+                  ["created_at"],
+              updatedAt: response["data"]["category_education_id"]
+                  ["updated_at"],
+            ),
+            title: response["data"]["title"],
+            slug: response["data"]["slug"],
+            date: response["data"]["date"],
+            file: response["data"]["file"],
+            desc: response["data"]["desc"],
+            createdAt: response["data"]["created_at"],
+            updatedAt: response["data"]["updated_at"],
+          );
+          education.insert(0, data);
+          education.clear();
+          getData();
+          Get.back();
+          dialog("Berhasil !", "data berhasil ditambahkan!");
+          isLoadingButton.value = true;
+        });
+      } catch (e) {
+        dialog("Terjadi Kesalahan", "data gagal ditambahkan");
+
+        print("error is $e");
+      }
+    } else {
+      dialog("Terjadi Kesalahan", "Semua Input Harus Diisi");
+    }
   }
 
-  // pop up
-  void dialogDelete(int? id, BuildContext context) {
+  // dialog upload File
+  void dialogUploadFile() {
+    Get.defaultDialog(
+      title: "Pilih file",
+      content: Container(
+        child: Column(
+          children: [
+            ListTile(
+              onTap: () {
+                getImage(ImageSource.gallery);
+                Get.back();
+              },
+              leading: Icon(Icons.image),
+              title: Text("Gambar"),
+            ),
+            ListTile(
+              onTap: () {
+                getVideo(ImageSource.gallery);
+                Get.back();
+              },
+              leading: Icon(Icons.video_library),
+              title: Text("Video"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // get data
+  Future getData() async {
+    final data = box.read("userData") as Map<String, dynamic>;
+    return EducationProvider().getData(data["token"]).then((response) {
+      try {
+        response["data"].map((e) {
+          final data = Education(
+            id: e["id"],
+            userId: User(
+              id: e["user_id"]["id"],
+              name: e["user_id"]["name"],
+            ),
+            categoryEducationId: EducationCategory(
+              id: e["category_education_id"]["id"],
+              name: e["category_education_id"]["name"],
+              createdAt: e["category_education_id"]["created_at"],
+              updatedAt: e["category_education_id"]["updated_at"],
+            ),
+            title: e["title"],
+            slug: e["slug"],
+            date: e["date"],
+            file: e["file"],
+            desc: e["desc"],
+            createdAt: e["created_at"],
+            updatedAt: e["updated_at"],
+          );
+          education.add(data);
+        }).toList();
+      } catch (e) {
+        print("Error is : " + e.toString());
+      }
+    });
+  }
+
+  void getImage(ImageSource imageSource) async {
+    final pickedFile = await ImagePicker().pickImage(source: imageSource);
+    if (pickedFile != null) {
+      selectedImagePath.value = pickedFile.path;
+      selectedImageSize.value =
+          ((File(selectedImagePath.value)).lengthSync() / 1024 / 1024)
+                  .toStringAsFixed(2) +
+              " Mb";
+    } else {
+      Get.snackbar(
+        "Error",
+        "No image Selected",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  void getVideo(ImageSource imageSource) async {
+    final pickedFile = await ImagePicker().pickVideo(source: imageSource);
+
+    if (pickedFile != null) {
+      selectedImagePath.value = pickedFile.path;
+      selectedImageSize.value =
+          ((File(selectedImagePath.value)).lengthSync() / 1024 / 1024)
+                  .toStringAsFixed(2) +
+              " Mb";
+    } else {
+      Get.snackbar(
+        "Error",
+        "No Video Selected",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  // cari berdasarka id
+  Education findByid(int id) {
+    return education.firstWhere((element) => element.id == id);
+  }
+
+  void editData(
+    int id,
+    int category_education_id,
+    String title,
+    String file,
+    String desc,
+  ) {
+    final item = findByid(id);
+    final data = box.read("userData") as Map<String, dynamic>;
+
+    if (file == '') {
+      EducationProvider()
+          .updateDataWOfile(
+              id, data["id"], category_education_id, title, desc, data["token"])
+          .then((response) {
+        item.categoryEducationId!.id = category_education_id;
+        item.title = title;
+        item.desc = desc;
+        education.refresh();
+        Get.back();
+        dialog("Berhasil !", "data berhasil diubah");
+      });
+    } else {
+      Map<String, String> body = {
+        "id": id.toString(),
+        "user_id": data["id"].toString(),
+        "category_education_id": category_education_id.toString(),
+        "title": title,
+        "desc": desc,
+      };
+
+      EducationProvider()
+          .updateDataWfile(body, file, data["token"])
+          .then((response) {
+        education.clear();
+        getData();
+        Future.delayed(Duration(seconds: 3), () {});
+        Get.back();
+        dialog("Berhasil !", "data berhasil ditambahkan!");
+        isLoadingButton.value = true;
+      });
+    }
+  }
+
+  void deleteData(int id) {
+    final data = box.read("userData") as Map<String, dynamic>;
+    EducationProvider()
+        .deleteData(id, data["token"])
+        .then((_) => education.removeWhere((element) => element.id == id));
+    // Get.back();
+    dialog("Berhasil !", "data berhasil dihapus!");
+  }
+
+  void dialogQuestion(BuildContext context, int id) {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text("Hapus"),
+        title: Text("Peringatan"),
         content: Text("Yakin menghapus data?"),
         actions: <Widget>[
           TextButton(
@@ -56,193 +276,13 @@ class EducationController extends GetxController {
           ),
           TextButton(
             onPressed: () {
-              Navigator.pop(context);
-              EducationProvider().deleteData(id).then(
-                  (_) => education.removeWhere((element) => element.id == id));
-              Get.back();
-              dialogSuccess("Data berhasil dihapus!");
+              Navigator.pop(context, 'Ya');
+              deleteData(id);
             },
             child: Text('Ya'),
           ),
         ],
       ),
     );
-  }
-
-  // dialog Error
-  void dialogError(String msg) {
-    Get.defaultDialog(
-      title: "Terjadi Kesalahan",
-      content: Text(
-        msg,
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
-  // dialog sukses
-  void dialogSuccess(String msg) {
-    Get.defaultDialog(
-      title: "Berhasil",
-      content: Text(
-        msg,
-        textAlign: TextAlign.center,
-      ),
-    );
-  }
-
-  // get data
-  Future fetchData() async {
-    return EducationProvider().fetchData().then((response) {
-      // print(response[0][0]["category_education_id"]["name"]);
-      for (var i = 0; i < response[0].length; i++) {
-        final data = Education(
-          id: response[0][i]["id"],
-          // userId: response[0][i]["user_id"],
-          userId: 1,
-          categoryEducationId: 1,
-          // categoryEducationId: response[0][i]["category_education_id"]["id"],
-          title: response[0][i]["title"],
-          slug: response[0][i]["slug"],
-          date: response[0][i]["date"],
-          file: response[0][i]["file"],
-          desc: response[0][i]["desc"],
-          createdAt: response[0][i]["created_at"],
-          updatedAt: response[0][i]["updated_at"],
-        );
-        education.add(data);
-      }
-    });
-  }
-
-  // add data
-  void add(
-    int category_education_id,
-    String title,
-    File file,
-    String desc,
-  ) async {
-    int userId = 1;
-    // final pickedFile = await ImagePicker().getImage(source: imageSource);
-
-    if (file != null && title != '' && desc != '') {
-      EducationProvider()
-          .postData(userId, category_education_id, title, file, desc)
-          .then((response) {
-        print(response);
-        // final data = Education(
-        //   id: response[1]["id"],
-        //   userId: response[1]["user_id"],
-        //   categoryEducationId: response[1]["category_education_id"]["id"],
-        //   title: response[1]["title"],
-        //   slug: response[1]["slug"],
-        //   date: response[1]["date"],
-        //   file: response[1]["file"],
-        //   desc: response[1]["desc"],
-        //   createdAt: response[1]["created_at"],
-        //   updatedAt: response[1]["updated_at"],
-        // );
-        // education.insert(0, data);
-        // print(response[1]["id"]);
-        // Get.back();
-        //  Get.offAllNamed(Routes.MENU);
-        // dialogSuccess("data berhasil ditambahkan!");
-      });
-    } else {
-      print("data Empty");
-    }
-
-    // print(category_education_id);
-    // print(title);
-    // print(file);
-    // print(desc);
-    // int user_id = 1;
-    // if (title != '' && file != '' && desc != '') {
-    //   EducationProvider()
-    //       .postData(user_id, category_education_id, title, file, desc)
-    //       .then((response) {
-    //     // print(response);
-    //     final data = Education(
-    //       id: response[1]["id"],
-    //       userId: response[1]["user_id"],
-    //       categoryEducationId: response[1]["category_education_id"]["id"],
-    //       title: response[1]["title"],
-    //       slug: response[1]["slug"],
-    //       date: response[1]["date"],
-    //       file: response[1]["file"],
-    //       desc: response[1]["desc"],
-    //       createdAt: response[1]["created_at"],
-    //       updatedAt: response[1]["updated_at"],
-    //     );
-    //     education.insert(0, data);
-    //     // print(response[1]["id"]);
-    //     Get.back();
-    //     //  Get.offAllNamed(Routes.MENU);
-    //     dialogSuccess("data berhasil ditambahkan!");
-    //   });
-    // } else {
-    //   dialogError("Semua Input Harus Diisi");
-    // }
-  }
-
-  // cari berdasarka id
-  Education findByid(int id) {
-    return education.firstWhere((element) => element.id == id);
-  }
-
-  void edit(
-    int id,
-    String category_education_id,
-    String title,
-    String file,
-    String desc,
-  ) {
-    // int user_id = 1;
-    // final data = findByid(id);
-    // EducationProvider()
-    //     .updateData(id, user_id, category_education_id, title, file, desc)
-    //     .then((_) {
-    //   data.categoryEducationId = category_education_id;
-    //   data.title = title;
-    //   data.file = file;
-    //   data.desc = desc;
-    //   education.refresh();
-    //   fetchData();
-    //   Get.back();
-    // });
-  }
-
-  // void delete(int? id) {
-  //   EducationProvider()
-  //       .deleteData(id)
-  //       .then((_) => education.removeWhere((element) => element.id == id));
-  //   Get.offAndToNamed(Routes.INDEX_EDUCATION);
-  //   fetchData();
-  //   dialogSuccess("Data berhasil dihapus!");
-  // }
-
-  Future<void> initializedPlayer() async {
-    videoPlayerController = VideoPlayerController.network(
-      "https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4",
-    );
-
-    await Future.wait([videoPlayerController.initialize()]);
-    cheviewController = ChewieController(
-      videoPlayerController: videoPlayerController,
-      autoPlay: false,
-      looping: true,
-      materialProgressColors: ChewieProgressColors(
-        playedColor: Colors.red,
-        handleColor: Colors.cyanAccent,
-        backgroundColor: Colors.yellow,
-        bufferedColor: Colors.lightGreen,
-      ),
-      placeholder: Container(
-        color: Colors.greenAccent,
-      ),
-      autoInitialize: true,
-    );
-
-    update();
   }
 }

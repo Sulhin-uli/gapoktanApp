@@ -10,10 +10,15 @@ class IndexEducationView extends GetView<EducationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Color(0xff5D8BF4),
-      //   elevation: 0,
-      // ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: BackButton(color: Colors.black),
+        title: Text(
+          'Edukasi',
+          style: TextStyle(color: Colors.black, fontSize: 16),
+        ),
+        elevation: 0.5,
+      ),
       backgroundColor: Colors.white,
       body: Obx(
         () => controller.education.isEmpty

@@ -1,17 +1,17 @@
 import 'dart:io';
-
+import 'package:better_player/better_player.dart';
+import 'package:dio/dio.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:gapoktan_app/app/data/models/education_category_model.dart';
 import 'package:gapoktan_app/app/modules/education/controllers/education_controller.dart';
-import 'package:gapoktan_app/app/modules/education/controllers/form_education_controller.dart';
-import 'package:gapoktan_app/app/modules/education_category/controllers/education_category_controller.dart';
-
+import 'package:gapoktan_app/app/utils/base_url.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-class AddEducationView extends GetView<FormEducationController> {
-  final educationCategoryC = Get.find<EducationCategoryController>();
-  // final educationCategoryC = Get.find<EducationCategoryController>();
+class AddEducationView extends GetView<EducationController> {
+  final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
@@ -38,67 +38,55 @@ class AddEducationView extends GetView<FormEducationController> {
                   color: Color(0xff919A92),
                 ),
               ),
-              Obx(
-                () => educationCategoryC.education_category.isEmpty
-                    ? Center(
-                        child: CircularProgressIndicator(),
-                      )
-                    : DropdownButtonHideUnderline(
-                        child: new DropdownButton(
-                          items:
-                              educationCategoryC.education_category.map((item) {
-                            return new DropdownMenuItem(
-                              child: new Text(
-                                item.name!.toString(),
-                                style: TextStyle(fontSize: 15),
-                              ),
-                              value: item.id!.toString(),
-                            );
-                          }).toList(),
-                          onChanged: (newVal) {
-                            educationCategoryC.onSelected(newVal.toString());
-                          },
-                          value: educationCategoryC.selectedValue.value != null
-                              ? educationCategoryC.selectedValue.value
-                              : null,
-                        ),
-                      ),
+              SizedBox(
+                height: 9,
               ),
-              Divider(color: Color(0xff919A92)),
+              Container(
+                // padding: EdgeInsets.all(16),
+                child: DropdownSearch<EducationCategory>(
+                  showSearchBox: true,
+                  popupItemBuilder: (context, item, isSelected) => ListTile(
+                    title: Text("${item.name}"),
+                  ),
+                  dropdownSearchDecoration: InputDecoration(
+                    labelText: "",
+                    contentPadding: EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 15,
+                    ),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff919A92),
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff16A085),
+                      ),
+                    ),
+                    // border: border,
+                  ),
+                  onFind: (text) async {
+                    final data = box.read("userData") as Map<String, dynamic>;
+                    var token = data["token"];
+                    Dio dio = new Dio();
 
-              // Obx(
-              //   () => DropdownButton(
-              //     value: educationCategoryC.selectedValue.value,
-              //     items: educationCategoryC.items.map((value) {
-              //       return DropdownMenuItem(
-              //         child: Text(value),
-              //         value: value,
-              //       );
-              //     }).toList(),
-              //     onChanged: (value) {
-              //       educationCategoryC.selectedValue.value = value.toString();
-              //       // print(value);
-              //     },
-              //   ),
-              // ),
-              // TextFormField(
-              //   controller: controller.category_education_id,
-              //   cursorColor: Color(0xff16A085),
-              //   decoration: InputDecoration(
-              //     helperText: 'Contoh: Label',
-              //     // fillColor: Color(0xff919A92),
-              //     enabledBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(
-              //         color: Color(0xff919A92),
-              //       ),
-              //     ),
-              //     focusedBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(
-              //         color: Color(0xff16A085),
-              //       ),
-              //     ),
-              //   ),
-              // ),
+                    dio.options.headers['content-Type'] = 'application/json';
+                    dio.options.headers["authorization"] =
+                        "Bearer ${data["token"]}";
+                    var response =
+                        await dio.get(baseUrl + "education-category");
+                    return EducationCategory.fromJsonList(
+                        response.data["data"]);
+                  },
+                  // onChanged: (value) => print(value?.toJson()["kota"]),
+                  onChanged: (e) {
+                    controller.category_education_id.text =
+                        e!.toJson()["id"].toString();
+                    // print(e!.toJson()["id"]);
+                  },
+                ),
+              ),
               const SizedBox(height: 30),
               Text(
                 "Judul",
@@ -131,24 +119,6 @@ class AddEducationView extends GetView<FormEducationController> {
                   color: Color(0xff919A92),
                 ),
               ),
-              // TextFormField(
-              //   controller: controller.file,
-              //   cursorColor: Color(0xff16A085),
-              //   decoration: InputDecoration(
-              //     helperText: 'Contoh: Label',
-              //     // fillColor: Color(0xff919A92),
-              //     enabledBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(
-              //         color: Color(0xff919A92),
-              //       ),
-              //     ),
-              //     focusedBorder: UnderlineInputBorder(
-              //       borderSide: BorderSide(
-              //         color: Color(0xff16A085),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               InkWell(
                 onTap: () => controller.dialogUploadFile(),
                 child: Center(
@@ -183,22 +153,45 @@ class AddEducationView extends GetView<FormEducationController> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: 3,
+              ),
+              const SizedBox(height: 30),
               Obx(
-                () => controller.selectedImagePath.value == ''
-                    ? Text("No image selected")
-                    : Container(
-                        height: 50,
-                        width: 50,
-                        child: Image.file(
-                          File(controller.selectedImagePath.value),
-                        ),
+                () => controller.selectedImagePath.value != ''
+                    ? Obx(
+                        () => controller.selectedImagePath.value.isImageFileName
+                            ? Center(
+                                child: Container(
+                                  height: 300,
+                                  width: 300,
+                                  child: Image.file(
+                                    File(controller.selectedImagePath.value),
+                                  ),
+                                ),
+                              )
+                            : Hero(
+                                tag: "data.slug!",
+                                child: AspectRatio(
+                                  aspectRatio: 16 / 9,
+                                  child: BetterPlayer.file(
+                                    controller.selectedImagePath.value,
+                                    betterPlayerConfiguration:
+                                        BetterPlayerConfiguration(
+                                      aspectRatio: 16 / 9,
+                                      fit: BoxFit.scaleDown,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                      )
+                    : Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text("No File selected."),
+                        ],
                       ),
               ),
-              // Obx(
-              //   () => controller.selectedImagePath.value == ''
-              //       ? Text("")
-              //       : Text(controller.selectedImageSize.value),
-              // ),
               const SizedBox(height: 30),
               Text(
                 "Deskripsi",
@@ -206,11 +199,15 @@ class AddEducationView extends GetView<FormEducationController> {
                   color: Color(0xff919A92),
                 ),
               ),
+              SizedBox(
+                height: 9,
+              ),
               TextFormField(
+                maxLines: 5,
                 controller: controller.desc,
                 cursorColor: Color(0xff16A085),
                 decoration: InputDecoration(
-                  helperText: 'Contoh: Label',
+                  // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -222,6 +219,8 @@ class AddEducationView extends GetView<FormEducationController> {
                       color: Color(0xff16A085),
                     ),
                   ),
+                  fillColor: Colors.grey[100],
+                  filled: true,
                 ),
               ),
               const SizedBox(height: 30),
@@ -233,13 +232,22 @@ class AddEducationView extends GetView<FormEducationController> {
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff16A085), // background
                     ),
-                    onPressed: () => Get.find<EducationController>().add(
-                      int.parse(educationCategoryC.selectedValue.value),
-                      controller.title.text,
-                      File(controller.selectedImagePath.value),
-                      controller.desc.text,
+                    onPressed: () {
+                      controller.isLoadingButton.value = false;
+                      controller.postData(
+                        int.parse(controller.category_education_id.text),
+                        controller.title.text,
+                        controller.selectedImagePath.value,
+                        controller.desc.text,
+                      );
+                    },
+                    child: Obx(
+                      () => controller.isLoadingButton.isTrue
+                          ? Text('Tambah')
+                          : const CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
                     ),
-                    child: Text('Tambah'),
                   ),
                 ),
               )

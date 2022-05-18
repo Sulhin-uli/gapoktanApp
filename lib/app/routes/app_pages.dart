@@ -79,12 +79,12 @@ class AppPages {
     GetPage(
       name: _Paths.ADD_EDUCATION,
       page: () => AddEducationView(),
-      binding: FormEducationBinding(),
+      binding: EducationBinding(),
     ),
     GetPage(
       name: _Paths.EDIT_EDUCATION,
       page: () => EditEducationView(),
-      binding: FormEducationBinding(),
+      binding: EducationBinding(),
     ),
     // Edukasi Kategori
     GetPage(
