@@ -30,6 +30,10 @@ abstract class Routes {
   static const DETAIL_PRODUK = _Paths.DETAIL_PRODUK;
   static const ADD_PRODUK = _Paths.ADD_PRODUK;
   static const EDIT_PRODUK = _Paths.EDIT_PRODUK;
+  // Kategori Product
+  static const INDEX_PRODUCT_CATEGORY = _Paths.INDEX_PRODUCT_CATEGORY;
+  static const ADD_PRODUCT_CATEGORY = _Paths.ADD_PRODUCT_CATEGORY;
+  static const EDIT_PRODUCT_CATEGORY = _Paths.EDIT_PRODUCT_CATEGORY;
 
   // Tandur
   static const INDEX_TANDUR = _Paths.INDEX_TANDUR;
@@ -79,6 +83,10 @@ abstract class _Paths {
   static const DETAIL_PRODUK = '/detail-produk';
   static const ADD_PRODUK = '/add-produk';
   static const EDIT_PRODUK = '/edit-produk';
+  // Kategori kegiatan
+  static const INDEX_PRODUCT_CATEGORY = '/index-product-category';
+  static const ADD_PRODUCT_CATEGORY = '/add-product-category';
+  static const EDIT_PRODUCT_CATEGORY = '/edit-product-category';
 
   // Tandur
   static const INDEX_TANDUR = '/index-tandur';

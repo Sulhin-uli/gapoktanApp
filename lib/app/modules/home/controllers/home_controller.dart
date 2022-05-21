@@ -75,9 +75,9 @@ class HomeController extends GetxController {
       id: "7",
       image:
           "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-      title: "Notifikasi",
+      title: "Produk",
       color: Colors.green,
-      route: Routes.INDEX_NOTIFIKASI,
+      route: Routes.INDEX_PRODUK,
     );
     menu_home.add(data7);
 
@@ -90,6 +90,16 @@ class HomeController extends GetxController {
       route: Routes.INDEX_POKTAN,
     );
     menu_home.add(data8);
+
+    final data9 = MenuHome(
+      id: "9",
+      image:
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Kategori Produk",
+      color: Colors.green,
+      route: Routes.INDEX_PRODUCT_CATEGORY,
+    );
+    menu_home.add(data9);
     // final datas = [
     //   {
     //     "id": "1",
