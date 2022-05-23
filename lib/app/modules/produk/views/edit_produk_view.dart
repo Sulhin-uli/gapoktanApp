@@ -240,10 +240,10 @@ class EditProdukView extends GetView<ProdukController> {
                       int.parse(controller.categoryProductId.text),
                       controller.code.text,
                       int.parse(controller.stoke.text),
-                      int.parse(controller.desc.text),
-                      controller.price.text,
+                      int.parse(controller.price.text),
+                      controller.desc.text,
                     ),
-                    child: Text('Tambah'),
+                    child: Text('Edit'),
                   ),
                 ),
               )

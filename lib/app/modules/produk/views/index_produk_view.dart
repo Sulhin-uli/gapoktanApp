@@ -10,30 +10,39 @@ class IndexProdukView extends GetView<ProdukController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Color(0xff5D8BF4),
-      //   elevation: 0,
-      // ),
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, childAspectRatio: 1 / 1.2),
-                itemCount: 11,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  // final product = productList[index];
-                  return ItemView();
-                },
-              )
-            ],
-          ),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: BackButton(color: Colors.black),
+        title: Text(
+          'Produk',
+          style: TextStyle(color: Colors.black, fontSize: 16),
         ),
+        elevation: 0.5,
+      ),
+      backgroundColor: Colors.white,
+      body: Obx(
+        () => controller.product.isEmpty
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2, childAspectRatio: 1 / 1.2),
+                    itemCount: controller.product.length,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, i) {
+                      // final product = productList[index];
+                      final data = controller.product[i];
+                      return ItemView(data);
+                    },
+                  ),
+                ),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xff16A085),

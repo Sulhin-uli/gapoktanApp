@@ -6,6 +6,7 @@ import 'package:gapoktan_app/app/modules/product_category/bindings/product_categ
 import 'package:gapoktan_app/app/modules/product_category/views/add_category_product_view.dart';
 import 'package:gapoktan_app/app/modules/product_category/views/edit_category_product_view.dart';
 import 'package:gapoktan_app/app/modules/product_category/views/product_category_view.dart';
+import 'package:gapoktan_app/app/modules/produk/views/detail_produk_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/activity/bindings/activity_binding.dart';
@@ -38,7 +39,6 @@ import '../modules/poktan/views/edit_poktan_view.dart';
 import '../modules/poktan/views/index_poktan_view.dart';
 import '../modules/produk/bindings/produk_binding.dart';
 import '../modules/produk/views/add_produk_view.dart';
-import '../modules/produk/views/detail_produk.dart';
 import '../modules/produk/views/edit_produk_view.dart';
 import '../modules/produk/views/index_produk_view.dart';
 import '../modules/saya/bindings/saya_binding.dart';
@@ -118,7 +118,7 @@ class AppPages {
     GetPage(
       name: _Paths.EDIT_PRODUK,
       page: () => EditProdukView(),
-      // binding: EdukasiBinding(),
+      binding: ProdukBinding(),
     ),
     // Product Kategori
     GetPage(

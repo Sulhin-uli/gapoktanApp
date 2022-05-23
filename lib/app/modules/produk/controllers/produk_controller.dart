@@ -4,6 +4,7 @@ import 'package:gapoktan_app/app/data/models/product_category_model.dart';
 import 'package:gapoktan_app/app/data/models/product_model.dart';
 import 'package:gapoktan_app/app/data/models/user_model.dart';
 import 'package:gapoktan_app/app/data/providers/product_provider.dart';
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -27,6 +28,7 @@ class ProdukController extends GetxController {
     price = TextEditingController();
     desc = TextEditingController();
 
+    getData();
     super.onInit();
   }
 
@@ -76,9 +78,53 @@ class ProdukController extends GetxController {
     }
   }
 
+  void getData() async {
+    final data = box.read("userData") as Map<String, dynamic>;
+
+    ProductProvider().getData(data["token"]).then((response) {
+      try {
+        response["data"].map((e) {
+          final data = Product(
+            id: e["id"],
+            name: e["name"],
+            slug: e["slug"],
+            categoryProductId: ProductCategory(
+              id: e["category_product_id"]["id"],
+              name: e["category_product_id"]["name"],
+              slug: e["category_product_id"]["slug"],
+              createdAt: e["category_product_id"]["created_at"],
+              updatedAt: e["category_product_id"]["updated_at"],
+            ),
+            code: e["code"],
+            stoke: e["stoke"],
+            price: e["price"],
+            desc: e["desc"],
+            userId: User(
+              id: e["category_product_id"]["id"],
+              name: e["category_product_id"]["name"],
+            ),
+            isActive: e["isActive"],
+          );
+          product.add(data);
+        }).toList();
+        // print(product.map((element) => element));
+      } catch (e) {
+        // Get.toNamed(Routes.ERROR, arguments: e.toString());
+        print(e.toString());
+      }
+
+      // print(product[0].categoryProductId!.id);
+    });
+  }
+
   // cari berdasarka id
   Product findByid(int id) {
     return product.firstWhere((element) => element.id == id);
+  }
+
+  // cari berdasarka slug
+  Product findBySlug(String slug) {
+    return product.firstWhere((element) => element.slug == slug);
   }
 
   void updateData(
@@ -98,42 +144,41 @@ class ProdukController extends GetxController {
         .then((e) {
       item.name = name;
       item.categoryProductId!.id = categoryProductId;
-      item.userId = data["id"];
+      item.userId!.id = data["id"];
       item.code = code;
       item.stoke = stoke;
       item.price = price;
       item.desc = desc;
       product.refresh();
       Get.back();
-      Get.back();
-      Get.back();
       dialog("Berhasil !", "data berhasil diubah!");
     });
   }
 
-  void delete(int id) {
+  void deleteData(int id) {
     final data = box.read("userData") as Map<String, dynamic>;
     ProductProvider()
         .deleteData(id, data["token"])
         .then((_) => product.removeWhere((element) => element.id == id));
-    Get.back();
-    Get.back();
     dialog("Berhasil !", "data berhasil dihapus!");
   }
 
-  void dialogQuestion(String title, String msg, BuildContext context) {
+  void dialogQuestion(BuildContext context, int id) {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(title),
-        content: Text(msg),
+        title: Text("Peringatan"),
+        content: Text("Yakin menghapus data?"),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Batal'),
             child: Text('Batal'),
           ),
           TextButton(
-            onPressed: () => Navigator.pop(context, 'Ya'),
+            onPressed: () {
+              Navigator.pop(context, 'Ya');
+              deleteData(id);
+            },
             child: Text('Ya'),
           ),
         ],

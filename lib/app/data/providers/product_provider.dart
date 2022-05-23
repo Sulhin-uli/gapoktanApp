@@ -64,11 +64,11 @@ class ProductProvider extends GetConnect {
   ) async {
     final response = await put('$url' + '/$id', {
       "name": name,
-      "categoryProductId": categoryProductId,
+      "category_product_id": categoryProductId,
       "code": code,
       "stoke": stoke,
       "price": price,
-      "userId": userId,
+      "user_id": userId,
       "desc": desc,
     }, headers: {
       'Content-Type': 'application/json',

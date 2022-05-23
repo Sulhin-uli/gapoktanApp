@@ -30,7 +30,6 @@ class AddProdukView extends GetView<ProdukController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 50),
               Text(
                 "Nama Produk",
                 style: TextStyle(
@@ -229,8 +228,8 @@ class AddProdukView extends GetView<ProdukController> {
                       int.parse(controller.categoryProductId.text),
                       controller.code.text,
                       int.parse(controller.stoke.text),
-                      int.parse(controller.desc.text),
-                      controller.price.text,
+                      int.parse(controller.price.text),
+                      controller.desc.text,
                     ),
                     child: Text('Tambah'),
                   ),
