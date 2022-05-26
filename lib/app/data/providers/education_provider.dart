@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
-import 'package:gapoktan_app/app/data/models/education_model.dart';
+import 'package:gapoktan_app/app/utils/base_url.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 
 class EducationProvider extends GetConnect {
-  String url = "http://192.168.43.38:8001/api/education";
+  // String url = "http://192.168.43.38:8001/api/education";
+  String url = baseUrl + "education";
 
   Future<dynamic> postData(
       Map<String, String> body, String filepath, String token) async {

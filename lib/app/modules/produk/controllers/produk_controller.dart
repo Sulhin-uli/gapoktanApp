@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:gapoktan_app/app/data/models/photo_product_model.dart';
 import 'package:gapoktan_app/app/data/models/product_category_model.dart';
 import 'package:gapoktan_app/app/data/models/product_model.dart';
 import 'package:gapoktan_app/app/data/models/user_model.dart';
+import 'package:gapoktan_app/app/data/providers/photo_product_provider.dart';
 import 'package:gapoktan_app/app/data/providers/product_provider.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProdukController extends GetxController {
+  var visibleEditPhoto = true.obs;
+  var carouselIndex = 0.obs;
   final box = GetStorage();
   late TextEditingController name;
   late TextEditingController categoryProductId;
@@ -18,6 +22,9 @@ class ProdukController extends GetxController {
   late TextEditingController price;
   late TextEditingController desc;
   var product = List<Product>.empty().obs;
+  var photoProduct = List<PhotoProduct>.empty().obs;
+  var photoProductByProductId = List<PhotoProduct>.empty().obs;
+  var selectedImagePath = List<XFile>.empty().obs;
 
   @override
   void onInit() {
@@ -28,8 +35,61 @@ class ProdukController extends GetxController {
     price = TextEditingController();
     desc = TextEditingController();
 
+    getDataPhoto();
     getData();
     super.onInit();
+  }
+
+  void getPhotoProductById(int productId) {
+    for (var item in photoProduct) {
+      if (item.productId!.id == productId) {
+        final data = PhotoProduct(
+          id: item.id,
+          productId: Product(
+            id: item.productId!.id,
+            name: item.productId!.name,
+            slug: item.productId!.slug,
+            categoryProductId: ProductCategory(
+              id: item.productId!.categoryProductId!.id,
+              name: item.productId!.categoryProductId!.name,
+              slug: item.productId!.categoryProductId!.slug,
+              createdAt: item.productId!.categoryProductId!.createdAt,
+              updatedAt: item.productId!.categoryProductId!.updatedAt,
+            ),
+            code: item.productId!.code,
+            stoke: item.productId!.stoke,
+            price: item.productId!.price,
+            desc: item.productId!.desc,
+            userId: User(
+              id: item.productId!.userId!.id,
+              name: item.productId!.userId!.name,
+            ),
+            isActive: item.productId!.isActive,
+          ),
+          name: item.name,
+          createdAt: item.createdAt,
+          updatedAt: item.updatedAt,
+        );
+        photoProductByProductId.insert(0, data);
+      } else {
+        print("not found");
+      }
+    }
+  }
+
+  getMultipleImage() async {
+    final List<XFile>? pickedFile = await ImagePicker().pickMultiImage();
+    if (pickedFile!.isNotEmpty) {
+      selectedImagePath.addAll(pickedFile);
+    } else {
+      Get.snackbar(
+        "Warning",
+        "No image Selected",
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.grey,
+        colorText: Colors.white,
+      );
+    }
   }
 
   // add data
@@ -70,9 +130,68 @@ class ProdukController extends GetxController {
           isActive: response["data"]["isActive"],
         );
         product.insert(0, data);
+        for (var item in selectedImagePath) {
+          postPhoto(item.path, response["data"]["id"]);
+
+          Future.delayed(Duration(seconds: 1), () {});
+        }
         Get.back();
         dialog("Berhasil !", "data berhasil ditambahkan!");
       });
+    } else {
+      dialog("Terjadi Kesalahan", "Semua Input Harus Diisi");
+    }
+  }
+
+  void postPhoto(String file, int productId) {
+    final data = box.read("userData") as Map<String, dynamic>;
+    if (name != '' && productId != '') {
+      try {
+        Map<String, String> body = {
+          "product_id": productId.toString(),
+        };
+        PhotoProductProvider()
+            .postData(body, file, data["token"])
+            .then((response) {
+          // print(response);
+          final data = PhotoProduct(
+            id: response["data"]["id"],
+            productId: Product(
+              id: response["data"]["product_id"]["id"],
+              name: response["data"]["product_id"]["name"],
+              slug: response["data"]["product_id"]["slug"],
+              categoryProductId: ProductCategory(
+                id: response["data"]["product_id"]["category_product_id"]["id"],
+                name: response["data"]["product_id"]["category_product_id"]
+                    ["name"],
+                slug: response["data"]["product_id"]["category_product_id"]
+                    ["slug"],
+                createdAt: response["data"]["product_id"]["category_product_id"]
+                    ["created_at"],
+                updatedAt: response["data"]["product_id"]["category_product_id"]
+                    ["updated_at"],
+              ),
+              code: response["data"]["product_id"]["code"],
+              stoke: response["data"]["product_id"]["stoke"],
+              price: response["data"]["product_id"]["price"],
+              desc: response["data"]["product_id"]["desc"],
+              userId: User(
+                id: response["data"]["product_id"]["category_product_id"]["id"],
+                name: response["data"]["product_id"]["category_product_id"]
+                    ["name"],
+              ),
+              isActive: response["data"]["product_id"]["isActive"],
+            ),
+            name: response["data"]["name"],
+            createdAt: response["data"]["created_at"],
+            updatedAt: response["data"]["updated_at"],
+          );
+          photoProduct.insert(0, data);
+        });
+      } catch (e) {
+        dialog("Terjadi Kesalahan", "data gagal ditambahkan");
+        print("error is $e");
+      }
     } else {
       dialog("Terjadi Kesalahan", "Semua Input Harus Diisi");
     }
@@ -106,15 +225,65 @@ class ProdukController extends GetxController {
             isActive: e["isActive"],
           );
           product.add(data);
+          final item = findByid(e["id"]);
+          for (var itemPhoto in photoProduct) {
+            // item.image = itemPhoto.name;
+            if (itemPhoto.productId!.id == item.id) {
+              item.image = itemPhoto.name;
+              product.refresh();
+            }
+          }
         }).toList();
-        // print(product.map((element) => element));
       } catch (e) {
-        // Get.toNamed(Routes.ERROR, arguments: e.toString());
         print(e.toString());
       }
-
-      // print(product[0].categoryProductId!.id);
     });
+  }
+
+  void getDataPhoto() async {
+    final data = box.read("userData") as Map<String, dynamic>;
+    PhotoProductProvider().getData(data["token"]).then((response) {
+      try {
+        response["data"].map((e) {
+          final data = PhotoProduct(
+            id: e["id"],
+            productId: Product(
+              id: e["product_id"]["id"],
+              name: e["product_id"]["name"],
+              slug: e["product_id"]["slug"],
+              categoryProductId: ProductCategory(
+                id: e["product_id"]["category_product_id"]["id"],
+                name: e["product_id"]["category_product_id"]["name"],
+                slug: e["product_id"]["category_product_id"]["slug"],
+                createdAt: e["product_id"]["category_product_id"]["created_at"],
+                updatedAt: e["product_id"]["category_product_id"]["updated_at"],
+              ),
+              code: e["product_id"]["code"],
+              stoke: e["product_id"]["stoke"],
+              price: e["product_id"]["price"],
+              desc: e["product_id"]["desc"],
+              userId: User(
+                id: e["product_id"]["user_id"]["id"],
+                name: e["product_id"]["user_id"]["name"],
+              ),
+              isActive: e["product_id"]["isActive"],
+            ),
+            name: e["name"],
+            createdAt: e["created_at"],
+            updatedAt: e["updated_at"],
+          );
+          photoProduct.add(data);
+        }).toList();
+      } catch (e) {
+        print(e.toString());
+      }
+    });
+  }
+
+  PhotoProduct findPhotoByidProduct(int id) {
+    // photoProductByProductId.clear;
+    // getPhotoProductById(id);
+    return photoProduct.firstWhere((element) => element.productId!.id == id);
   }
 
   // cari berdasarka id
@@ -153,6 +322,48 @@ class ProdukController extends GetxController {
       Get.back();
       dialog("Berhasil !", "data berhasil diubah!");
     });
+  }
+
+  void updateDataWithPhoto(
+    int id,
+    String name,
+    int categoryProductId,
+    String code,
+    int stoke,
+    int price,
+    String desc,
+  ) {
+    final data = box.read("userData") as Map<String, dynamic>;
+    final item = findByid(id);
+    ProductProvider()
+        .updateData(id, name, categoryProductId, data["id"], code, stoke, price,
+            desc, data["token"])
+        .then((e) {
+      item.name = name;
+      item.categoryProductId!.id = categoryProductId;
+      item.userId!.id = data["id"];
+      item.code = code;
+      item.stoke = stoke;
+      item.price = price;
+      item.desc = desc;
+      product.refresh();
+
+      for (var itemselectedImagePath in selectedImagePath) {
+        postPhoto(itemselectedImagePath.path, id);
+        Future.delayed(Duration(seconds: 1), () {});
+      }
+      deleteDataWhereProductId(id);
+      Get.offAllNamed(Routes.HOME);
+      dialog("Berhasil !", "data berhasil diubah!");
+    });
+  }
+
+  void deleteDataWhereProductId(int id) {
+    final data = box.read("userData") as Map<String, dynamic>;
+    PhotoProductProvider()
+        .deleteDataWhereProductId(id, data["token"])
+        .then((_) => product.removeWhere((element) => element.id == id));
+    print("data berhasil dihapus");
   }
 
   void deleteData(int id) {

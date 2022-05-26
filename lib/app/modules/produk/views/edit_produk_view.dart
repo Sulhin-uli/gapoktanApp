@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/data/models/product_category_model.dart';
@@ -26,7 +29,12 @@ class EditProdukView extends GetView<ProdukController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
+        leading: new IconButton(
+            icon: new Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () {
+              Navigator.pop(context, true);
+              controller.photoProductByProductId.clear();
+            }),
         title: Text(
           'Edit Produk',
           style: TextStyle(color: Colors.black, fontSize: 16),
@@ -226,6 +234,140 @@ class EditProdukView extends GetView<ProdukController> {
                 ),
               ),
               const SizedBox(height: 30),
+              Text(
+                "Foto Produk",
+                style: TextStyle(
+                  color: Color(0xff919A92),
+                ),
+              ),
+              Obx(
+                () => controller.visibleEditPhoto.isTrue
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 200,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount:
+                                  controller.photoProductByProductId.length,
+                              itemBuilder: (context, i) {
+                                return Container(
+                                  margin: EdgeInsets.all(5),
+                                  child: Image.network(
+                                    baseUrlFile +
+                                        "storage/produk/" +
+                                        controller
+                                            .photoProductByProductId[i].name!,
+                                    fit: BoxFit.cover,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: 26, //height of button
+                            width: 150,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.grey, // background
+                              ),
+                              onPressed: () {
+                                controller.visibleEditPhoto.value =
+                                    !controller.visibleEditPhoto.value;
+                              },
+                              child: Text('Bersihkan Foto'),
+                            ),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          InkWell(
+                            // onTap: () => controller.dialogUploadFile(),
+                            onTap: () => controller.getMultipleImage(),
+                            child: Center(
+                              child: DottedBorder(
+                                color: Colors.green,
+                                strokeWidth: 1,
+                                dashPattern: [5, 5],
+                                child: Container(
+                                  height: 80,
+                                  width: 140,
+                                  color: Colors.green[50],
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.drive_folder_upload,
+                                        color: Colors.green,
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "Pilih file disini ...",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.black.withOpacity(0.5),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 3,
+                          ),
+                        ],
+                      ),
+              ),
+              Obx(
+                () => controller.selectedImagePath.isNotEmpty
+                    ? SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: controller.selectedImagePath.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              margin: EdgeInsets.all(5),
+                              child: Image.file(
+                                File(controller.selectedImagePath[index].path),
+                                fit: BoxFit.cover,
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    // : Container(),
+                    : Obx(
+                        () => controller.visibleEditPhoto.isTrue
+                            ? Container()
+                            : Text("No image selected"),
+                      ),
+              ),
+              const SizedBox(height: 5),
+              Obx(
+                () => controller.selectedImagePath.isNotEmpty
+                    ? SizedBox(
+                        height: 26, //height of button
+                        width: 150,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.grey, // background
+                          ),
+                          onPressed: () {
+                            controller.selectedImagePath.clear();
+                          },
+                          child: Text('Bersihkan Foto'),
+                        ),
+                      )
+                    : Container(),
+              ),
+              const SizedBox(height: 30),
               Center(
                 child: SizedBox(
                   height: 46, //height of button
@@ -234,15 +376,29 @@ class EditProdukView extends GetView<ProdukController> {
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff16A085), // background
                     ),
-                    onPressed: () => controller.updateData(
-                      Get.arguments,
-                      controller.name.text,
-                      int.parse(controller.categoryProductId.text),
-                      controller.code.text,
-                      int.parse(controller.stoke.text),
-                      int.parse(controller.price.text),
-                      controller.desc.text,
-                    ),
+                    onPressed: () {
+                      if (controller.selectedImagePath.isNotEmpty) {
+                        controller.updateDataWithPhoto(
+                          Get.arguments,
+                          controller.name.text,
+                          int.parse(controller.categoryProductId.text),
+                          controller.code.text,
+                          int.parse(controller.stoke.text),
+                          int.parse(controller.price.text),
+                          controller.desc.text,
+                        );
+                      } else {
+                        controller.updateData(
+                          Get.arguments,
+                          controller.name.text,
+                          int.parse(controller.categoryProductId.text),
+                          controller.code.text,
+                          int.parse(controller.stoke.text),
+                          int.parse(controller.price.text),
+                          controller.desc.text,
+                        );
+                      }
+                    },
                     child: Text('Edit'),
                   ),
                 ),

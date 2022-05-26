@@ -38,6 +38,9 @@ class IndexProdukView extends GetView<ProdukController> {
                     itemBuilder: (context, i) {
                       // final product = productList[index];
                       final data = controller.product[i];
+                      // var photo =
+                      //     controller.findPhotoByidProduct(data.id!).name;
+
                       return ItemView(data);
                     },
                   ),

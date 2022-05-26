@@ -1,5 +1,8 @@
+import 'package:carousel_indicator/carousel_indicator.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/produk/controllers/produk_controller.dart';
+import 'package:gapoktan_app/app/utils/base_url.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
 
 import 'package:get/get.dart';
@@ -13,11 +16,15 @@ class DetailProdukView extends GetView<ProdukController> {
   @override
   Widget build(BuildContext context) {
     final data = controller.findBySlug(Get.arguments);
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
+        leading: new IconButton(
+            icon: new Icon(Icons.arrow_back, color: Colors.black),
+            onPressed: () {
+              Navigator.pop(context, true);
+              controller.photoProductByProductId.clear();
+            }),
         elevation: 0.5,
       ),
       body: Column(
@@ -29,13 +36,72 @@ class DetailProdukView extends GetView<ProdukController> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Hero(
-                        tag: "data.slug!",
-                        child: Center(
-                          child: Image.network(
-                            "https://tokoterserah.com/storage/produk/thumb/604045a76c15eBERAS%20FORTUNE%205%20KG.png",
-                            fit: BoxFit.cover,
-                          ),
+                      CarouselSlider(
+                        options: CarouselOptions(
+                            height: 300.0,
+                            autoPlay: false,
+                            enlargeCenterPage: true,
+                            viewportFraction: 0.9,
+                            aspectRatio: 2.0,
+                            initialPage: 2,
+                            onPageChanged: (index, reason) {
+                              controller.carouselIndex.value = index;
+                            }),
+                        items: <Widget>[
+                          for (var i = 0;
+                              i < controller.photoProductByProductId.length;
+                              i++)
+                            Container(
+                              margin:
+                                  const EdgeInsets.only(top: 20.0, left: 20.0),
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: NetworkImage(baseUrlFile +
+                                      "storage/produk/" +
+                                      controller
+                                          .photoProductByProductId[i].name!),
+                                  fit: BoxFit.fitHeight,
+                                ),
+                                borderRadius: BorderRadius.circular(32.0),
+                              ),
+                            ),
+                        ],
+                      ),
+                      Center(
+                        child: SizedBox(
+                          height: 30,
+                          child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemCount:
+                                  controller.photoProductByProductId.length,
+                              itemBuilder: (context, i) {
+                                return Obx(
+                                    () => controller.carouselIndex.value == i
+                                        ? Container(
+                                            width: 8.0,
+                                            height: 8.0,
+                                            margin: EdgeInsets.symmetric(
+                                                vertical: 10.0,
+                                                horizontal: 2.0),
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: Color(0xff16A085),
+                                            ),
+                                          )
+                                        : Container(
+                                            width: 8.0,
+                                            height: 8.0,
+                                            margin: EdgeInsets.symmetric(
+                                                vertical: 10.0,
+                                                horizontal: 2.0),
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color:
+                                                  Color.fromRGBO(0, 0, 0, 0.4),
+                                            ),
+                                          ));
+                              }),
                         ),
                       ),
                       const SizedBox(
@@ -188,7 +254,7 @@ class DetailProdukView extends GetView<ProdukController> {
                                 ),
                                 OutlinedButton(
                                   onPressed: () {
-                                    // Respond to button press
+                                    print("press");
                                   },
                                   style: OutlinedButton.styleFrom(
                                     side: BorderSide(

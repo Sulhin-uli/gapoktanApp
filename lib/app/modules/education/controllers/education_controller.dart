@@ -176,7 +176,7 @@ class EducationController extends GetxController {
               " Mb";
     } else {
       Get.snackbar(
-        "Error",
+        "Warning",
         "No image Selected",
         snackPosition: SnackPosition.BOTTOM,
         backgroundColor: Colors.red,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/produk/controllers/produk_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
+import 'package:gapoktan_app/app/utils/base_url.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
 
 import 'package:get/get.dart';
@@ -11,8 +12,12 @@ class ItemView extends GetView<ProdukController> {
 
   @override
   Widget build(BuildContext context) {
+    // getPhotoProductById(18);
     return GestureDetector(
-      onTap: () => Get.toNamed(Routes.DETAIL_PRODUK, arguments: data.slug!),
+      onTap: () {
+        controller.getPhotoProductById(data.id);
+        Get.toNamed(Routes.DETAIL_PRODUK, arguments: data.slug!);
+      },
       // onTap: () {},
       child: Card(
         clipBehavior: Clip.antiAlias,
@@ -20,13 +25,12 @@ class ItemView extends GetView<ProdukController> {
           children: [
             Expanded(
               child: Hero(
-                  tag: data.slug,
-                  child: Center(
-                    child: Image.network(
-                      "https://tokoterserah.com/storage/produk/thumb/604045a76c15eBERAS%20FORTUNE%205%20KG.png",
-                      // fit: BoxFit.cover,
-                    ),
-                  )),
+                tag: data.slug,
+                child: Center(
+                  child: Image.network(
+                      baseUrlFile + "storage/produk/" + data.image!),
+                ),
+              ),
             ),
             ListTile(
               title: Text(
@@ -53,10 +57,13 @@ class ItemView extends GetView<ProdukController> {
                   Container(),
                   Row(children: [
                     InkWell(
-                      onTap: () => Get.toNamed(
-                        Routes.EDIT_PRODUK,
-                        arguments: data.id,
-                      ),
+                      onTap: () {
+                        controller.getPhotoProductById(data.id);
+                        Get.toNamed(
+                          Routes.EDIT_PRODUK,
+                          arguments: data.id,
+                        );
+                      },
                       child: Icon(
                         Icons.edit,
                         size: 23,
@@ -68,6 +75,7 @@ class ItemView extends GetView<ProdukController> {
                     ),
                     InkWell(
                       onTap: () {
+                        controller.getPhotoProductById(data.id);
                         controller.dialogQuestion(context, data.id);
                       },
                       child: Icon(
