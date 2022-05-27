@@ -1,12 +1,3 @@
-import 'package:gapoktan_app/app/modules/activity_category/views/add_category_activity_view.dart';
-import 'package:gapoktan_app/app/modules/activity_category/views/edit_category_activity_view.dart';
-import 'package:gapoktan_app/app/modules/education_category/views/add_category_education_view.dart';
-import 'package:gapoktan_app/app/modules/education_category/views/edit_category_education_view.dart';
-import 'package:gapoktan_app/app/modules/product_category/bindings/product_category_binding.dart';
-import 'package:gapoktan_app/app/modules/product_category/views/add_category_product_view.dart';
-import 'package:gapoktan_app/app/modules/product_category/views/edit_category_product_view.dart';
-import 'package:gapoktan_app/app/modules/product_category/views/product_category_view.dart';
-import 'package:gapoktan_app/app/modules/produk/views/detail_produk_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/activity/bindings/activity_binding.dart';
@@ -16,35 +7,49 @@ import '../modules/activity/views/edit_activity_view.dart';
 import '../modules/activity/views/index_activity_view.dart';
 import '../modules/activity_category/bindings/activity_category_binding.dart';
 import '../modules/activity_category/views/activity_category_view.dart';
+import '../modules/activity_category/views/add_category_activity_view.dart';
+import '../modules/activity_category/views/edit_category_activity_view.dart';
 import '../modules/education/bindings/education_binding.dart';
 import '../modules/education/views/add_education_view.dart';
 import '../modules/education/views/detail_education_view.dart';
 import '../modules/education/views/edit_education_view.dart';
 import '../modules/education/views/index_education_view.dart';
 import '../modules/education_category/bindings/education_category_binding.dart';
+import '../modules/education_category/views/add_category_education_view.dart';
+import '../modules/education_category/views/edit_category_education_view.dart';
 import '../modules/education_category/views/education_category_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/index_home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/check_auth_view.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/notifikasi/bindings/notifikasi_binding.dart';
 import '../modules/notifikasi/views/index_notifikasi_view.dart';
-import '../modules/panen/bindings/panen_binding.dart';
-import '../modules/panen/views/detail_detail_view.dart';
+import '../modules/panen/views/add_panen_view.dart';
+import '../modules/panen/views/detail_panen_view.dart';
+import '../modules/panen/views/edit_panen_view.dart';
 import '../modules/panen/views/index_panen_view.dart';
 import '../modules/poktan/bindings/poktan_binding.dart';
 import '../modules/poktan/views/add_poktan_view.dart';
 import '../modules/poktan/views/detail_poktan_view.dart';
 import '../modules/poktan/views/edit_poktan_view.dart';
 import '../modules/poktan/views/index_poktan_view.dart';
+import '../modules/product_category/bindings/product_category_binding.dart';
+import '../modules/product_category/views/add_category_product_view.dart';
+import '../modules/product_category/views/edit_category_product_view.dart';
+import '../modules/product_category/views/product_category_view.dart';
 import '../modules/produk/bindings/produk_binding.dart';
 import '../modules/produk/views/add_produk_view.dart';
+import '../modules/produk/views/detail_produk_view.dart';
 import '../modules/produk/views/edit_produk_view.dart';
 import '../modules/produk/views/index_produk_view.dart';
 import '../modules/saya/bindings/saya_binding.dart';
 import '../modules/saya/views/index_saya_view.dart';
 import '../modules/tandur/bindings/tandur_binding.dart';
+import '../modules/tandur/views/add_harvest_date_view.dart';
+import '../modules/tandur/views/add_tandur_view.dart';
 import '../modules/tandur/views/detail_tandur_view.dart';
+import '../modules/tandur/views/edit_tandur_view.dart';
 import '../modules/tandur/views/index_tandur_view.dart';
 
 part 'app_routes.dart';
@@ -52,7 +57,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.CHECK_AUTH;
 
   static final routes = [
     GetPage(
@@ -63,6 +68,11 @@ class AppPages {
     GetPage(
       name: _Paths.LOGIN,
       page: () => LoginView(),
+      binding: LoginBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHECK_AUTH,
+      page: () => CheckAuthView(),
       binding: LoginBinding(),
     ),
 
@@ -176,6 +186,7 @@ class AppPages {
     ),
 
     // Tandur
+    // Tandur
     GetPage(
       name: _Paths.INDEX_TANDUR,
       page: () => IndexTandurView(),
@@ -184,29 +195,44 @@ class AppPages {
     GetPage(
       name: _Paths.DETAIL_TANDUR,
       page: () => DetailTandurView(),
-      // binding: ProdukBinding(),
-    ),
-    GetPage(
-      name: _Paths.INDEX_TANDUR,
-      page: () => IndexTandurView(),
       binding: TandurBinding(),
     ),
     GetPage(
-      name: _Paths.DETAIL_TANDUR,
-      page: () => DetailTandurView(),
-      // binding: ProdukBinding(),
+      name: _Paths.ADD_TANDUR,
+      page: () => AddTandurView(),
+      binding: TandurBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_TANDUR,
+      page: () => EditTandurView(),
+      binding: TandurBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_HARVEST_DATE,
+      page: () => AddHarvestDateView(),
+      binding: TandurBinding(),
     ),
 
     // Panen
     GetPage(
       name: _Paths.INDEX_PANEN,
       page: () => IndexPanenView(),
-      binding: PanenBinding(),
+      binding: TandurBinding(),
     ),
     GetPage(
       name: _Paths.DETAIL_PANEN,
       page: () => DetailPanenView(),
-      // binding: ProdukBinding(),
+      binding: TandurBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_PANEN,
+      page: () => AddPanenView(),
+      // binding: PRODUKBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PANEN,
+      page: () => EditPanenView(),
+      binding: TandurBinding(),
     ),
 
     // Poktan

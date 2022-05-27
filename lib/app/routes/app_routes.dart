@@ -5,6 +5,7 @@ abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
   static const LOGIN = _Paths.LOGIN;
+  static const CHECK_AUTH = _Paths.CHECK_AUTH;
 
   // Edukasi
   static const INDEX_EDUCATION = _Paths.INDEX_EDUCATION;
@@ -38,10 +39,15 @@ abstract class Routes {
   // Tandur
   static const INDEX_TANDUR = _Paths.INDEX_TANDUR;
   static const DETAIL_TANDUR = _Paths.DETAIL_TANDUR;
+  static const ADD_TANDUR = _Paths.ADD_TANDUR;
+  static const EDIT_TANDUR = _Paths.EDIT_TANDUR;
+  static const ADD_HARVEST_DATE = _Paths.ADD_HARVEST_DATE;
 
   // Panen
   static const INDEX_PANEN = _Paths.INDEX_PANEN;
   static const DETAIL_PANEN = _Paths.DETAIL_PANEN;
+  static const ADD_PANEN = _Paths.ADD_PANEN;
+  static const EDIT_PANEN = _Paths.EDIT_PANEN;
 
   // Poktan
   static const INDEX_POKTAN = _Paths.INDEX_POKTAN;
@@ -58,6 +64,7 @@ abstract class _Paths {
   _Paths._();
   static const HOME = '/home';
   static const LOGIN = '/login';
+  static const CHECK_AUTH = '/check_auth';
 
   // edukasi
   static const INDEX_EDUCATION = '/index-education';
@@ -91,10 +98,15 @@ abstract class _Paths {
   // Tandur
   static const INDEX_TANDUR = '/index-tandur';
   static const DETAIL_TANDUR = '/detail-tandur';
+  static const ADD_TANDUR = '/add-tandur';
+  static const EDIT_TANDUR = '/edit-tandur';
+  static const ADD_HARVEST_DATE = '/add-harvest-date';
 
   // Panen
   static const INDEX_PANEN = '/index-panen';
   static const DETAIL_PANEN = '/detail-panen';
+  static const ADD_PANEN = '/add-panen';
+  static const EDIT_PANEN = '/edit-panen';
 
   // poktan
   static const INDEX_POKTAN = '/index-poktan';

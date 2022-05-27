@@ -52,23 +52,23 @@ class Product {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['slug'] = this.slug;
-    data['image'] = this.image;
-    if (this.categoryProductId != null) {
-      data['category_product_id'] = this.categoryProductId!.toJson();
+    data['id'] = id;
+    data['name'] = name;
+    data['slug'] = slug;
+    data['image'] = image;
+    if (categoryProductId != null) {
+      data['category_product_id'] = categoryProductId!.toJson();
     }
-    data['code'] = this.code;
-    data['stoke'] = this.stoke;
-    data['price'] = this.price;
-    data['desc'] = this.desc;
-    if (this.userId != null) {
-      data['user_id'] = this.userId!.toJson();
+    data['code'] = code;
+    data['stoke'] = stoke;
+    data['price'] = price;
+    data['desc'] = desc;
+    if (userId != null) {
+      data['user_id'] = userId!.toJson();
     }
-    data['is_active'] = this.isActive;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
+    data['is_active'] = isActive;
+    data['created_at'] = createdAt;
+    data['updated_at'] = updatedAt;
     return data;
   }
 }

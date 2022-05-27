@@ -20,23 +20,29 @@ class IndexPoktanView extends GetView<PoktanController> {
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(2),
-          child: Column(
-            children: [
-              ListView.builder(
-                itemCount: 11,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  // final product = productList[index];
-                  return ItemView();
-                },
+      body: Obx(
+        () => controller.poktan.isEmpty
+            ? const Center(
+                child: CircularProgressIndicator(),
               )
-            ],
-          ),
-        ),
+            : SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                        itemCount: controller.poktan.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) {
+                          final data = controller.poktan[index];
+                          return ItemView(data);
+                        },
+                      )
+                    ],
+                  ),
+                ),
+              ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color(0xff16A085),

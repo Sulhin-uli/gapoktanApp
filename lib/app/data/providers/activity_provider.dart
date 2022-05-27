@@ -1,11 +1,8 @@
-import 'dart:io';
-
+import 'package:gapoktan_app/app/utils/base_url.dart';
 import 'package:get/get.dart';
 
-import '../models/activity_model.dart';
-
 class ActivityProvider extends GetConnect {
-  String url = "http://192.168.43.38:8001/api/activity/";
+  String url = baseUrl + "activity/";
 
   Future<dynamic> getData(
     String token,

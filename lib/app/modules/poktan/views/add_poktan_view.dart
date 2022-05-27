@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:gapoktan_app/app/modules/poktan/controllers/poktan_controller.dart';
 
 import 'package:get/get.dart';
 
-class AddPoktanView extends GetView {
+class AddPoktanView extends GetView<PoktanController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,17 +23,17 @@ class AddPoktanView extends GetView {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 50),
               Text(
-                "Label",
+                "Nama",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
               TextFormField(
+                controller: controller.name,
                 cursorColor: Color(0xff16A085),
                 decoration: InputDecoration(
-                  helperText: 'Contoh: Label',
+                  // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
@@ -48,14 +49,17 @@ class AddPoktanView extends GetView {
               ),
               const SizedBox(height: 30),
               Text(
-                "Label",
+                "Email",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
               TextFormField(
-                cursorColor: Colors.black,
+                controller: controller.email,
+                cursorColor: Color(0xff16A085),
                 decoration: InputDecoration(
+                  // helperText: 'Contoh: Label',
+                  // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff919A92),
@@ -69,6 +73,84 @@ class AddPoktanView extends GetView {
                 ),
               ),
               const SizedBox(height: 30),
+              Text(
+                "Password",
+                style: TextStyle(
+                  color: Color(0xff919A92),
+                ),
+              ),
+              Obx(
+                () => TextFormField(
+                  controller: controller.password,
+                  cursorColor: Color(0xff16A085),
+                  obscureText: controller.hiddenTextPassword.value,
+                  decoration: InputDecoration(
+                    // fillColor: Color(0xff919A92),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff919A92),
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff16A085),
+                      ),
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: () => controller.hiddenTextPassword.toggle(),
+                      icon: controller.hiddenTextPassword.isTrue
+                          ? Icon(
+                              Icons.remove_red_eye,
+                              color: Color(0xff16A085),
+                            )
+                          : Icon(
+                              Icons.remove_red_eye_outlined,
+                              color: Color(0xff16A085),
+                            ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              Text(
+                "Konfirmasi Password",
+                style: TextStyle(
+                  color: Color(0xff919A92),
+                ),
+              ),
+              Obx(
+                () => TextFormField(
+                  controller: controller.password2,
+                  cursorColor: Color(0xff16A085),
+                  obscureText: controller.hiddenTextPassword2.value,
+                  decoration: InputDecoration(
+                    // fillColor: Color(0xff919A92),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff919A92),
+                      ),
+                    ),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color(0xff16A085),
+                      ),
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: () => controller.hiddenTextPassword2.toggle(),
+                      icon: controller.hiddenTextPassword2.isTrue
+                          ? Icon(
+                              Icons.remove_red_eye,
+                              color: Color(0xff16A085),
+                            )
+                          : Icon(
+                              Icons.remove_red_eye_outlined,
+                              color: Color(0xff16A085),
+                            ),
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
               Center(
                 child: SizedBox(
                   height: 46, //height of button
@@ -77,7 +159,11 @@ class AddPoktanView extends GetView {
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff16A085), // background
                     ),
-                    onPressed: () {},
+                    onPressed: () => controller.postData(
+                        controller.name.text,
+                        controller.email.text,
+                        controller.password.text,
+                        controller.password2.text),
                     child: Text('Tambah'),
                   ),
                 ),

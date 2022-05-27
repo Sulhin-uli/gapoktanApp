@@ -124,8 +124,8 @@ class ProdukController extends GetxController {
           price: response["data"]["price"],
           desc: response["data"]["desc"],
           userId: User(
-            id: response["data"]["category_product_id"]["id"],
-            name: response["data"]["category_product_id"]["name"],
+            id: response["data"]["user_id"]["id"],
+            name: response["data"]["user_id"]["name"],
           ),
           isActive: response["data"]["isActive"],
         );

@@ -6,8 +6,6 @@ import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  final authC = Get.put(AuthcontrollerController());
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,7 +111,7 @@ class LoginView extends GetView<LoginController> {
                     style: ElevatedButton.styleFrom(
                       primary: Color(0xff16A085), // background
                     ),
-                    onPressed: () => authC.login(
+                    onPressed: () => controller.login(
                         controller.email.text, controller.password.text),
                     child: Text('Masuk'),
                   ),

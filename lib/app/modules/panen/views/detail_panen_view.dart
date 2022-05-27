@@ -6,16 +6,18 @@ import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
-class DetailTandurView extends GetView<TandurController> {
+class DetailPanenView extends GetView<TandurController> {
   @override
   Widget build(BuildContext context) {
     final data = controller.findByid(Get.arguments);
-    DateTime datetime = DateTime.parse(data.platingDate!);
+    DateTime platingDateC = DateTime.parse(data.platingDate!);
+    DateTime harvestDateC = DateTime.parse(data.harvestDate!);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          'Detail Tandur',
+          'Detail Panen',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
         leading: BackButton(color: Colors.black),
@@ -137,7 +139,7 @@ class DetailTandurView extends GetView<TandurController> {
                         Container(
                           width: 150,
                           child: Text(
-                            Waktu(datetime).yMMMMEEEEd(),
+                            Waktu(platingDateC).yMMMMEEEEd(),
                             style: TextStyle(
                               color: Color(0xff919A92),
                               fontSize: 14,
@@ -149,20 +151,37 @@ class DetailTandurView extends GetView<TandurController> {
                     Divider(
                       color: Color(0xff919A92),
                     ),
-                    SizedBox(
-                      height: 5,
-                    ),
-                    SizedBox(
-                      height: 46, //height of button
-                      width: 300,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xff16A085), // background
+                    Row(
+                      children: [
+                        Container(
+                          width: 80,
+                          child: Text(
+                            "Tgl Panen",
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
-                        onPressed: () => Get.toNamed(Routes.ADD_HARVEST_DATE,
-                            arguments: data.id),
-                        child: Text('Tambah Tanggal Panen'),
-                      ),
+                        Expanded(
+                          child: Container(
+                            width: 50,
+                          ),
+                        ),
+                        Container(
+                          width: 150,
+                          child: Text(
+                            Waktu(harvestDateC).yMMMMEEEEd(),
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Divider(
+                      color: Color(0xff919A92),
                     ),
                     Container(
                       height: 200,

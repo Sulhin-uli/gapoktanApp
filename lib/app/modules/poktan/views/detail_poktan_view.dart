@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 class DetailPoktanView extends GetView<PoktanController> {
   @override
   Widget build(BuildContext context) {
+    final data = controller.findByid(Get.arguments);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -15,36 +16,6 @@ class DetailPoktanView extends GetView<PoktanController> {
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
         leading: BackButton(color: Colors.black),
-        actions: [
-          Container(
-            alignment: Alignment.topRight,
-            child: PopupMenuButton(
-              icon: Icon(
-                Icons.more_vert,
-                color: Colors.black,
-              ),
-              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                PopupMenuItem(
-                  child: ListTile(
-                    onTap: () => Get.toNamed(Routes.EDIT_POKTAN),
-                    leading: Icon(Icons.edit),
-                    title: Text('Ubah'),
-                  ),
-                ),
-                PopupMenuItem(
-                  child: ListTile(
-                    onTap: () {
-                      controller.dialogQuestion(
-                          "Hapus", "Yakin menghapus data?", context);
-                    },
-                    leading: Icon(Icons.delete),
-                    title: Text('Delete'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
@@ -59,7 +30,7 @@ class DetailPoktanView extends GetView<PoktanController> {
                   backgroundImage: NetworkImage(
                       'https://www.startupdonut.co.uk/sites/default/files/styles/landing_pages_lists/public/Guy_watson_249x167.png?itok=e_ct04Rx'),
                 ),
-                title: const Text('Name Poktan'),
+                title: Text(data.userId!.name!),
               ),
               Divider(
                 color: Colors.black.withOpacity(0.5),
