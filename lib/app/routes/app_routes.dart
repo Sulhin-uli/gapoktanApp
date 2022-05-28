@@ -58,6 +58,7 @@ abstract class Routes {
   static const INDEX_NOTIFIKASI = _Paths.INDEX_NOTIFIKASI;
   static const EDUCATION_CATEGORY = _Paths.EDUCATION_CATEGORY;
   static const ACTIVITY_CATEGORY = _Paths.ACTIVITY_CATEGORY;
+  static const CHAT_ROOM = _Paths.CHAT_ROOM;
 }
 
 abstract class _Paths {
@@ -121,4 +122,5 @@ abstract class _Paths {
   static const INDEX_NOTIFIKASI = '/index-notifikasi';
   static const EDUCATION_CATEGORY = '/education-category';
   static const ACTIVITY_CATEGORY = '/activity-category';
+  static const CHAT_ROOM = '/chat-room';
 }

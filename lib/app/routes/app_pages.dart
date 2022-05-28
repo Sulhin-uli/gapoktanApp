@@ -9,6 +9,8 @@ import '../modules/activity_category/bindings/activity_category_binding.dart';
 import '../modules/activity_category/views/activity_category_view.dart';
 import '../modules/activity_category/views/add_category_activity_view.dart';
 import '../modules/activity_category/views/edit_category_activity_view.dart';
+import '../modules/chat_room/bindings/chat_room_binding.dart';
+import '../modules/chat_room/views/chat_room_view.dart';
 import '../modules/education/bindings/education_binding.dart';
 import '../modules/education/views/add_education_view.dart';
 import '../modules/education/views/detail_education_view.dart';
@@ -275,6 +277,11 @@ class AppPages {
       name: _Paths.ACTIVITY_CATEGORY,
       page: () => ActivityCategoryView(),
       binding: ActivityCategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.CHAT_ROOM,
+      page: () => ChatRoomView(),
+      binding: ChatRoomBinding(),
     ),
   ];
 }
