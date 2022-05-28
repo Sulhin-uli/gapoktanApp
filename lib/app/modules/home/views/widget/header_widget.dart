@@ -13,7 +13,7 @@ class Header extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: kDefaultPadding * 2.5),
+      margin: EdgeInsets.only(bottom: kDefaultPadding + 10),
       // It will cover 20% of our total height
       height: size!.height * 0.2,
       child: Stack(
@@ -40,7 +40,11 @@ class Header extends StatelessWidget {
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Spacer(),
-                const Icon(Icons.notifications, color: Colors.white)
+                const Icon(Icons.chat, color: Colors.white),
+                SizedBox(
+                  width: 7,
+                ),
+                const Icon(Icons.notifications, color: Colors.white),
               ],
             ),
           ),
