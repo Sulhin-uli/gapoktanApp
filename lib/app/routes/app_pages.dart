@@ -27,9 +27,7 @@ import '../modules/login/views/check_auth_view.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/notifikasi/bindings/notifikasi_binding.dart';
 import '../modules/notifikasi/views/index_notifikasi_view.dart';
-import '../modules/panen/views/add_panen_view.dart';
 import '../modules/panen/views/detail_panen_view.dart';
-import '../modules/panen/views/edit_panen_view.dart';
 import '../modules/panen/views/index_panen_view.dart';
 import '../modules/poktan/bindings/poktan_binding.dart';
 import '../modules/poktan/views/add_poktan_view.dart';
@@ -48,10 +46,7 @@ import '../modules/produk/views/index_produk_view.dart';
 import '../modules/saya/bindings/saya_binding.dart';
 import '../modules/saya/views/index_saya_view.dart';
 import '../modules/tandur/bindings/tandur_binding.dart';
-import '../modules/tandur/views/add_harvest_date_view.dart';
-import '../modules/tandur/views/add_tandur_view.dart';
 import '../modules/tandur/views/detail_tandur_view.dart';
-import '../modules/tandur/views/edit_tandur_view.dart';
 import '../modules/tandur/views/index_tandur_view.dart';
 
 part 'app_routes.dart';
@@ -188,7 +183,6 @@ class AppPages {
     ),
 
     // Tandur
-    // Tandur
     GetPage(
       name: _Paths.INDEX_TANDUR,
       page: () => IndexTandurView(),
@@ -197,21 +191,6 @@ class AppPages {
     GetPage(
       name: _Paths.DETAIL_TANDUR,
       page: () => DetailTandurView(),
-      binding: TandurBinding(),
-    ),
-    GetPage(
-      name: _Paths.ADD_TANDUR,
-      page: () => AddTandurView(),
-      binding: TandurBinding(),
-    ),
-    GetPage(
-      name: _Paths.EDIT_TANDUR,
-      page: () => EditTandurView(),
-      binding: TandurBinding(),
-    ),
-    GetPage(
-      name: _Paths.ADD_HARVEST_DATE,
-      page: () => AddHarvestDateView(),
       binding: TandurBinding(),
     ),
 
@@ -224,16 +203,6 @@ class AppPages {
     GetPage(
       name: _Paths.DETAIL_PANEN,
       page: () => DetailPanenView(),
-      binding: TandurBinding(),
-    ),
-    GetPage(
-      name: _Paths.ADD_PANEN,
-      page: () => AddPanenView(),
-      // binding: PRODUKBinding(),
-    ),
-    GetPage(
-      name: _Paths.EDIT_PANEN,
-      page: () => EditPanenView(),
       binding: TandurBinding(),
     ),
 

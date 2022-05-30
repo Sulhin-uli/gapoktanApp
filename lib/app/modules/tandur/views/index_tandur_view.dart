@@ -20,7 +20,7 @@ class IndexTandurView extends GetView<TandurController> {
         elevation: 0.5,
       ),
       body: Obx(
-        () => controller.plant.isEmpty
+        () => controller.plantTandur.isEmpty
             ? const Center(
                 child: CircularProgressIndicator(),
               )
@@ -30,11 +30,11 @@ class IndexTandurView extends GetView<TandurController> {
                   child: Column(
                     children: [
                       ListView.builder(
-                        itemCount: controller.plant.length,
+                        itemCount: controller.plantTandur.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          final data = controller.plant[index];
+                          final data = controller.plantTandur[index];
                           return ItemView(data);
                         },
                       )
@@ -42,13 +42,6 @@ class IndexTandurView extends GetView<TandurController> {
                   ),
                 ),
               ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff16A085),
-        foregroundColor: Colors.white,
-        // mini: true,
-        onPressed: () => Get.toNamed(Routes.ADD_TANDUR),
-        child: Icon(Icons.add),
       ),
     );
   }

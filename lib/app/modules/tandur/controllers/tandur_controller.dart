@@ -12,72 +12,27 @@ import 'package:gapoktan_app/app/utils/constant.dart';
 
 class TandurController extends GetxController {
   final box = GetStorage();
-  var plant = List<Plant>.empty().obs;
+  var plantTandur = List<Plant>.empty().obs;
+  var plantPanen = List<Plant>.empty().obs;
+  var plantAll = List<Plant>.empty().obs;
   var farmer = List<Farmer>.empty().obs;
-  late TextEditingController plant_tanaman;
-  late TextEditingController surface_area;
-  late TextEditingController plating_date;
-  late TextEditingController harvest_date;
 
   void onInit() {
-    getDataByid();
-    plant_tanaman = TextEditingController();
-    surface_area = TextEditingController();
-    plating_date = TextEditingController();
-    harvest_date = TextEditingController();
+    getDataTandur();
+    getDataPanen();
+    getDataAll();
+    final data = box.read("userData") as Map<String, dynamic>;
+    // print(plant[0].farmerId!.poktanId!.gapoktanId!.id);
+    // getDataByIdGapoktan(data["gapoktan_id"]);
+    // if (plant[0].farmerId!.poktanId!.gapoktanId!.id == data["gapoktan_id"]) {
+    //   print("exist");
+    // }
     super.onInit();
   }
 
-  // add data
-  void postData(
-    String plant_tanaman,
-    String surface_area,
-    String plating_date,
-  ) async {
-    if (plant_tanaman != '' &&
-        surface_area != '' &&
-        plating_date != '' &&
-        harvest_date != '') {
-      final data = box.read("userData") as Map<String, dynamic>;
-      // var farmer_id = findFarmer(data["id"]).id!;
-      // var poktan_id = findFarmer(data["id"]).poktanId!.id!;
-      PlantProvider()
-          .postData(1, 1, plant_tanaman, surface_area, plating_date, null,
-              data["token"])
-          .then((response) {
-        // print(response);
-        final data = Plant(
-          id: response["data"]["id"],
-          farmerId: Farmer(
-            id: response["data"]["farmer_id"]["id"],
-            userId: User(
-              id: response["data"]["farmer_id"]["user_id"]["id"],
-              name: response["data"]["farmer_id"]["user_id"]["name"],
-            ),
-            city: response["data"]["farmer_id"]["city"],
-          ),
-          poktanId: Poktan(
-            id: response["data"]["farmer_id"]["poktan_id"]["id"],
-          ),
-          plantTanaman: response["data"]["plant_tanaman"],
-          surfaceArea: response["data"]["surface_area"],
-          platingDate: response["data"]["plating_date"],
-          harvestDate: response["data"]["harvest_date"],
-          createdAt: response["data"]["created_at"],
-          updatedAt: response["data"]["updated_at"],
-        );
-        plant.insert(0, data);
-        Get.back();
-        dialog("Berhasil !", "data berhasil ditambahkan!");
-      });
-    } else {
-      dialog("Terjadi Kesalahan", "Semua Input Harus Diisi");
-    }
-  }
-
-  Future getDataByid() async {
+  Future getDataAll() async {
     final data = box.read("userData") as Map<String, dynamic>;
-    return PlantProvider().getDataById(1, data["token"]).then((response) {
+    return PlantProvider().getData(data["token"]).then((response) {
       try {
         response["data"].map((e) {
           final data = Plant(
@@ -100,7 +55,83 @@ class TandurController extends GetxController {
             createdAt: e["created_at"],
             updatedAt: e["updated_at"],
           );
-          plant.add(data);
+          plantAll.add(data);
+        }).toList();
+      } catch (e) {
+        print("Error is : " + e.toString());
+      }
+    });
+  }
+
+  Future getDataTandur() async {
+    final data = box.read("userData") as Map<String, dynamic>;
+    return PlantProvider().getData(data["token"]).then((response) {
+      try {
+        response["data"].map((e) {
+          if (e["farmer_id"]["poktan_id"]["gapoktan_id"]["id"] ==
+              data["gapoktan_id"]) {
+            if (e["status"] == "tandur") {
+              final data = Plant(
+                id: e["id"],
+                farmerId: Farmer(
+                  id: e["farmer_id"]["id"],
+                  userId: User(
+                    id: e["farmer_id"]["user_id"]["id"],
+                    name: e["farmer_id"]["user_id"]["name"],
+                  ),
+                  city: e["farmer_id"]["city"],
+                ),
+                poktanId: Poktan(
+                  id: e["farmer_id"]["poktan_id"]["id"],
+                ),
+                plantTanaman: e["plant_tanaman"],
+                surfaceArea: e["surface_area"],
+                platingDate: e["plating_date"],
+                harvestDate: e["harvest_date"],
+                createdAt: e["created_at"],
+                updatedAt: e["updated_at"],
+              );
+              plantTandur.add(data);
+            }
+          }
+        }).toList();
+      } catch (e) {
+        print("Error is : " + e.toString());
+      }
+    });
+  }
+
+  Future getDataPanen() async {
+    final data = box.read("userData") as Map<String, dynamic>;
+    return PlantProvider().getData(data["token"]).then((response) {
+      try {
+        response["data"].map((e) {
+          if (e["farmer_id"]["poktan_id"]["gapoktan_id"]["id"] ==
+              data["gapoktan_id"]) {
+            if (e["status"] == "panen") {
+              final data = Plant(
+                id: e["id"],
+                farmerId: Farmer(
+                  id: e["farmer_id"]["id"],
+                  userId: User(
+                    id: e["farmer_id"]["user_id"]["id"],
+                    name: e["farmer_id"]["user_id"]["name"],
+                  ),
+                  city: e["farmer_id"]["city"],
+                ),
+                poktanId: Poktan(
+                  id: e["farmer_id"]["poktan_id"]["id"],
+                ),
+                plantTanaman: e["plant_tanaman"],
+                surfaceArea: e["surface_area"],
+                platingDate: e["plating_date"],
+                harvestDate: e["harvest_date"],
+                createdAt: e["created_at"],
+                updatedAt: e["updated_at"],
+              );
+              plantPanen.add(data);
+            }
+          }
         }).toList();
       } catch (e) {
         print("Error is : " + e.toString());
@@ -109,71 +140,11 @@ class TandurController extends GetxController {
   }
 
   // cari berdasarka id
-  Plant findByid(int id) {
-    return plant.firstWhere((element) => element.id == id);
+  Plant findByidTandur(int id) {
+    return plantTandur.firstWhere((element) => element.id == id);
   }
 
-  void updateData(
-      int id, String plant_tanaman, String surface_area, String plating_date,
-      [var harvest_date = null]) {
-    final data = box.read("userData") as Map<String, dynamic>;
-    final item = findByid(id);
-    PlantProvider()
-        .updateData(id, plant_tanaman, surface_area, plating_date, harvest_date,
-            data["token"])
-        .then((e) {
-      item.plantTanaman = plant_tanaman;
-      item.surfaceArea = surface_area;
-      item.platingDate = plating_date;
-      item.harvestDate = harvest_date;
-      plant.refresh();
-      Get.back();
-      dialog("Berhasil !", "data berhasil diubah!");
-    });
-  }
-
-  void delete(int id) {
-    final data = box.read("userData") as Map<String, dynamic>;
-    PlantProvider()
-        .deleteData(id, data["token"])
-        .then((_) => plant.removeWhere((element) => element.id == id));
-    dialog("Berhasil !", "data berhasil dihapus!");
-  }
-
-  void dialogDelete(BuildContext context, int id) {
-    showDialog<String>(
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        title: Text("Hapus"),
-        content: Text("Yakin menghapus data?"),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context, 'Batal'),
-            child: Text('Batal'),
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context, 'Ya');
-              delete(id);
-            },
-            child: Text('Ya'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void addHarvestDate(
-    int id,
-    String harvets_date,
-  ) {
-    final data = box.read("userData") as Map<String, dynamic>;
-    final item = findByid(id);
-    PlantProvider().addHarvestDate(id, harvets_date, data["token"]).then((e) {
-      item.harvestDate = harvets_date;
-      plant.refresh();
-      Get.back();
-      dialog("Berhasil !", "data berhasil ditambahkan!");
-    });
+  Plant findByidPanen(int id) {
+    return plantPanen.firstWhere((element) => element.id == id);
   }
 }

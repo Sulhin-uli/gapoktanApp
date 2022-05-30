@@ -19,7 +19,7 @@ class IndexPanenView extends GetView<TandurController> {
         elevation: 0.5,
       ),
       body: Obx(
-        () => controller.plant.isEmpty
+        () => controller.plantPanen.isEmpty
             ? const Center(
                 child: CircularProgressIndicator(),
               )
@@ -29,11 +29,11 @@ class IndexPanenView extends GetView<TandurController> {
                   child: Column(
                     children: [
                       ListView.builder(
-                        itemCount: controller.plant.length,
+                        itemCount: controller.plantPanen.length,
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
-                          final data = controller.plant[index];
+                          final data = controller.plantPanen[index];
                           return ItemView(data);
                         },
                       )

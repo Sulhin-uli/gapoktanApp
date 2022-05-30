@@ -29,27 +29,6 @@ class ItemView extends GetView<TandurController> {
                 Waktu(datetime).yMMMMEEEEd(),
                 style: TextStyle(color: Colors.black.withOpacity(0.6)),
               ),
-              trailing: Wrap(
-                spacing: 1, // space between two icons
-                children: [
-                  InkWell(
-                    onTap: () =>
-                        Get.toNamed(Routes.EDIT_TANDUR, arguments: data.id),
-                    child: Icon(
-                      Icons.edit,
-                      size: 20,
-                    ),
-                  ),
-                  SizedBox(width: 5),
-                  InkWell(
-                    onTap: () => controller.dialogDelete(context, data.id),
-                    child: Icon(
-                      Icons.delete,
-                      size: 20,
-                    ),
-                  )
-                ],
-              ),
             ),
           ],
         ),

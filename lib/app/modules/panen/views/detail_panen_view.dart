@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class DetailPanenView extends GetView<TandurController> {
   @override
   Widget build(BuildContext context) {
-    final data = controller.findByid(Get.arguments);
+    final data = controller.findByidPanen(Get.arguments);
     DateTime platingDateC = DateTime.parse(data.platingDate!);
     DateTime harvestDateC = DateTime.parse(data.harvestDate!);
 

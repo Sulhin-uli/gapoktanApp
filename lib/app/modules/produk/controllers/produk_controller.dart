@@ -28,13 +28,6 @@ class ProdukController extends GetxController {
 
   @override
   void onInit() {
-    name = TextEditingController();
-    categoryProductId = TextEditingController();
-    code = TextEditingController();
-    stoke = TextEditingController();
-    price = TextEditingController();
-    desc = TextEditingController();
-
     getDataPhoto();
     getData();
     super.onInit();
@@ -281,8 +274,6 @@ class ProdukController extends GetxController {
   }
 
   PhotoProduct findPhotoByidProduct(int id) {
-    // photoProductByProductId.clear;
-    // getPhotoProductById(id);
     return photoProduct.firstWhere((element) => element.productId!.id == id);
   }
 

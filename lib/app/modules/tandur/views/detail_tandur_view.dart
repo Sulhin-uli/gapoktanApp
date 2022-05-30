@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 class DetailTandurView extends GetView<TandurController> {
   @override
   Widget build(BuildContext context) {
-    final data = controller.findByid(Get.arguments);
+    final data = controller.findByidTandur(Get.arguments);
     DateTime datetime = DateTime.parse(data.platingDate!);
     return Scaffold(
       appBar: AppBar(
@@ -151,18 +151,6 @@ class DetailTandurView extends GetView<TandurController> {
                     ),
                     SizedBox(
                       height: 5,
-                    ),
-                    SizedBox(
-                      height: 46, //height of button
-                      width: 300,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xff16A085), // background
-                        ),
-                        onPressed: () => Get.toNamed(Routes.ADD_HARVEST_DATE,
-                            arguments: data.id),
-                        child: Text('Tambah Tanggal Panen'),
-                      ),
                     ),
                     Container(
                       height: 200,

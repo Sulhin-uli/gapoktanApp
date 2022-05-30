@@ -28,11 +28,10 @@ class PlantProvider extends GetConnect {
     return response.body;
   }
 
-  Future<dynamic> getDataById(
-    int id,
+  Future<dynamic> getData(
     String token,
   ) async {
-    final response = await get('$url/farmer/$id', headers: {
+    final response = await get('$url', headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
