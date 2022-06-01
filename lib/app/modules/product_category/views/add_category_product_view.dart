@@ -8,8 +8,8 @@ class AddCategoryProductView extends GetView<ProductCategoryController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Tambah Kategori Produk',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -18,12 +18,12 @@ class AddCategoryProductView extends GetView<ProductCategoryController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              Text(
+              const Text(
                 "Nama Kategori",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -31,8 +31,8 @@ class AddCategoryProductView extends GetView<ProductCategoryController> {
               ),
               TextFormField(
                 controller: controller.name,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -54,10 +54,10 @@ class AddCategoryProductView extends GetView<ProductCategoryController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () => controller.postData(controller.name.text),
-                    child: Text('Tambah'),
+                    child: const Text('Tambah'),
                   ),
                 ),
               )

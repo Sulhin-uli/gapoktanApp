@@ -1,4 +1,3 @@
-import 'package:carousel_indicator/carousel_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/produk/controllers/produk_controller.dart';
@@ -19,8 +18,8 @@ class DetailProdukView extends GetView<ProdukController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: new IconButton(
-            icon: new Icon(Icons.arrow_back, color: Colors.black),
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
               Navigator.pop(context, true);
               controller.photoProductByProductId.clear();
@@ -81,10 +80,10 @@ class DetailProdukView extends GetView<ProdukController> {
                                         ? Container(
                                             width: 8.0,
                                             height: 8.0,
-                                            margin: EdgeInsets.symmetric(
+                                            margin: const EdgeInsets.symmetric(
                                                 vertical: 10.0,
                                                 horizontal: 2.0),
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: Color(0xff16A085),
                                             ),
@@ -92,10 +91,10 @@ class DetailProdukView extends GetView<ProdukController> {
                                         : Container(
                                             width: 8.0,
                                             height: 8.0,
-                                            margin: EdgeInsets.symmetric(
+                                            margin: const EdgeInsets.symmetric(
                                                 vertical: 10.0,
                                                 horizontal: 2.0),
-                                            decoration: BoxDecoration(
+                                            decoration: const BoxDecoration(
                                               shape: BoxShape.circle,
                                               color:
                                                   Color.fromRGBO(0, 0, 0, 0.4),
@@ -108,50 +107,50 @@ class DetailProdukView extends GetView<ProdukController> {
                         width: 10,
                       ),
                       Container(
-                        margin: EdgeInsets.all(16),
+                        margin: const EdgeInsets.all(16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               'Rp ${formatCurrency.format(data.price!)}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 23, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(16, 0, 16, 20),
+                        margin: const EdgeInsets.fromLTRB(16, 0, 16, 20),
                         child: Text(
                           data.name!,
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 14,
                           ),
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(16, 0, 16, 20),
+                        margin: const EdgeInsets.fromLTRB(16, 0, 16, 20),
                         child: Row(
                           children: [
                             Container(
-                              child: Text(
+                              child: const Text(
                                 "Terjual 0",
                                 style: TextStyle(
                                   fontSize: 14,
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 6,
                             ),
                             Expanded(
                               flex: 2,
                               child: Container(
-                                padding: EdgeInsets.all(3),
+                                padding: const EdgeInsets.all(3),
                                 decoration: BoxDecoration(
                                   // color: Colors.green,
                                   border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.all(
+                                  borderRadius: const BorderRadius.all(
                                     Radius.circular(7.0),
                                   ),
                                 ),
@@ -159,7 +158,7 @@ class DetailProdukView extends GetView<ProdukController> {
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
-                                    children: [
+                                    children: const [
                                       Icon(
                                         Icons.star_rounded,
                                         color: Colors.amber,
@@ -182,14 +181,14 @@ class DetailProdukView extends GetView<ProdukController> {
                       Container(
                         width: double.infinity,
                         height: 9,
-                        color: Color(0xffD1D1D1),
+                        color: const Color(0xffD1D1D1),
                       ),
                       Container(
-                        margin: EdgeInsets.all(16),
+                        margin: const EdgeInsets.all(16),
                         child: Column(
                           children: [
                             ListTile(
-                              leading: Icon(
+                              leading: const Icon(
                                 Icons.account_circle_rounded,
                                 size: 60,
                                 color: Colors.black,
@@ -217,7 +216,7 @@ class DetailProdukView extends GetView<ProdukController> {
                                   children: [
                                     Row(
                                       children: [
-                                        Icon(
+                                        const Icon(
                                           Icons.star,
                                           color: Colors.amber,
                                           size: 16,
@@ -247,7 +246,7 @@ class DetailProdukView extends GetView<ProdukController> {
                                     ),
                                   ],
                                 ),
-                                Container(
+                                SizedBox(
                                   height: 60,
                                   child: VerticalDivider(
                                       color: Colors.black.withOpacity(0.5)),
@@ -257,10 +256,10 @@ class DetailProdukView extends GetView<ProdukController> {
                                     print("press");
                                   },
                                   style: OutlinedButton.styleFrom(
-                                    side: BorderSide(
+                                    side: const BorderSide(
                                         width: 2.0, color: Color(0xff16A085)),
                                   ),
-                                  child: Text(
+                                  child: const Text(
                                     '     Lihat Toko    ',
                                     style: TextStyle(
                                       color: Color(0xff16A085),
@@ -275,11 +274,11 @@ class DetailProdukView extends GetView<ProdukController> {
                       Container(
                         width: double.infinity,
                         height: 9,
-                        color: Color(0xffD1D1D1),
+                        color: const Color(0xffD1D1D1),
                       ),
                       Container(
-                        margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                        child: Text(
+                        margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                        child: const Text(
                           "Detail Product",
                           style: TextStyle(
                               color: Colors.black,
@@ -288,11 +287,11 @@ class DetailProdukView extends GetView<ProdukController> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: 16, right: 16),
+                        margin: const EdgeInsets.only(left: 16, right: 16),
                         child: Column(
                           children: [
                             Row(
-                              children: [
+                              children: const [
                                 Text(
                                   "Column",
                                   style: TextStyle(
@@ -312,11 +311,11 @@ class DetailProdukView extends GetView<ProdukController> {
                                 ),
                               ],
                             ),
-                            Divider(
+                            const Divider(
                               color: Color(0xff919A92),
                             ),
                             Row(
-                              children: [
+                              children: const [
                                 Text(
                                   "Column",
                                   style: TextStyle(
@@ -336,11 +335,11 @@ class DetailProdukView extends GetView<ProdukController> {
                                 ),
                               ],
                             ),
-                            Divider(
+                            const Divider(
                               color: Color(0xff919A92),
                             ),
                             Row(
-                              children: [
+                              children: const [
                                 Text(
                                   "Column",
                                   style: TextStyle(
@@ -360,10 +359,10 @@ class DetailProdukView extends GetView<ProdukController> {
                                 ),
                               ],
                             ),
-                            Divider(
+                            const Divider(
                               color: Color(0xff919A92),
                             ),
-                            Text(
+                            const Text(
                               "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                               style: TextStyle(
                                 color: Color(0xff919A92),
@@ -371,7 +370,7 @@ class DetailProdukView extends GetView<ProdukController> {
                               ),
                               textAlign: TextAlign.justify,
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 70,
                             )
                           ],
@@ -391,20 +390,20 @@ class DetailProdukView extends GetView<ProdukController> {
   // fuction widget
   // Input
   _buildInputSearch() {
-    final sizeIcon = BoxConstraints(minWidth: 35, minHeight: 35);
-    final border = OutlineInputBorder(
-      borderSide: const BorderSide(
+    const sizeIcon = BoxConstraints(minWidth: 35, minHeight: 35);
+    const border = OutlineInputBorder(
+      borderSide: BorderSide(
         color: Colors.transparent,
         width: 0,
       ),
-      borderRadius: const BorderRadius.all(
-        const Radius.circular(4.0),
+      borderRadius: BorderRadius.all(
+        Radius.circular(4.0),
       ),
     );
     return Expanded(
       child: Container(
-        margin: EdgeInsets.only(left: 8),
-        child: TextField(
+        margin: const EdgeInsets.only(left: 8),
+        child: const TextField(
           cursorColor: Colors.black,
           decoration: InputDecoration(
               contentPadding: EdgeInsets.all(4),
@@ -441,20 +440,20 @@ class DetailProdukView extends GetView<ProdukController> {
             iconSize: 24,
           ),
           notification == 0
-              ? SizedBox()
+              ? const SizedBox()
               : Positioned(
                   right: 0,
                   child: Container(
-                    padding: EdgeInsets.all(3),
+                    padding: const EdgeInsets.all(3),
                     decoration: BoxDecoration(
-                      color: Color(0xff16A085),
+                      color: const Color(0xff16A085),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(color: Colors.white),
                     ),
-                    constraints: BoxConstraints(minWidth: 22, minHeight: 22),
+                    constraints: const BoxConstraints(minWidth: 22, minHeight: 22),
                     child: Text(
                       "$notification",
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 12,
                       ),

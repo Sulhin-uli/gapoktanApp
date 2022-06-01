@@ -102,19 +102,19 @@ class ProductCategoryController extends GetxController {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text("Peringatan"),
-        content: Text("Yakin menghapus data?"),
+        title: const Text("Peringatan"),
+        content: const Text("Yakin menghapus data?"),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Batal'),
-            child: Text('Batal'),
+            child: const Text('Batal'),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context, 'Ya');
               deleteData(id);
             },
-            child: Text('Ya'),
+            child: const Text('Ya'),
           ),
         ],
       ),
@@ -122,7 +122,7 @@ class ProductCategoryController extends GetxController {
   }
 
   Future getNameCategory(int id) async {
-    var name = await findByid(id).name;
+    var name = findByid(id).name;
     getNameCategoryEducation.value = name!;
   }
 

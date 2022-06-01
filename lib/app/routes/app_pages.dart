@@ -1,3 +1,4 @@
+import 'package:gapoktan_app/app/modules/history_plant/views/detail_history_plant_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/activity/bindings/activity_binding.dart';
@@ -20,6 +21,8 @@ import '../modules/education_category/bindings/education_category_binding.dart';
 import '../modules/education_category/views/add_category_education_view.dart';
 import '../modules/education_category/views/edit_category_education_view.dart';
 import '../modules/education_category/views/education_category_view.dart';
+import '../modules/history_plant/bindings/history_plant_binding.dart';
+import '../modules/history_plant/views/history_plant_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/index_home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -203,6 +206,17 @@ class AppPages {
     GetPage(
       name: _Paths.DETAIL_PANEN,
       page: () => DetailPanenView(),
+      binding: TandurBinding(),
+    ),
+    // History PLant
+    GetPage(
+      name: _Paths.HISTORY_PLANT,
+      page: () => HistoryPlantView(),
+      binding: TandurBinding(),
+    ),
+    GetPage(
+      name: _Paths.DETAIL_HISTORY_PLANT,
+      page: () => DetailHistoryPlantView(),
       binding: TandurBinding(),
     ),
 

@@ -27,7 +27,7 @@ class EducationCategory {
   }
 
   static List<EducationCategory> fromJsonList(List data) {
-    if (data == null || data.length == 0) return [];
+    if (data.isEmpty) return [];
     return data.map((e) => EducationCategory.fromJson(e)).toList();
   }
 

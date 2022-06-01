@@ -6,7 +6,6 @@ import 'package:gapoktan_app/app/utils/base_url.dart';
 import 'package:path/path.dart' as p;
 
 import 'package:get/get.dart';
-import 'package:video_player/video_player.dart';
 
 class DetailEducationView extends GetView<EducationController> {
   @override
@@ -19,13 +18,13 @@ class DetailEducationView extends GetView<EducationController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
+        leading: const BackButton(color: Colors.black),
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
       body: Obx(
         () => controller.education.isEmpty
-            ? Center(
+            ? const Center(
                 child: CircularProgressIndicator(),
               )
             : SingleChildScrollView(
@@ -40,7 +39,7 @@ class DetailEducationView extends GetView<EducationController> {
                               child: BetterPlayer.network(
                                 baseUrlFile + "storage/edukasi/" + data.file!,
                                 betterPlayerConfiguration:
-                                    BetterPlayerConfiguration(
+                                    const BetterPlayerConfiguration(
                                   aspectRatio: 16 / 9,
                                   fit: BoxFit.scaleDown,
                                 ),
@@ -61,7 +60,7 @@ class DetailEducationView extends GetView<EducationController> {
                         child: Text(
                           data.title!,
                           // "Greyhound divisively hello coldly wonderfully",
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontSize: 14.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -71,7 +70,7 @@ class DetailEducationView extends GetView<EducationController> {
                         padding: const EdgeInsets.fromLTRB(17, 1, 17, 2),
                         child: Text(
                           Waktu(datetime).yMMMMEEEEd(),
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black38,
                             fontSize: 12.0,
                           ),
@@ -82,7 +81,7 @@ class DetailEducationView extends GetView<EducationController> {
                         child: Text(data.desc!,
                             // "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
                             textAlign: TextAlign.justify,
-                            style: TextStyle(fontSize: 14.0, height: 1.5)),
+                            style: const TextStyle(fontSize: 14.0, height: 1.5)),
                       ),
                     ],
                   ),

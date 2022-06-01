@@ -11,8 +11,8 @@ class EditCategoryActivityView extends GetView<ActivityCategoryController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Edit Kategori Kegiatan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -21,12 +21,12 @@ class EditCategoryActivityView extends GetView<ActivityCategoryController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              Text(
+              const Text(
                 "Nama Kategori",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -34,8 +34,8 @@ class EditCategoryActivityView extends GetView<ActivityCategoryController> {
               ),
               TextFormField(
                 controller: controller.name,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -57,11 +57,11 @@ class EditCategoryActivityView extends GetView<ActivityCategoryController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () => controller.editData(
                         Get.arguments, controller.name.text),
-                    child: Text('Edit'),
+                    child: const Text('Edit'),
                   ),
                 ),
               )

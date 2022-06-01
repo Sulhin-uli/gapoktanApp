@@ -126,7 +126,7 @@ class ProdukController extends GetxController {
         for (var item in selectedImagePath) {
           postPhoto(item.path, response["data"]["id"]);
 
-          Future.delayed(Duration(seconds: 1), () {});
+          Future.delayed(const Duration(seconds: 1), () {});
         }
         Get.back();
         dialog("Berhasil !", "data berhasil ditambahkan!");
@@ -341,7 +341,7 @@ class ProdukController extends GetxController {
 
       for (var itemselectedImagePath in selectedImagePath) {
         postPhoto(itemselectedImagePath.path, id);
-        Future.delayed(Duration(seconds: 1), () {});
+        Future.delayed(const Duration(seconds: 1), () {});
       }
       deleteDataWhereProductId(id);
       Get.offAllNamed(Routes.HOME);
@@ -369,19 +369,19 @@ class ProdukController extends GetxController {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text("Peringatan"),
-        content: Text("Yakin menghapus data?"),
+        title: const Text("Peringatan"),
+        content: const Text("Yakin menghapus data?"),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Batal'),
-            child: Text('Batal'),
+            child: const Text('Batal'),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context, 'Ya');
               deleteData(id);
             },
-            child: Text('Ya'),
+            child: const Text('Ya'),
           ),
         ],
       ),

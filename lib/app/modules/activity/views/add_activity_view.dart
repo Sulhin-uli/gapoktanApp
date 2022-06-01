@@ -17,8 +17,8 @@ class AddActivityView extends GetView<ActivityController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Tambah Kegiatan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -27,17 +27,17 @@ class AddActivityView extends GetView<ActivityController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Kategori Kegiatan",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 9,
               ),
               Container(
@@ -47,7 +47,7 @@ class AddActivityView extends GetView<ActivityController> {
                   popupItemBuilder: (context, item, isSelected) => ListTile(
                     title: Text("${item.name}"),
                   ),
-                  dropdownSearchDecoration: InputDecoration(
+                  dropdownSearchDecoration: const InputDecoration(
                     labelText: "",
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 10,
@@ -68,7 +68,7 @@ class AddActivityView extends GetView<ActivityController> {
                   onFind: (text) async {
                     final data = box.read("userData") as Map<String, dynamic>;
                     var token = data["token"];
-                    Dio dio = new Dio();
+                    Dio dio = Dio();
 
                     dio.options.headers['content-Type'] = 'application/json';
                     dio.options.headers["authorization"] =
@@ -85,7 +85,7 @@ class AddActivityView extends GetView<ActivityController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Judul",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -93,8 +93,8 @@ class AddActivityView extends GetView<ActivityController> {
               ),
               TextFormField(
                 controller: controller.title,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -110,7 +110,7 @@ class AddActivityView extends GetView<ActivityController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Tanggal",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -119,7 +119,7 @@ class AddActivityView extends GetView<ActivityController> {
               TextFormField(
                 controller: controller.date,
                 readOnly: true,
-                cursorColor: Color(0xff16A085),
+                cursorColor: const Color(0xff16A085),
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
                       context: context,
@@ -135,7 +135,7 @@ class AddActivityView extends GetView<ActivityController> {
                     print("Date is not selected");
                   }
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -155,28 +155,28 @@ class AddActivityView extends GetView<ActivityController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Deskripsi",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 9,
               ),
               TextFormField(
                 maxLines: 5,
                 controller: controller.desc,
-                cursorColor: Color(0xff16A085),
+                cursorColor: const Color(0xff16A085),
                 decoration: InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
+                  enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff919A92),
                     ),
                   ),
-                  focusedBorder: UnderlineInputBorder(
+                  focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff16A085),
                     ),
@@ -192,7 +192,7 @@ class AddActivityView extends GetView<ActivityController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () => Get.find<ActivityController>().postData(
                       int.parse(controller.categoryActivityId.text),
@@ -200,7 +200,7 @@ class AddActivityView extends GetView<ActivityController> {
                       controller.date.text,
                       controller.desc.text,
                     ),
-                    child: Text('Tambah'),
+                    child: const Text('Tambah'),
                   ),
                 ),
               )

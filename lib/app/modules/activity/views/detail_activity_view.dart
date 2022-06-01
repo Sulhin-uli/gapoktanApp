@@ -14,12 +14,12 @@ class DetailActivityView extends GetView<ActivityController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
+        leading: const BackButton(color: Colors.black),
         actions: [
           Container(
             alignment: Alignment.topRight,
             child: PopupMenuButton(
-              icon: Icon(
+              icon: const Icon(
                 Icons.more_vert,
                 color: Colors.black,
               ),
@@ -28,8 +28,8 @@ class DetailActivityView extends GetView<ActivityController> {
                   child: ListTile(
                     onTap: () =>
                         Get.toNamed(Routes.EDIT_ACTIVITY, arguments: data.id),
-                    leading: Icon(Icons.edit),
-                    title: Text('Ubah'),
+                    leading: const Icon(Icons.edit),
+                    title: const Text('Ubah'),
                   ),
                 ),
                 PopupMenuItem(
@@ -38,8 +38,8 @@ class DetailActivityView extends GetView<ActivityController> {
                       controller.dialogQuestion(
                           "Hapus", "Yakin menghapus data?", context, data.id!);
                     },
-                    leading: Icon(Icons.delete),
-                    title: Text('Delete'),
+                    leading: const Icon(Icons.delete),
+                    title: const Text('Delete'),
                   ),
                 ),
               ],
@@ -51,14 +51,14 @@ class DetailActivityView extends GetView<ActivityController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Text(
                   data.title!,
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ),
               const SizedBox(
@@ -91,7 +91,7 @@ class DetailActivityView extends GetView<ActivityController> {
                   ),
                   Text(
                     data.userId!.name!,
-                    style: TextStyle(color: Colors.red),
+                    style: const TextStyle(color: Colors.red),
                   ),
                 ],
               ),

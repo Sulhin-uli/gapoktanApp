@@ -12,8 +12,8 @@ class IndexPoktanView extends GetView<PoktanController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Poktan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -49,7 +49,7 @@ class IndexPoktanView extends GetView<PoktanController> {
         foregroundColor: Colors.white,
         // mini: true,
         onPressed: () => Get.toNamed(Routes.ADD_POKTAN),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

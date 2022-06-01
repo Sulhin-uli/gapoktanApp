@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/home/controllers/home_controller.dart';
-import 'package:gapoktan_app/app/modules/home/views/widget/carousel_widget.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
-import 'package:gapoktan_app/app/modules/home/views/widget/item_menu_widget.dart';
 import 'package:get/get.dart';
 
 import 'header_widget.dart';
@@ -40,15 +38,19 @@ class Body extends GetView<HomeController> {
                 ),
                 InkWell(
                   onTap: () => Get.toNamed(Routes.INDEX_TANDUR),
-                  child:
-                      menuVertical("Jadwal Tandur", Color(0xff16A085), "👨‍💻"),
+                  child: menuVertical(
+                      "Jadwal Tandur", const Color(0xff16A085), "👨‍💻"),
                 ),
                 InkWell(
                   onTap: () => Get.toNamed(Routes.INDEX_PANEN),
-                  child:
-                      menuVertical("Jadwal Panen", Color(0xff16A085), "👨‍🎨"),
+                  child: menuVertical(
+                      "Jadwal Panen", const Color(0xff16A085), "👨‍🎨"),
                 ),
-                menuVertical("Riwayat Penanaman", Color(0xff16A085), "👨‍🎨"),
+                InkWell(
+                  onTap: () => Get.toNamed(Routes.HISTORY_PLANT),
+                  child: menuVertical(
+                      "Riwayat Penanaman", const Color(0xff16A085), "👨‍🎨"),
+                ),
               ],
             ),
           ),
@@ -70,18 +72,18 @@ class Body extends GetView<HomeController> {
           ),
           ListView(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             children: [
               InkWell(
                 onTap: () => Get.toNamed(Routes.INDEX_PRODUK),
-                child: menuHorizontal(
-                    "Produk", "assets/user2.jpg", Color(0xff16A085), context),
+                child: menuHorizontal("Produk", "assets/user2.jpg",
+                    const Color(0xff16A085), context),
               ),
               InkWell(
                 onTap: () => Get.toNamed(Routes.INDEX_PRODUCT_CATEGORY),
                 child: menuHorizontal("Kategori Produk", "assets/user3.jpg",
-                    Color(0xff16A085), context),
+                    const Color(0xff16A085), context),
               ),
             ],
           ),
@@ -103,18 +105,18 @@ class Body extends GetView<HomeController> {
           ),
           ListView(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             children: [
               InkWell(
                 onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY),
-                child: menuHorizontal(
-                    "Kegiatan", "assets/user2.jpg", Color(0xff16A085), context),
+                child: menuHorizontal("Kegiatan", "assets/user2.jpg",
+                    const Color(0xff16A085), context),
               ),
               InkWell(
                 onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY_CATEGORY),
                 child: menuHorizontal("Kategori Kegiatan", "assets/user3.jpg",
-                    Color(0xff16A085), context),
+                    const Color(0xff16A085), context),
               ),
             ],
           ),
@@ -136,17 +138,17 @@ class Body extends GetView<HomeController> {
           ),
           ListView(
             shrinkWrap: true,
-            physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            physics: const NeverScrollableScrollPhysics(),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             children: [
               InkWell(
                 onTap: () => Get.toNamed(Routes.INDEX_POKTAN),
                 child: menuHorizontal("Akun Poktan", "assets/user2.jpg",
-                    Color(0xff16A085), context),
+                    const Color(0xff16A085), context),
               ),
             ],
           ),
-          SizedBox(height: kDefaultPadding),
+          const SizedBox(height: kDefaultPadding),
         ],
       ),
     );

@@ -22,7 +22,7 @@ class Gapoktan {
   Gapoktan.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId =
-        json['user_id'] != null ? new User.fromJson(json['user_id']) : null;
+        json['user_id'] != null ? User.fromJson(json['user_id']) : null;
     city = json['city'];
     address = json['address'];
     telp = json['telp'];
@@ -31,7 +31,7 @@ class Gapoktan {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     if (userId != null) {
       data['user_id'] = userId!.toJson();

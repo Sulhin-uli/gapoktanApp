@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:format_indonesia/format_indonesia.dart';
-import 'package:intl/intl.dart';
 import 'package:gapoktan_app/app/modules/tandur/controllers/tandur_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
 class ItemView extends GetView<TandurController> {
-  ItemView(this.data);
+  const ItemView(this.data);
   final data;
 
   @override
@@ -20,7 +19,7 @@ class ItemView extends GetView<TandurController> {
         child: Column(
           children: [
             ListTile(
-              leading: CircleAvatar(
+              leading: const CircleAvatar(
                 backgroundImage: NetworkImage(
                     'https://www.startupdonut.co.uk/sites/default/files/styles/landing_pages_lists/public/Guy_watson_249x167.png?itok=e_ct04Rx'),
               ),

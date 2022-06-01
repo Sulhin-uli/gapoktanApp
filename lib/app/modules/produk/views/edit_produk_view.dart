@@ -29,13 +29,13 @@ class EditProdukView extends GetView<ProdukController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: new IconButton(
-            icon: new Icon(Icons.arrow_back, color: Colors.black),
+        leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
               Navigator.pop(context, true);
               controller.photoProductByProductId.clear();
             }),
-        title: Text(
+        title: const Text(
           'Edit Produk',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -44,12 +44,12 @@ class EditProdukView extends GetView<ProdukController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              Text(
+              const Text(
                 "Nama Produk",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -57,8 +57,8 @@ class EditProdukView extends GetView<ProdukController> {
               ),
               TextFormField(
                 controller: controller.name,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -74,13 +74,13 @@ class EditProdukView extends GetView<ProdukController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Kategori Kegiatan",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 9,
               ),
               Container(
@@ -90,7 +90,7 @@ class EditProdukView extends GetView<ProdukController> {
                   popupItemBuilder: (context, item, isSelected) => ListTile(
                     title: Text("${item.name}"),
                   ),
-                  dropdownSearchDecoration: InputDecoration(
+                  dropdownSearchDecoration: const InputDecoration(
                     labelText: "",
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 10,
@@ -111,7 +111,7 @@ class EditProdukView extends GetView<ProdukController> {
                   onFind: (text) async {
                     final data = box.read("userData") as Map<String, dynamic>;
                     var token = data["token"];
-                    Dio dio = new Dio();
+                    Dio dio = Dio();
 
                     dio.options.headers['content-Type'] = 'application/json';
                     dio.options.headers["authorization"] =
@@ -128,7 +128,7 @@ class EditProdukView extends GetView<ProdukController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Kode Produk",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -136,8 +136,8 @@ class EditProdukView extends GetView<ProdukController> {
               ),
               TextFormField(
                 controller: controller.stoke,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -153,7 +153,7 @@ class EditProdukView extends GetView<ProdukController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Stok Produk",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -161,8 +161,8 @@ class EditProdukView extends GetView<ProdukController> {
               ),
               TextFormField(
                 controller: controller.stoke,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -178,7 +178,7 @@ class EditProdukView extends GetView<ProdukController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Harga",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -186,8 +186,8 @@ class EditProdukView extends GetView<ProdukController> {
               ),
               TextFormField(
                 controller: controller.price,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -203,28 +203,28 @@ class EditProdukView extends GetView<ProdukController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Deskripsi",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 9,
               ),
               TextFormField(
                 maxLines: 5,
                 controller: controller.desc,
-                cursorColor: Color(0xff16A085),
+                cursorColor: const Color(0xff16A085),
                 decoration: InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
+                  enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff919A92),
                     ),
                   ),
-                  focusedBorder: UnderlineInputBorder(
+                  focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff16A085),
                     ),
@@ -234,7 +234,7 @@ class EditProdukView extends GetView<ProdukController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Foto Produk",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -253,7 +253,7 @@ class EditProdukView extends GetView<ProdukController> {
                                   controller.photoProductByProductId.length,
                               itemBuilder: (context, i) {
                                 return Container(
-                                  margin: EdgeInsets.all(5),
+                                  margin: const EdgeInsets.all(5),
                                   child: Image.network(
                                     baseUrlFile +
                                         "storage/produk/" +
@@ -276,7 +276,7 @@ class EditProdukView extends GetView<ProdukController> {
                                 controller.visibleEditPhoto.value =
                                     !controller.visibleEditPhoto.value;
                               },
-                              child: Text('Bersihkan Foto'),
+                              child: const Text('Bersihkan Foto'),
                             ),
                           ),
                         ],
@@ -290,7 +290,7 @@ class EditProdukView extends GetView<ProdukController> {
                               child: DottedBorder(
                                 color: Colors.green,
                                 strokeWidth: 1,
-                                dashPattern: [5, 5],
+                                dashPattern: const [5, 5],
                                 child: Container(
                                   height: 80,
                                   width: 140,
@@ -298,7 +298,7 @@ class EditProdukView extends GetView<ProdukController> {
                                   child: Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Icon(
+                                      const Icon(
                                         Icons.drive_folder_upload,
                                         color: Colors.green,
                                       ),
@@ -318,7 +318,7 @@ class EditProdukView extends GetView<ProdukController> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 3,
                           ),
                         ],
@@ -333,7 +333,7 @@ class EditProdukView extends GetView<ProdukController> {
                           itemCount: controller.selectedImagePath.length,
                           itemBuilder: (context, index) {
                             return Container(
-                              margin: EdgeInsets.all(5),
+                              margin: const EdgeInsets.all(5),
                               child: Image.file(
                                 File(controller.selectedImagePath[index].path),
                                 fit: BoxFit.cover,
@@ -346,7 +346,7 @@ class EditProdukView extends GetView<ProdukController> {
                     : Obx(
                         () => controller.visibleEditPhoto.isTrue
                             ? Container()
-                            : Text("No image selected"),
+                            : const Text("No image selected"),
                       ),
               ),
               const SizedBox(height: 5),
@@ -362,7 +362,7 @@ class EditProdukView extends GetView<ProdukController> {
                           onPressed: () {
                             controller.selectedImagePath.clear();
                           },
-                          child: Text('Bersihkan Foto'),
+                          child: const Text('Bersihkan Foto'),
                         ),
                       )
                     : Container(),
@@ -374,7 +374,7 @@ class EditProdukView extends GetView<ProdukController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () {
                       if (controller.selectedImagePath.isNotEmpty) {
@@ -399,7 +399,7 @@ class EditProdukView extends GetView<ProdukController> {
                         );
                       }
                     },
-                    child: Text('Edit'),
+                    child: const Text('Edit'),
                   ),
                 ),
               )

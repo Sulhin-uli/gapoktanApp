@@ -18,8 +18,8 @@ class AddEducationView extends GetView<EducationController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Tambah Edukasi',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -28,17 +28,17 @@ class AddEducationView extends GetView<EducationController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Kategori Edukasi",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 9,
               ),
               Container(
@@ -48,7 +48,7 @@ class AddEducationView extends GetView<EducationController> {
                   popupItemBuilder: (context, item, isSelected) => ListTile(
                     title: Text("${item.name}"),
                   ),
-                  dropdownSearchDecoration: InputDecoration(
+                  dropdownSearchDecoration: const InputDecoration(
                     labelText: "",
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 10,
@@ -69,7 +69,7 @@ class AddEducationView extends GetView<EducationController> {
                   onFind: (text) async {
                     final data = box.read("userData") as Map<String, dynamic>;
                     var token = data["token"];
-                    Dio dio = new Dio();
+                    Dio dio = Dio();
 
                     dio.options.headers['content-Type'] = 'application/json';
                     dio.options.headers["authorization"] =
@@ -88,7 +88,7 @@ class AddEducationView extends GetView<EducationController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Judul",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -96,8 +96,8 @@ class AddEducationView extends GetView<EducationController> {
               ),
               TextFormField(
                 controller: controller.title,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -113,7 +113,7 @@ class AddEducationView extends GetView<EducationController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "File",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -125,7 +125,7 @@ class AddEducationView extends GetView<EducationController> {
                   child: DottedBorder(
                     color: Colors.green,
                     strokeWidth: 1,
-                    dashPattern: [5, 5],
+                    dashPattern: const [5, 5],
                     child: Container(
                       height: 80,
                       width: 140,
@@ -133,7 +133,7 @@ class AddEducationView extends GetView<EducationController> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.drive_folder_upload,
                             color: Colors.green,
                           ),
@@ -153,7 +153,7 @@ class AddEducationView extends GetView<EducationController> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 3,
               ),
               const SizedBox(height: 30),
@@ -162,7 +162,7 @@ class AddEducationView extends GetView<EducationController> {
                     ? Obx(
                         () => controller.selectedImagePath.value.isImageFileName
                             ? Center(
-                                child: Container(
+                                child: SizedBox(
                                   height: 300,
                                   width: 300,
                                   child: Image.file(
@@ -177,7 +177,7 @@ class AddEducationView extends GetView<EducationController> {
                                   child: BetterPlayer.file(
                                     controller.selectedImagePath.value,
                                     betterPlayerConfiguration:
-                                        BetterPlayerConfiguration(
+                                        const BetterPlayerConfiguration(
                                       aspectRatio: 16 / 9,
                                       fit: BoxFit.scaleDown,
                                     ),
@@ -187,34 +187,34 @@ class AddEducationView extends GetView<EducationController> {
                       )
                     : Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                        children: const [
                           Text("No File selected."),
                         ],
                       ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Deskripsi",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 9,
               ),
               TextFormField(
                 maxLines: 5,
                 controller: controller.desc,
-                cursorColor: Color(0xff16A085),
+                cursorColor: const Color(0xff16A085),
                 decoration: InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
+                  enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff919A92),
                     ),
                   ),
-                  focusedBorder: UnderlineInputBorder(
+                  focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff16A085),
                     ),
@@ -230,7 +230,7 @@ class AddEducationView extends GetView<EducationController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () {
                       controller.isLoadingButton.value = false;
@@ -243,7 +243,7 @@ class AddEducationView extends GetView<EducationController> {
                     },
                     child: Obx(
                       () => controller.isLoadingButton.isTrue
-                          ? Text('Tambah')
+                          ? const Text('Tambah')
                           : const CircularProgressIndicator(
                               color: Colors.white,
                             ),

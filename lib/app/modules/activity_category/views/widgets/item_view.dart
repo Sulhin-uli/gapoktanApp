@@ -5,7 +5,7 @@ import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class ItemViewCategoryActivity extends GetView<ActivityCategoryController> {
-  ItemViewCategoryActivity(this.data);
+  const ItemViewCategoryActivity(this.data);
   final data;
 
   @override
@@ -22,15 +22,15 @@ class ItemViewCategoryActivity extends GetView<ActivityCategoryController> {
                 InkWell(
                   onTap: () => Get.toNamed(Routes.EDIT_ACTIVITY_CATEGORY,
                       arguments: data.id),
-                  child: Icon(
+                  child: const Icon(
                     Icons.edit,
                     size: 20,
                   ),
                 ),
-                SizedBox(width: 5),
+                const SizedBox(width: 5),
                 InkWell(
                   onTap: () => controller.dialogQuestion(context, data.id),
-                  child: Icon(
+                  child: const Icon(
                     Icons.delete,
                     size: 20,
                   ),

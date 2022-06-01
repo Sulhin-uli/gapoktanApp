@@ -25,15 +25,15 @@ class EducationProvider extends GetConnect {
 
   Future<dynamic> updateDataWOfile(
     int id,
-    int user_id,
-    int category_education_id,
+    int userId,
+    int categoryEducationId,
     String title,
     String desc,
     String token,
   ) async {
     final response = await put('$url/$id', {
-      "user_id": user_id,
-      "category_education_id": category_education_id,
+      "user_id": userId,
+      "category_education_id": categoryEducationId,
       "title": title,
       "desc": desc,
     }, headers: {
@@ -63,7 +63,7 @@ class EducationProvider extends GetConnect {
   Future<dynamic> getData(
     String token,
   ) async {
-    final response = await get('$url', headers: {
+    final response = await get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
@@ -75,7 +75,7 @@ class EducationProvider extends GetConnect {
     int? id,
     String token,
   ) async =>
-      await delete('$url' + '/$id', headers: {
+      await delete(url + '/$id', headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',

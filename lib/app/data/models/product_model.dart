@@ -37,21 +37,21 @@ class Product {
     slug = json['slug'];
     image = json['image'];
     categoryProductId = json['category_product_id'] != null
-        ? new ProductCategory.fromJson(json['category_product_id'])
+        ? ProductCategory.fromJson(json['category_product_id'])
         : null;
     code = json['code'];
     stoke = json['stoke'];
     price = json['price'];
     desc = json['desc'];
     userId =
-        json['user_id'] != null ? new User.fromJson(json['user_id']) : null;
+        json['user_id'] != null ? User.fromJson(json['user_id']) : null;
     isActive = json['is_active'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
     data['slug'] = slug;

@@ -12,8 +12,8 @@ class IndexProdukView extends GetView<ProdukController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Produk',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -53,7 +53,7 @@ class IndexProdukView extends GetView<ProdukController> {
         // mini: true,
         onPressed: () => Get.toNamed(Routes.ADD_PRODUK),
         // onPressed: () {},
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

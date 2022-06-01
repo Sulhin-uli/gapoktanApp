@@ -9,10 +9,10 @@ class ChatRoomView extends GetView<ChatRoomController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ChatRoomView'),
+        title: const Text('ChatRoomView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'ChatRoomView is working',
           style: TextStyle(fontSize: 20),

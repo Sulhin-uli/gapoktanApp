@@ -7,7 +7,7 @@ class ActivityProvider extends GetConnect {
   Future<dynamic> getData(
     String token,
   ) async {
-    final response = await get('$url', headers: {
+    final response = await get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
@@ -23,7 +23,7 @@ class ActivityProvider extends GetConnect {
     String desc,
     String token,
   ) async {
-    final response = await post('$url', {
+    final response = await post(url, {
       "user_id": userId,
       "category_activity_id": categoryActivityId,
       "title": title,
@@ -45,7 +45,7 @@ class ActivityProvider extends GetConnect {
     String desc,
     String token,
   ) async {
-    final response = await put('$url' + '$id', {
+    final response = await put(url + '$id', {
       "category_activity_id": categoryActivityId,
       "title": title,
       "date": date,
@@ -62,7 +62,7 @@ class ActivityProvider extends GetConnect {
     int? id,
     String token,
   ) async =>
-      await delete('$url' + '$id', headers: {
+      await delete(url + '$id', headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',

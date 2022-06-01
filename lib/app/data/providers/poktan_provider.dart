@@ -12,7 +12,7 @@ class PoktanProvider extends GetConnect {
     bool isActive,
     String token,
   ) async {
-    final response = await post('$url', {
+    final response = await post(url, {
       "name": name,
       "email": email,
       "password": password,
@@ -29,7 +29,7 @@ class PoktanProvider extends GetConnect {
   Future<dynamic> getData(
     String token,
   ) async {
-    final response = await get('$url', headers: {
+    final response = await get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
@@ -41,7 +41,7 @@ class PoktanProvider extends GetConnect {
     int? id,
     String token,
   ) async =>
-      await delete('$url' + '/$id', headers: {
+      await delete(url + '/$id', headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
@@ -57,7 +57,7 @@ class PoktanProvider extends GetConnect {
     bool isActive,
     String token,
   ) async {
-    final response = await put('$url' + '/$id', {
+    final response = await put(url + '/$id', {
       "id": id,
       "user_id": userId,
       "name": name,

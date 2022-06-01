@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:gapoktan_app/app/modules/home/controllers/home_controller.dart';
 
 class ItemMenuView extends GetView<HomeController> {
-  ItemMenuView(this.data);
+  const ItemMenuView(this.data);
   final data;
 
   @override
@@ -14,15 +14,15 @@ class ItemMenuView extends GetView<HomeController> {
       child: Container(
         child: Column(
           children: [
-            Container(
+            SizedBox(
               // color: index % 2 == 0 ? Colors.amber : Colors.red,
               width: 37,
               height: 37,
               child: FlatButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(14),
-                    side: BorderSide(color: Colors.black12)),
-                padding: EdgeInsets.all(8),
+                    side: const BorderSide(color: Colors.black12)),
+                padding: const EdgeInsets.all(8),
                 color: Colors.white,
                 onPressed: () => Get.toNamed(data.route!),
                 child: Image.network(
@@ -31,7 +31,7 @@ class ItemMenuView extends GetView<HomeController> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 11,
             ),
             Text(

@@ -14,7 +14,7 @@ class ProductProvider extends GetConnect {
     String desc,
     String token,
   ) async {
-    final response = await post('$url', {
+    final response = await post(url, {
       "name": name,
       "category_product_id": categoryProductId,
       "code": code,
@@ -33,7 +33,7 @@ class ProductProvider extends GetConnect {
   Future<dynamic> getData(
     String token,
   ) async {
-    final response = await get('$url', headers: {
+    final response = await get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
@@ -45,7 +45,7 @@ class ProductProvider extends GetConnect {
     int? id,
     String token,
   ) async =>
-      await delete('$url' + '/$id', headers: {
+      await delete(url + '/$id', headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
@@ -62,7 +62,7 @@ class ProductProvider extends GetConnect {
     String desc,
     String token,
   ) async {
-    final response = await put('$url' + '/$id', {
+    final response = await put(url + '/$id', {
       "name": name,
       "category_product_id": categoryProductId,
       "code": code,

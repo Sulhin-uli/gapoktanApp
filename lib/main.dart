@@ -14,7 +14,7 @@ void main() async {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: ThemeData(
-        primaryColor: Color(0xff16A085),
+        primaryColor: const Color(0xff16A085),
       ),
     ),
   );

@@ -27,7 +27,7 @@ class ProductCategory {
   }
 
   static List<ProductCategory> fromJsonList(List data) {
-    if (data == null || data.length == 0) return [];
+    if (data.isEmpty) return [];
     return data.map((e) => ProductCategory.fromJson(e)).toList();
   }
 

@@ -21,7 +21,7 @@ void dialog(String title, String msg) {
       textAlign: TextAlign.center,
     ),
   );
-  Future.delayed(Duration(seconds: 3), () {
+  Future.delayed(const Duration(seconds: 3), () {
     Get.back();
   });
 }

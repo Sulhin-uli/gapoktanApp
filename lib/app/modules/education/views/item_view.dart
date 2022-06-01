@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/education/controllers/education_controller.dart';
-import 'package:gapoktan_app/app/modules/education_category/controllers/education_category_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/base_url.dart';
 import 'package:get/get.dart';
@@ -62,7 +61,7 @@ class _ItemViewState extends State<ItemView> {
                               alignment: Alignment.center,
                               children: [
                                 Image.file(File(_thumbnailUrl!)),
-                                CircleAvatar(
+                                const CircleAvatar(
                                   radius: 30,
                                   backgroundColor: Colors.black45,
                                   child: Icon(
@@ -73,7 +72,7 @@ class _ItemViewState extends State<ItemView> {
                                 )
                               ],
                             )
-                          : CircularProgressIndicator(),
+                          : const CircularProgressIndicator(),
                   // : Icon(
                   //     Icons.ondemand_video,
                   //     size: 80,
@@ -81,11 +80,11 @@ class _ItemViewState extends State<ItemView> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Container(
-              margin: EdgeInsets.fromLTRB(8, 0, 8, 8),
+              margin: const EdgeInsets.fromLTRB(8, 0, 8, 8),
               child: Text(
                 widget.data.title,
                 style: TextStyle(
@@ -95,11 +94,11 @@ class _ItemViewState extends State<ItemView> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -108,20 +107,20 @@ class _ItemViewState extends State<ItemView> {
                     InkWell(
                       onTap: () => Get.toNamed(Routes.EDIT_EDUCATION,
                           arguments: widget.data.id),
-                      child: Icon(
+                      child: const Icon(
                         Icons.edit,
                         size: 23,
                         color: Colors.grey,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     InkWell(
                       onTap: () {
                         educationC.dialogQuestion(context, widget.data.id);
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.delete,
                         size: 23,
                         color: Colors.grey,

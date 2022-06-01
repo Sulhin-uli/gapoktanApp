@@ -43,6 +43,10 @@ abstract class Routes {
   // Panen
   static const INDEX_PANEN = _Paths.INDEX_PANEN;
   static const DETAIL_PANEN = _Paths.DETAIL_PANEN;
+  static const HISTORY_PLANT = _Paths.HISTORY_PLANT;
+
+  // History plant
+  static const DETAIL_HISTORY_PLANT = _Paths.DETAIL_HISTORY_PLANT;
 
   // Poktan
   static const INDEX_POKTAN = _Paths.INDEX_POKTAN;
@@ -98,6 +102,10 @@ abstract class _Paths {
   // Panen
   static const INDEX_PANEN = '/index-panen';
   static const DETAIL_PANEN = '/detail-panen';
+
+  // History tanam tandur
+  static const HISTORY_PLANT = '/history-plant';
+  static const DETAIL_HISTORY_PLANT = '/detail-history-plant';
 
   // poktan
   static const INDEX_POKTAN = '/index-poktan';

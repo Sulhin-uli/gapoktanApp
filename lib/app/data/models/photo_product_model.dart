@@ -33,7 +33,7 @@ class PhotoProduct {
   }
 
   static List<PhotoProduct> fromJsonList(List data) {
-    if (data == null || data.length == 0) return [];
+    if (data.isEmpty) return [];
     return data.map((e) => PhotoProduct.fromJson(e)).toList();
   }
 

@@ -14,7 +14,7 @@ class LoginView extends GetView<LoginController> {
       resizeToAvoidBottomInset: false,
       body: BackGround(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -23,19 +23,19 @@ class LoginView extends GetView<LoginController> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   'Login'.toUpperCase(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                     color: Colors.blue,
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(bottom: 3),
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  child: Text(
+                  child: const Text(
                     "E-mail",
                     style: TextStyle(
                         fontSize: 12,
@@ -54,12 +54,12 @@ class LoginView extends GetView<LoginController> {
                       filled: true),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.only(bottom: 3),
                 child: Container(
                   alignment: Alignment.centerLeft,
-                  child: Text(
+                  child: const Text(
                     "Password",
                     style: TextStyle(
                         fontSize: 12,
@@ -78,10 +78,10 @@ class LoginView extends GetView<LoginController> {
                       filled: true),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Container(
                 alignment: Alignment.centerRight,
-                child: Text(
+                child: const Text(
                   'Lupa password?',
                   style: TextStyle(
                     fontSize: 12,
@@ -90,45 +90,45 @@ class LoginView extends GetView<LoginController> {
                   ),
                 ),
               ),
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               RaisedButton(
                 onPressed: () => Get.toNamed(Routes.HOME),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(80.0)),
                 textColor: Colors.white,
-                padding: EdgeInsets.all(0),
+                padding: const EdgeInsets.all(0),
                 child: Container(
                   alignment: Alignment.center,
                   height: 50.0,
                   width: size.width,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(80.0),
-                    gradient: LinearGradient(
+                    gradient: const LinearGradient(
                       colors: [Color(0xff2D31FA), Color(0xff5D8BF4)],
                     ),
                   ),
-                  child: Text('LOGIN',
+                  child: const Text('LOGIN',
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       )),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     '''Tidak punya akun?''',
                     style: TextStyle(
                       color: Colors.black,
                     ),
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   GestureDetector(
                     onTap: () {},
-                    child: Text(
+                    child: const Text(
                       'Registrasi',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,

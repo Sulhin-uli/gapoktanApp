@@ -25,9 +25,9 @@ class Poktan {
   Poktan.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     userId =
-        json['user_id'] != null ? new User.fromJson(json['user_id']) : null;
+        json['user_id'] != null ? User.fromJson(json['user_id']) : null;
     gapoktanId = json['gapoktan_id'] != null
-        ? new Gapoktan.fromJson(json['gapoktan_id'])
+        ? Gapoktan.fromJson(json['gapoktan_id'])
         : null;
     city = json['city'];
     address = json['address'];
@@ -37,7 +37,7 @@ class Poktan {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     if (userId != null) {
       data['user_id'] = userId!.toJson();

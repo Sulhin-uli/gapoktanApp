@@ -5,7 +5,7 @@ import 'package:format_indonesia/format_indonesia.dart';
 import 'package:get/get.dart';
 
 class ItemActivityView extends GetView {
-  ItemActivityView(this.data);
+  const ItemActivityView(this.data);
   final data;
 
   @override
@@ -18,10 +18,10 @@ class ItemActivityView extends GetView {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.all(16),
+              margin: const EdgeInsets.all(16),
               child: ListTile(
                 title: Container(
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 6,
                     ),
                     child: Text(data.title)),
@@ -30,9 +30,9 @@ class ItemActivityView extends GetView {
                   children: [
                     Text(
                       data.userId.name,
-                      style: TextStyle(color: Colors.red),
+                      style: const TextStyle(color: Colors.red),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 6,
                     ),
                     Text(

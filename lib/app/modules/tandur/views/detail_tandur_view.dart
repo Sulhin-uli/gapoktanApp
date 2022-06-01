@@ -1,35 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:format_indonesia/format_indonesia.dart';
-import 'package:intl/intl.dart';
 import 'package:gapoktan_app/app/modules/tandur/controllers/tandur_controller.dart';
-import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
 class DetailTandurView extends GetView<TandurController> {
   @override
   Widget build(BuildContext context) {
-    final data = controller.findByidTandur(Get.arguments);
+    final data = controller.findByTandur(Get.arguments);
     DateTime datetime = DateTime.parse(data.platingDate!);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: Text(
+        title: const Text(
           'Detail Tandur',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
-        leading: BackButton(color: Colors.black),
+        leading: const BackButton(color: Colors.black),
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
-                leading: CircleAvatar(
+                leading: const CircleAvatar(
                   backgroundImage: NetworkImage(
                       'https://www.startupdonut.co.uk/sites/default/files/styles/landing_pages_lists/public/Guy_watson_249x167.png?itok=e_ct04Rx'),
                 ),
@@ -39,8 +37,8 @@ class DetailTandurView extends GetView<TandurController> {
                 color: Colors.black.withOpacity(0.5),
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(16, 16, 16, 16),
-                child: Text(
+                margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+                child: const Text(
                   "Detail",
                   style: TextStyle(
                       color: Colors.black,
@@ -49,13 +47,13 @@ class DetailTandurView extends GetView<TandurController> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(left: 16, right: 16),
+                margin: const EdgeInsets.only(left: 16, right: 16),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Container(
+                        const SizedBox(
                           width: 80,
                           child: Text(
                             "Tanaman",
@@ -70,11 +68,11 @@ class DetailTandurView extends GetView<TandurController> {
                             width: 50,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 150,
                           child: Text(
                             data.plantTanaman!,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xff919A92),
                               fontSize: 14,
                             ),
@@ -82,12 +80,12 @@ class DetailTandurView extends GetView<TandurController> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Color(0xff919A92),
                     ),
                     Row(
                       children: [
-                        Container(
+                        const SizedBox(
                           width: 80,
                           child: Text(
                             "Luas Tanah",
@@ -102,11 +100,11 @@ class DetailTandurView extends GetView<TandurController> {
                             width: 50,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 150,
                           child: Text(
                             data.surfaceArea!,
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xff919A92),
                               fontSize: 14,
                             ),
@@ -114,12 +112,12 @@ class DetailTandurView extends GetView<TandurController> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Color(0xff919A92),
                     ),
                     Row(
                       children: [
-                        Container(
+                        const SizedBox(
                           width: 80,
                           child: Text(
                             "Tgl Tandur",
@@ -134,11 +132,11 @@ class DetailTandurView extends GetView<TandurController> {
                             width: 50,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 150,
                           child: Text(
                             Waktu(datetime).yMMMMEEEEd(),
-                            style: TextStyle(
+                            style: const TextStyle(
                               color: Color(0xff919A92),
                               fontSize: 14,
                             ),
@@ -146,10 +144,10 @@ class DetailTandurView extends GetView<TandurController> {
                         ),
                       ],
                     ),
-                    Divider(
+                    const Divider(
                       color: Color(0xff919A92),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 5,
                     ),
                     Container(

@@ -27,7 +27,7 @@ class ActivityCategory {
   }
 
   static List<ActivityCategory> fromJsonList(List data) {
-    if (data == null || data.length == 0) return [];
+    if (data.isEmpty) return [];
     return data.map((e) => ActivityCategory.fromJson(e)).toList();
   }
 

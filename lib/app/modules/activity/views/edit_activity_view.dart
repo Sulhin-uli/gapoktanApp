@@ -20,8 +20,7 @@ class EditActivityView extends GetView<ActivityController> {
     final data = controller.findByid(Get.arguments);
     // controller.category_education_id.text = data.categoryEducationId.toString();
     // print(data.categoryEducationId.toString());
-    controller.categoryActivityId.text =
-        data.categoryActivityId!.id!.toString();
+    controller.categoryActivityId.text = data.categoryActivityId!.id.toString();
     controller.title.text = data.title!;
     String formattedDate =
         DateFormat('yyyy-MM-dd').format(DateTime.tryParse(data.date!));
@@ -32,8 +31,8 @@ class EditActivityView extends GetView<ActivityController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Ubah Kegiatan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -42,17 +41,17 @@ class EditActivityView extends GetView<ActivityController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(16),
+          margin: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Kategori Kegiatan",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 9,
               ),
               Container(
@@ -62,7 +61,7 @@ class EditActivityView extends GetView<ActivityController> {
                   popupItemBuilder: (context, item, isSelected) => ListTile(
                     title: Text("${item.name}"),
                   ),
-                  dropdownSearchDecoration: InputDecoration(
+                  dropdownSearchDecoration: const InputDecoration(
                     labelText: "",
                     contentPadding: EdgeInsets.symmetric(
                       vertical: 10,
@@ -83,7 +82,7 @@ class EditActivityView extends GetView<ActivityController> {
                   onFind: (text) async {
                     final data = box.read("userData") as Map<String, dynamic>;
                     var token = data["token"];
-                    Dio dio = new Dio();
+                    Dio dio = Dio();
 
                     dio.options.headers['content-Type'] = 'application/json';
                     dio.options.headers["authorization"] =
@@ -101,7 +100,7 @@ class EditActivityView extends GetView<ActivityController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Judul",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -109,8 +108,8 @@ class EditActivityView extends GetView<ActivityController> {
               ),
               TextFormField(
                 controller: controller.title,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -126,7 +125,7 @@ class EditActivityView extends GetView<ActivityController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Tanggal",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -135,7 +134,7 @@ class EditActivityView extends GetView<ActivityController> {
               TextFormField(
                 controller: controller.date,
                 readOnly: true,
-                cursorColor: Color(0xff16A085),
+                cursorColor: const Color(0xff16A085),
                 onTap: () async {
                   DateTime? pickedDate = await showDatePicker(
                       context: context,
@@ -151,7 +150,7 @@ class EditActivityView extends GetView<ActivityController> {
                     print("Date is not selected");
                   }
                 },
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -171,28 +170,28 @@ class EditActivityView extends GetView<ActivityController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Deskripsi",
                 style: TextStyle(
                   color: Color(0xff919A92),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 9,
               ),
               TextFormField(
                 maxLines: 5,
                 controller: controller.desc,
-                cursorColor: Color(0xff16A085),
+                cursorColor: const Color(0xff16A085),
                 decoration: InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
-                  enabledBorder: UnderlineInputBorder(
+                  enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff919A92),
                     ),
                   ),
-                  focusedBorder: UnderlineInputBorder(
+                  focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Color(0xff16A085),
                     ),
@@ -208,7 +207,7 @@ class EditActivityView extends GetView<ActivityController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () => activityC.updateData(
                       Get.arguments,
@@ -217,7 +216,7 @@ class EditActivityView extends GetView<ActivityController> {
                       controller.date.text,
                       controller.desc.text,
                     ),
-                    child: Text('Ubah'),
+                    child: const Text('Ubah'),
                   ),
                 ),
               )

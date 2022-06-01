@@ -12,8 +12,8 @@ class ActivityCategoryView extends GetView<ActivityCategoryController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Kategori Kegiatan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -48,7 +48,7 @@ class ActivityCategoryView extends GetView<ActivityCategoryController> {
         foregroundColor: Colors.white,
         // mini: true,
         onPressed: () => Get.toNamed(Routes.ADD_ACTIVITY_CATEGORY),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

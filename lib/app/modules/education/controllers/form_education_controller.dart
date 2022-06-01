@@ -1,9 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:gapoktan_app/app/data/providers/education_category_provider.dart';
 import 'package:get/get.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 
 class FormEducationController extends GetxController {
@@ -47,10 +45,10 @@ class FormEducationController extends GetxController {
           children: [
             ListTile(
               onTap: () => getImage(ImageSource.gallery),
-              leading: Icon(Icons.image),
-              title: Text("Gambar"),
+              leading: const Icon(Icons.image),
+              title: const Text("Gambar"),
             ),
-            ListTile(
+            const ListTile(
               leading: Icon(Icons.video_library),
               title: Text("Video"),
             ),
@@ -69,7 +67,7 @@ class FormEducationController extends GetxController {
           ((File(selectedImagePath.value)).lengthSync() / 1024 / 1024)
                   .toStringAsFixed(2) +
               " Mb";
-      final dir = await Directory.systemTemp;
+      final dir = Directory.systemTemp;
       final targetPath = dir.absolute.path + "/temp.jpg";
       compressedFile = await FlutterImageCompress.compressAndGetFile(
           cropImagePath.value, targetPath,

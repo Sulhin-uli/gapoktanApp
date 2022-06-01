@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:gapoktan_app/app/data/models/education_category_model.dart';
 import 'package:gapoktan_app/app/data/models/education_model.dart';
 import 'package:gapoktan_app/app/data/models/user_model.dart';
@@ -10,10 +9,6 @@ import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:video_player/video_player.dart';
-import 'package:chewie/chewie.dart';
-import 'package:video_thumbnail/video_thumbnail.dart';
 
 class EducationController extends GetxController {
   final box = GetStorage();
@@ -43,20 +38,17 @@ class EducationController extends GetxController {
 
   // add data
   void postData(
-    int category_education_id,
+    int categoryEducationId,
     String title,
     String file,
     String desc,
   ) async {
     final data = box.read("userData") as Map<String, dynamic>;
-    if (category_education_id != '' &&
-        file != '' &&
-        title != '' &&
-        desc != '') {
+    if (categoryEducationId != '' && file != '' && title != '' && desc != '') {
       try {
         Map<String, String> body = {
           "user_id": data["id"].toString(),
-          "category_education_id": category_education_id.toString(),
+          "category_education_id": categoryEducationId.toString(),
           "title": title,
           "desc": desc,
         };
@@ -115,16 +107,16 @@ class EducationController extends GetxController {
                 getImage(ImageSource.gallery);
                 Get.back();
               },
-              leading: Icon(Icons.image),
-              title: Text("Gambar"),
+              leading: const Icon(Icons.image),
+              title: const Text("Gambar"),
             ),
             ListTile(
               onTap: () {
                 getVideo(ImageSource.gallery);
                 Get.back();
               },
-              leading: Icon(Icons.video_library),
-              title: Text("Video"),
+              leading: const Icon(Icons.video_library),
+              title: const Text("Video"),
             ),
           ],
         ),
@@ -212,7 +204,7 @@ class EducationController extends GetxController {
 
   void editData(
     int id,
-    int category_education_id,
+    int categoryEducationId,
     String title,
     String file,
     String desc,
@@ -223,9 +215,9 @@ class EducationController extends GetxController {
     if (file == '') {
       EducationProvider()
           .updateDataWOfile(
-              id, data["id"], category_education_id, title, desc, data["token"])
+              id, data["id"], categoryEducationId, title, desc, data["token"])
           .then((response) {
-        item.categoryEducationId!.id = category_education_id;
+        item.categoryEducationId!.id = categoryEducationId;
         item.title = title;
         item.desc = desc;
         education.refresh();
@@ -236,7 +228,7 @@ class EducationController extends GetxController {
       Map<String, String> body = {
         "id": id.toString(),
         "user_id": data["id"].toString(),
-        "category_education_id": category_education_id.toString(),
+        "category_education_id": categoryEducationId.toString(),
         "title": title,
         "desc": desc,
       };
@@ -246,7 +238,7 @@ class EducationController extends GetxController {
           .then((response) {
         education.clear();
         getData();
-        Future.delayed(Duration(seconds: 3), () {});
+        Future.delayed(const Duration(seconds: 3), () {});
         Get.back();
         dialog("Berhasil !", "data berhasil ditambahkan!");
         isLoadingButton.value = true;
@@ -267,19 +259,19 @@ class EducationController extends GetxController {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text("Peringatan"),
-        content: Text("Yakin menghapus data?"),
+        title: const Text("Peringatan"),
+        content: const Text("Yakin menghapus data?"),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Batal'),
-            child: Text('Batal'),
+            child: const Text('Batal'),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context, 'Ya');
               deleteData(id);
             },
-            child: Text('Ya'),
+            child: const Text('Ya'),
           ),
         ],
       ),

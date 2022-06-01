@@ -3,7 +3,6 @@ import 'package:gapoktan_app/app/modules/panen/views/item_view.dart';
 
 import 'package:get/get.dart';
 import 'package:gapoktan_app/app/modules/tandur/controllers/tandur_controller.dart';
-import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 class IndexPanenView extends GetView<TandurController> {
   @override
@@ -11,8 +10,8 @@ class IndexPanenView extends GetView<TandurController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Jadwal Panen',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),

@@ -26,7 +26,7 @@ class PhotoProductProvider extends GetConnect {
   Future<dynamic> getData(
     String token,
   ) async {
-    final response = await get('$url', headers: {
+    final response = await get(url, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
@@ -35,11 +35,11 @@ class PhotoProductProvider extends GetConnect {
   }
 
   Future<dynamic> deleteDataWhereProductId(
-    int product_id,
+    int productId,
     String token,
   ) async {
     final response = await post('$url/delete-where-id-product', {
-      "product_id": product_id,
+      "product_id": productId,
     }, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/data/models/gapoktan_model.dart';
 import 'package:gapoktan_app/app/data/models/poktan_model.dart';
-import 'package:gapoktan_app/app/data/models/product_model.dart';
 import 'package:gapoktan_app/app/data/models/user_model.dart';
 import 'package:gapoktan_app/app/data/providers/poktan_provider.dart';
-import 'package:gapoktan_app/app/data/providers/product_provider.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -154,12 +152,12 @@ class PoktanController extends GetxController {
     showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text("Peringatan"),
-        content: Text("Yakin menghapus data?"),
+        title: const Text("Peringatan"),
+        content: const Text("Yakin menghapus data?"),
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Batal'),
-            child: Text('Batal'),
+            child: const Text('Batal'),
           ),
           TextButton(
             onPressed: () {
@@ -167,7 +165,7 @@ class PoktanController extends GetxController {
               deleteData(id);
               // print(id);
             },
-            child: Text('Ya'),
+            child: const Text('Ya'),
           ),
         ],
       ),

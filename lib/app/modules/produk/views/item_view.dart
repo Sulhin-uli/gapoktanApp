@@ -7,7 +7,7 @@ import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 
 class ItemView extends GetView<ProdukController> {
-  ItemView(this.data);
+  const ItemView(this.data);
   final data;
 
   @override
@@ -35,7 +35,7 @@ class ItemView extends GetView<ProdukController> {
             ListTile(
               title: Text(
                 data.name,
-                style: TextStyle(
+                style: const TextStyle(
                     color: Color(0xff919A92),
                     fontSize: 12,
                     fontWeight: FontWeight.w400),
@@ -43,14 +43,14 @@ class ItemView extends GetView<ProdukController> {
               subtitle: Text(
                 'Rp ${formatCurrency.format(data.price!)}',
                 style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 5,
             ),
             Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -64,13 +64,13 @@ class ItemView extends GetView<ProdukController> {
                           arguments: data.id,
                         );
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.edit,
                         size: 23,
                         color: Colors.grey,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 5,
                     ),
                     InkWell(
@@ -78,7 +78,7 @@ class ItemView extends GetView<ProdukController> {
                         controller.getPhotoProductById(data.id);
                         controller.dialogQuestion(context, data.id);
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.delete,
                         size: 23,
                         color: Colors.grey,

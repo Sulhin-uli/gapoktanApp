@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/tandur/views/item_view.dart';
 
 import 'package:get/get.dart';
-import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import '../controllers/tandur_controller.dart';
 
@@ -12,8 +11,8 @@ class IndexTandurView extends GetView<TandurController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Jadwal Tandur',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),

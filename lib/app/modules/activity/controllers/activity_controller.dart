@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gapoktan_app/app/data/models/activity_category_model.dart';
 import 'package:gapoktan_app/app/data/models/activity_model.dart';
 import 'package:gapoktan_app/app/data/models/user_model.dart';
@@ -41,14 +40,14 @@ class ActivityController extends GetxController {
         actions: <Widget>[
           TextButton(
             onPressed: () => Navigator.pop(context, 'Batal'),
-            child: Text('Batal'),
+            child: const Text('Batal'),
           ),
           TextButton(
             onPressed: () {
               Navigator.pop(context, 'Ya');
               delete(id);
             },
-            child: Text('Ya'),
+            child: const Text('Ya'),
           ),
         ],
       ),
@@ -91,18 +90,17 @@ class ActivityController extends GetxController {
 
   // add data
   void postData(
-    int category_activity_id,
+    int categoryActivityId,
     String title,
     String date,
     String desc,
   ) async {
     final data = box.read("userData") as Map<String, dynamic>;
-    if (category_activity_id != null &&
-        title != '' &&
+    if (title != '' &&
         date != '' &&
         desc != '') {
       ActivityProvider()
-          .postData(data["id"], category_activity_id, title, date, desc,
+          .postData(data["id"], categoryActivityId, title, date, desc,
               data["token"])
           .then((response) {
         // print(response);

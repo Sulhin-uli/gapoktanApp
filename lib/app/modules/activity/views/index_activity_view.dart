@@ -12,8 +12,8 @@ class IndexActivityView extends GetView<ActivityController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Kegiatan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -50,7 +50,7 @@ class IndexActivityView extends GetView<ActivityController> {
         foregroundColor: Colors.white,
         // mini: true,
         onPressed: () => Get.toNamed(Routes.ADD_ACTIVITY),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

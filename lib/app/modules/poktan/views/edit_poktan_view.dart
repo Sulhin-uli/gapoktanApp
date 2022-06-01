@@ -12,8 +12,8 @@ class EditPoktanView extends GetView<PoktanController> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        leading: BackButton(color: Colors.black),
-        title: Text(
+        leading: const BackButton(color: Colors.black),
+        title: const Text(
           'Edit Poktan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -22,11 +22,11 @@ class EditPoktanView extends GetView<PoktanController> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Nama",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -34,8 +34,8 @@ class EditPoktanView extends GetView<PoktanController> {
               ),
               TextFormField(
                 controller: controller.name,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -51,7 +51,7 @@ class EditPoktanView extends GetView<PoktanController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Email",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -59,8 +59,8 @@ class EditPoktanView extends GetView<PoktanController> {
               ),
               TextFormField(
                 controller: controller.email,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -76,7 +76,7 @@ class EditPoktanView extends GetView<PoktanController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Password",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -84,8 +84,8 @@ class EditPoktanView extends GetView<PoktanController> {
               ),
               TextFormField(
                 controller: controller.password,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   // helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -101,7 +101,7 @@ class EditPoktanView extends GetView<PoktanController> {
                 ),
               ),
               const SizedBox(height: 30),
-              Text(
+              const Text(
                 "Konfirmasi Password",
                 style: TextStyle(
                   color: Color(0xff919A92),
@@ -109,8 +109,8 @@ class EditPoktanView extends GetView<PoktanController> {
               ),
               TextFormField(
                 controller: controller.password2,
-                cursorColor: Color(0xff16A085),
-                decoration: InputDecoration(
+                cursorColor: const Color(0xff16A085),
+                decoration: const InputDecoration(
                   helperText: 'Contoh: Label',
                   // fillColor: Color(0xff919A92),
                   enabledBorder: UnderlineInputBorder(
@@ -132,7 +132,7 @@ class EditPoktanView extends GetView<PoktanController> {
                   width: 300,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xff16A085), // background
+                      primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () => controller.editData(
                         Get.arguments,
@@ -141,7 +141,7 @@ class EditPoktanView extends GetView<PoktanController> {
                         controller.email.text,
                         controller.password.text,
                         controller.password2.text),
-                    child: Text('Tambah'),
+                    child: const Text('Tambah'),
                   ),
                 ),
               )
