@@ -43,12 +43,12 @@ class UserProvider extends GetConnect {
 
   Future<void> updateData(
     int id,
-    String name,
+    String password,
     String token,
   ) async {
-    final response = await put(url + '/$id', {
+    final response = await put(url + '$id', {
       "id": id,
-      "name": name,
+      "password": password,
     }, headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

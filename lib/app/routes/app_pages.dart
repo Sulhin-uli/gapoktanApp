@@ -1,4 +1,6 @@
 import 'package:gapoktan_app/app/modules/history_plant/views/detail_history_plant_view.dart';
+import 'package:gapoktan_app/app/modules/saya/views/edit_category_product_view.dart';
+import 'package:gapoktan_app/app/modules/saya/views/edit_password_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/activity/bindings/activity_binding.dart';
@@ -241,11 +243,24 @@ class AppPages {
       page: () => EditPoktanView(),
       // binding: EdukasiBinding(),
     ),
+
+    // SAYA
     GetPage(
       name: _Paths.INDEX_SAYA,
       page: () => IndexSayaView(),
       binding: SayaBinding(),
     ),
+    GetPage(
+      name: _Paths.EDIT_PROFILE,
+      page: () => EditProfileView(),
+      binding: SayaBinding(),
+    ),
+    GetPage(
+      name: _Paths.EDIT_PASSWORD,
+      page: () => EditPasswordView(),
+      binding: SayaBinding(),
+    ),
+
     GetPage(
       name: _Paths.INDEX_NOTIFIKASI,
       page: () => IndexNotifikasiView(),

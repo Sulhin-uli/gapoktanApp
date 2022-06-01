@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/home/Models/menu_home_model.dart';
+import 'package:gapoktan_app/app/modules/login/controllers/login_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   var tabIndex = 0.obs;
   var menu_home = List<MenuHome>.empty().obs;
+  LoginController loginController = Get.put(LoginController());
 
   void changeTabIndex(int index) {
     tabIndex.value = index;
@@ -100,39 +102,13 @@ class HomeController extends GetxController {
       route: Routes.INDEX_PRODUCT_CATEGORY,
     );
     menu_home.add(data9);
-    // final datas = [
-    //   {
-    //     "id": "1",
-    //     "image":
-    //         "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-    //     "title": "Jadwal Tandur",
-    //     "color": "32a86d",
-    //     "route": Routes.INDEX_EDUKASI,
-    //   },
-    //   {
-    //     "id": "1",
-    //     "image":
-    //         "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-    //     "title": "Jadwal Tandur",
-    //     "color": "32a86d",
-    //     "route": Routes.INDEX_EDUKASI,
-    //   }
-    // ];
-
-    // for (var i = 0; i < datas.length; i++) {
-    //   final data = MenuHome(
-    //     id: datas[i]["id"].toString(),
-    //     image: datas[i]["image"].toString(),
-    //     color: datas[i]["color"].toString(),
-    //     route: datas[i]["route"].toString(),
-    //   );
-    //   menu_home.add(data);
-    // }
   }
 
   @override
   void onInit() {
     getDataItemMenu();
+    loginController.gapoktan.clear();
+    loginController.getDataGapoktan();
     super.onInit();
   }
 }

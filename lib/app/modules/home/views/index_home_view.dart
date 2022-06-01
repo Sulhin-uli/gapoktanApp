@@ -39,8 +39,8 @@ class IndexHomeView extends GetView<HomeController> {
     fontWeight: FontWeight.w500,
     fontSize: 12,
   );
-  final TextStyle selectedLabelStyle =
-      const TextStyle(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
+  final TextStyle selectedLabelStyle = const TextStyle(
+      color: Colors.white, fontWeight: FontWeight.w500, fontSize: 12);
 
   buildBottomNavigationMenu(context, landingPageController) {
     return Obx(

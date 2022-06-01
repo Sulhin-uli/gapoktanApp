@@ -3,31 +3,30 @@ import 'package:gapoktan_app/app/data/models/user_model.dart';
 class Gapoktan {
   int? id;
   User? userId;
+  String? chairman;
   String? city;
   String? address;
-  int? telp;
+  String? telp;
   String? image;
-  int? isActive;
 
   Gapoktan({
     this.id,
     this.userId,
+    this.chairman,
     this.city,
     this.address,
     this.telp,
     this.image,
-    this.isActive,
   });
 
   Gapoktan.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    userId =
-        json['user_id'] != null ? User.fromJson(json['user_id']) : null;
+    userId = json['user_id'] != null ? User.fromJson(json['user_id']) : null;
+    chairman = json['chairman'];
     city = json['city'];
     address = json['address'];
     telp = json['telp'];
     image = json['image'];
-    isActive = json['isActive'];
   }
 
   Map<String, dynamic> toJson() {
@@ -36,11 +35,11 @@ class Gapoktan {
     if (userId != null) {
       data['user_id'] = userId!.toJson();
     }
+    data['chairman'] = chairman;
     data['city'] = city;
     data['address'] = address;
     data['telp'] = telp;
     data['image'] = image;
-    data['isActive'] = isActive;
     return data;
   }
 }

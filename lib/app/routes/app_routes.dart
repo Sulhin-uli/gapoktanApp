@@ -12,6 +12,7 @@ abstract class Routes {
   static const DETAIL_EDUCATION = _Paths.DETAIL_EDUCATION;
   static const ADD_EDUCATION = _Paths.ADD_EDUCATION;
   static const EDIT_EDUCATION = _Paths.EDIT_EDUCATION;
+
   // Kategori Edukasi
   static const ADD_EDUCATION_CATEGORY = _Paths.ADD_EDUCATION_CATEGORY;
   static const EDIT_EDUCATION_CATEGORY = _Paths.EDIT_EDUCATION_CATEGORY;
@@ -21,6 +22,7 @@ abstract class Routes {
   static const DETAIL_ACTIVITY = _Paths.DETAIL_ACTIVITY;
   static const ADD_ACTIVITY = _Paths.ADD_ACTIVITY;
   static const EDIT_ACTIVITY = _Paths.EDIT_ACTIVITY;
+
   // Kategori Kegiatan
   static const INDEX_ACTIVITY_CATEGORY = _Paths.INDEX_ACTIVITY_CATEGORY;
   static const ADD_ACTIVITY_CATEGORY = _Paths.ADD_ACTIVITY_CATEGORY;
@@ -31,6 +33,7 @@ abstract class Routes {
   static const DETAIL_PRODUK = _Paths.DETAIL_PRODUK;
   static const ADD_PRODUK = _Paths.ADD_PRODUK;
   static const EDIT_PRODUK = _Paths.EDIT_PRODUK;
+
   // Kategori Product
   static const INDEX_PRODUCT_CATEGORY = _Paths.INDEX_PRODUCT_CATEGORY;
   static const ADD_PRODUCT_CATEGORY = _Paths.ADD_PRODUCT_CATEGORY;
@@ -53,7 +56,12 @@ abstract class Routes {
   static const DETAIL_POKTAN = _Paths.DETAIL_POKTAN;
   static const ADD_POKTAN = _Paths.ADD_POKTAN;
   static const EDIT_POKTAN = _Paths.EDIT_POKTAN;
+
+  // Saya
   static const INDEX_SAYA = _Paths.INDEX_SAYA;
+  static const EDIT_PROFILE = _Paths.EDIT_PROFILE;
+  static const EDIT_PASSWORD = _Paths.EDIT_PASSWORD;
+
   static const INDEX_NOTIFIKASI = _Paths.INDEX_NOTIFIKASI;
   static const EDUCATION_CATEGORY = _Paths.EDUCATION_CATEGORY;
   static const ACTIVITY_CATEGORY = _Paths.ACTIVITY_CATEGORY;
@@ -71,6 +79,7 @@ abstract class _Paths {
   static const DETAIL_EDUCATION = '/detail-education';
   static const ADD_EDUCATION = '/add-education';
   static const EDIT_EDUCATION = '/edit-education';
+
   // Kategori Edukasi
   static const ADD_EDUCATION_CATEGORY = '/add-education-category';
   static const EDIT_EDUCATION_CATEGORY = '/edit-education-category';
@@ -80,6 +89,7 @@ abstract class _Paths {
   static const DETAIL_ACTIVITY = '/detail-activity';
   static const ADD_ACTIVITY = '/add-activity';
   static const EDIT_ACTIVITY = '/edit-activity';
+
   // Kategori kegiatan
   static const INDEX_ACTIVITY_CATEGORY = '/index-activity-category';
   static const ADD_ACTIVITY_CATEGORY = '/add-activity-category';
@@ -90,6 +100,7 @@ abstract class _Paths {
   static const DETAIL_PRODUK = '/detail-produk';
   static const ADD_PRODUK = '/add-produk';
   static const EDIT_PRODUK = '/edit-produk';
+
   // Kategori kegiatan
   static const INDEX_PRODUCT_CATEGORY = '/index-product-category';
   static const ADD_PRODUCT_CATEGORY = '/add-product-category';
@@ -115,6 +126,8 @@ abstract class _Paths {
 
   // Saya
   static const INDEX_SAYA = '/index-saya';
+  static const EDIT_PROFILE = '/edit-profile';
+  static const EDIT_PASSWORD = '/edit-password';
 
   // Notifikasi
   static const INDEX_NOTIFIKASI = '/index-notifikasi';

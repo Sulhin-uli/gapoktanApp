@@ -38,8 +38,8 @@ class LoginController extends GetxController {
               "password": password
             });
             box.write('isAuth', true);
-            Get.toNamed(Routes.HOME);
             getDataGapoktan();
+            Get.offAllNamed(Routes.HOME);
           } else {
             dialogError('Akun tidak ditemukan');
           }
@@ -61,11 +61,11 @@ class LoginController extends GetxController {
               id: e["user_id"]["id"],
               name: e["user_id"]["name"],
             ),
+            chairman: e["chairman"],
             city: e["city"],
             address: e["address"],
-            // telp: e["telp"],
+            telp: e["telp"].toString(),
             image: e["image"],
-            // isActive: e["isActive"],
           );
           gapoktan.add(data);
         }).toList();

@@ -25,3 +25,13 @@ void dialog(String title, String msg) {
     Get.back();
   });
 }
+
+void dialogNoBack(String title, String msg) {
+  Get.defaultDialog(
+    title: title,
+    content: Text(
+      msg,
+      textAlign: TextAlign.center,
+    ),
+  );
+}

@@ -211,8 +211,7 @@ class EditEducationView extends GetView<EducationController> {
                             tag: data.slug!,
                             child: Center(
                               child: Image.network(
-                                "http://192.168.43.38:8001/storage/edukasi/" +
-                                    data.file!,
+                                baseUrlFile + "storage/edukasi/" + data.file!,
                                 fit: BoxFit.cover,
                               ),
                             ),
