@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:gapoktan_app/app/modules/activity/controllers/activity_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:format_indonesia/format_indonesia.dart';
 
 import 'package:get/get.dart';
 
-class ItemActivityView extends GetView {
+class ItemActivityView extends GetView<ActivityController> {
   const ItemActivityView(this.data);
   final data;
 
@@ -39,6 +40,28 @@ class ItemActivityView extends GetView {
                       Waktu(datetime).yMMMMEEEEd(),
                       style: TextStyle(color: Colors.black.withOpacity(0.6)),
                     ),
+                  ],
+                ),
+                trailing: Wrap(
+                  spacing: 1, // space between two icons
+                  children: [
+                    InkWell(
+                      onTap: () =>
+                          Get.toNamed(Routes.EDIT_ACTIVITY, arguments: data.id),
+                      child: const Icon(
+                        Icons.edit,
+                        size: 20,
+                      ),
+                    ),
+                    const SizedBox(width: 5),
+                    InkWell(
+                      onTap: () => controller.dialogQuestion(
+                          "Hapus", "Yakin menghapus data?", context, data.id!),
+                      child: const Icon(
+                        Icons.delete,
+                        size: 20,
+                      ),
+                    )
                   ],
                 ),
               ),

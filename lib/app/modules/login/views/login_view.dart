@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
+  LoginController loginController = Get.put(LoginController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,7 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               TextFormField(
-                controller: controller.email,
+                controller: loginController.email,
                 cursorColor: const Color(0xff16A085),
                 decoration: const InputDecoration(
                   helperText: 'Contoh: pedri16@gmail.com',
@@ -58,9 +60,9 @@ class LoginView extends GetView<LoginController> {
               ),
               Obx(
                 () => TextFormField(
-                  controller: controller.password,
+                  controller: loginController.password,
                   cursorColor: const Color(0xff16A085),
-                  obscureText: controller.hiddenTextPassword.value,
+                  obscureText: loginController.hiddenTextPassword.value,
                   decoration: InputDecoration(
                     // fillColor: Color(0xff919A92),
                     enabledBorder: const UnderlineInputBorder(
@@ -74,8 +76,9 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                     suffixIcon: IconButton(
-                      onPressed: () => controller.hiddenTextPassword.toggle(),
-                      icon: controller.hiddenTextPassword.isTrue
+                      onPressed: () =>
+                          loginController.hiddenTextPassword.toggle(),
+                      icon: loginController.hiddenTextPassword.isTrue
                           ? const Icon(
                               Icons.remove_red_eye,
                               color: Color(0xff16A085),
@@ -110,8 +113,9 @@ class LoginView extends GetView<LoginController> {
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff16A085), // background
                     ),
-                    onPressed: () => controller.login(
-                        controller.email.text, controller.password.text),
+                    onPressed: () => loginController.login(
+                        loginController.email.text,
+                        loginController.password.text),
                     child: const Text('Masuk'),
                   ),
                 ),

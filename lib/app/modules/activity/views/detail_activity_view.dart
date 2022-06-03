@@ -15,37 +15,6 @@ class DetailActivityView extends GetView<ActivityController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: const BackButton(color: Colors.black),
-        actions: [
-          Container(
-            alignment: Alignment.topRight,
-            child: PopupMenuButton(
-              icon: const Icon(
-                Icons.more_vert,
-                color: Colors.black,
-              ),
-              itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                PopupMenuItem(
-                  child: ListTile(
-                    onTap: () =>
-                        Get.toNamed(Routes.EDIT_ACTIVITY, arguments: data.id),
-                    leading: const Icon(Icons.edit),
-                    title: const Text('Ubah'),
-                  ),
-                ),
-                PopupMenuItem(
-                  child: ListTile(
-                    onTap: () {
-                      controller.dialogQuestion(
-                          "Hapus", "Yakin menghapus data?", context, data.id!);
-                    },
-                    leading: const Icon(Icons.delete),
-                    title: const Text('Delete'),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,

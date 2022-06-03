@@ -93,6 +93,14 @@ class SayaController extends GetxController {
           UserProvider()
               .updateData(data["id"], passwordNew, data["token"])
               .then((response) {
+            final data = box.read("userData") as Map<String, dynamic>;
+            box.write('userData', {
+              "id": data['id'],
+              "token": data["token"],
+              "email": data["email"],
+              "password": passwordNew,
+              "gapoktan_id": data["gapoktan_id"],
+            });
             Get.back();
             dialog("Berhasil !", "data berhasil diubah");
           });

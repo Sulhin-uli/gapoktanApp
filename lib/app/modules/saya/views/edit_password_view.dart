@@ -154,9 +154,10 @@ class EditPasswordView extends GetView<SayaController> {
                       primary: const Color(0xff16A085), // background
                     ),
                     onPressed: () => controller.editPassword(
-                        controller.passwordCurrent.text,
-                        controller.passwordNew.text,
-                        controller.passwordConfirm.text),
+                      controller.passwordCurrent.text,
+                      controller.passwordNew.text,
+                      controller.passwordConfirm.text,
+                    ),
                     child: const Text('Ubah'),
                   ),
                 ),

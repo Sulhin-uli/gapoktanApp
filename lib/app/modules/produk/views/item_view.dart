@@ -12,7 +12,6 @@ class ItemView extends GetView<ProdukController> {
 
   @override
   Widget build(BuildContext context) {
-    // getPhotoProductById(18);
     return GestureDetector(
       onTap: () {
         controller.getPhotoProductById(data.id);
@@ -42,8 +41,8 @@ class ItemView extends GetView<ProdukController> {
               ),
               subtitle: Text(
                 'Rp ${formatCurrency.format(data.price!)}',
-                style:
-                    const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style: const TextStyle(
+                    color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(
@@ -58,7 +57,7 @@ class ItemView extends GetView<ProdukController> {
                   Row(children: [
                     InkWell(
                       onTap: () {
-                        controller.getPhotoProductById(data.id);
+                        controller.getPhotoProductById(data.id!);
                         Get.toNamed(
                           Routes.EDIT_PRODUK,
                           arguments: data.id,
@@ -75,8 +74,7 @@ class ItemView extends GetView<ProdukController> {
                     ),
                     InkWell(
                       onTap: () {
-                        controller.getPhotoProductById(data.id);
-                        controller.dialogQuestion(context, data.id);
+                        controller.dialogQuestion(context, data.id!);
                       },
                       child: const Icon(
                         Icons.delete,

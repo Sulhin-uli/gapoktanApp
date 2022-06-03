@@ -96,15 +96,14 @@ class ActivityController extends GetxController {
     String desc,
   ) async {
     final data = box.read("userData") as Map<String, dynamic>;
-    if (title != '' &&
-        date != '' &&
-        desc != '') {
+    if (title != '' && date != '' && desc != '') {
       ActivityProvider()
-          .postData(data["id"], categoryActivityId, title, date, desc,
-              data["token"])
+          .postData(
+              data["id"], categoryActivityId, title, date, desc, data["token"])
           .then((response) {
         // print(response);
         final data = Activity(
+          id: response["data"]["id"],
           userId: User(
             id: response["data"]["user_id"]["id"],
             name: response["data"]["user_id"]["name"],
@@ -155,8 +154,6 @@ class ActivityController extends GetxController {
       item.desc = desc;
       activity.refresh();
       Get.back();
-      Get.back();
-      Get.back();
       dialog("Berhasil !", "data berhasil diubah!");
     });
   }
@@ -166,8 +163,6 @@ class ActivityController extends GetxController {
     ActivityProvider()
         .deleteData(id, data["token"])
         .then((_) => activity.removeWhere((element) => element.id == id));
-    Get.back();
-    Get.back();
     dialog("Berhasil !", "data berhasil dihapus!");
   }
 }

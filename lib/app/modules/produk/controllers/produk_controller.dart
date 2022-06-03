@@ -31,6 +31,12 @@ class ProdukController extends GetxController {
     getDataPhoto();
     getData();
     super.onInit();
+    name = TextEditingController();
+    categoryProductId = TextEditingController();
+    code = TextEditingController();
+    stoke = TextEditingController();
+    price = TextEditingController();
+    desc = TextEditingController();
   }
 
   void getPhotoProductById(int productId) {
@@ -128,7 +134,19 @@ class ProdukController extends GetxController {
 
           Future.delayed(const Duration(seconds: 1), () {});
         }
-        Get.back();
+
+        // for (var itemPhoto in photoProduct) {
+        //   if (itemPhoto.productId!.id == response["data"]["id"]) {
+        //     print("ada");
+        //     // itemProduct.image = itemPhoto.name;
+        //     // product.refresh();
+        //   } else {
+        //     print("tidak ada");
+        //   }
+        // }
+
+        // Get.back();
+        Get.offAllNamed(Routes.HOME);
         dialog("Berhasil !", "data berhasil ditambahkan!");
       });
     } else {
@@ -380,6 +398,7 @@ class ProdukController extends GetxController {
             onPressed: () {
               Navigator.pop(context, 'Ya');
               deleteData(id);
+              deleteDataWhereProductId(id);
             },
             child: const Text('Ya'),
           ),

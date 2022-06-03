@@ -67,4 +67,16 @@ class ActivityProvider extends GetConnect {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       });
+
+  Future<dynamic> searchData(
+    String token,
+    String name,
+  ) async {
+    final response = await get(url + 'search/$name', headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    });
+    return response.body;
+  }
 }

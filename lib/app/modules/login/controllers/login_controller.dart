@@ -41,6 +41,7 @@ class LoginController extends GetxController {
             getDataGapoktan();
             Get.offAllNamed(Routes.HOME);
           } else {
+            Get.offAllNamed(Routes.LOGIN);
             dialogError('Akun tidak ditemukan');
           }
         } else {
