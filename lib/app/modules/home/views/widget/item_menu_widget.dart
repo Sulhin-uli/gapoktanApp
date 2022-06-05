@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gapoktan_app/app/modules/home/controllers/home_controller.dart';
 
-class ItemMenuView extends GetView<HomeController> {
-  const ItemMenuView(this.data);
+class ItemMenu extends GetView<HomeController> {
+  ItemMenu(this.data);
   final data;
 
   @override
@@ -14,7 +14,7 @@ class ItemMenuView extends GetView<HomeController> {
       child: Container(
         child: Column(
           children: [
-            SizedBox(
+            Container(
               // color: index % 2 == 0 ? Colors.amber : Colors.red,
               width: 37,
               height: 37,
@@ -24,14 +24,16 @@ class ItemMenuView extends GetView<HomeController> {
                     side: const BorderSide(color: Colors.black12)),
                 padding: const EdgeInsets.all(8),
                 color: Colors.white,
-                onPressed: () => Get.toNamed(data.route!),
+                onPressed: () => data.route! != 'saya'
+                    ? Get.toNamed(data.route!)
+                    : controller.changeTabIndex(1),
                 child: Image.network(
                   data.image!,
                   color: data.color!,
                 ),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 11,
             ),
             Text(

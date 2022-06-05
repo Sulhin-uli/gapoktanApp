@@ -14,26 +14,6 @@ class HomeController extends GetxController {
   }
 
   void getDataItemMenu() {
-    final data1 = MenuHome(
-      id: "1",
-      image:
-          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-      title: "Jadwal Tandur",
-      color: Colors.green,
-      route: Routes.INDEX_TANDUR,
-    );
-    menu_home.add(data1);
-
-    final data2 = MenuHome(
-      id: "2",
-      image:
-          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-      title: "Jadwal Panen",
-      color: Colors.green,
-      route: Routes.INDEX_PANEN,
-    );
-    menu_home.add(data2);
-
     final data3 = MenuHome(
       id: "3",
       image:
@@ -102,6 +82,16 @@ class HomeController extends GetxController {
       route: Routes.INDEX_PRODUCT_CATEGORY,
     );
     menu_home.add(data9);
+
+    final data10 = MenuHome(
+      id: "10",
+      image:
+          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+      title: "Saya",
+      color: Colors.green,
+      route: 'saya',
+    );
+    menu_home.add(data10);
   }
 
   @override

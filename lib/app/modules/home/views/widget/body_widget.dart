@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/home/controllers/home_controller.dart';
+import 'package:gapoktan_app/app/modules/home/views/widget/item_menu_widget.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
@@ -15,6 +16,56 @@ class Body extends GetView<HomeController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Header(size: size),
+          Container(
+            height: 220,
+            child: GridView.builder(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                scrollDirection: Axis.horizontal,
+                itemCount: controller.menu_home.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, childAspectRatio: 1.25),
+                itemBuilder: (context, index) {
+                  final data = controller.menu_home[index];
+                  return ItemMenu(data);
+                }),
+          ),
+          // SizedBox(
+          //   height: 120,
+          //   child: ListView.builder(
+          //     scrollDirection: Axis.horizontal,
+          //     itemCount: controller.banner.length,
+          //     itemBuilder: (context, index) {
+          //       final data = controller.banner[index];
+          //       return Container(
+          //         margin: EdgeInsets.fromLTRB(15, 16, 5, 5),
+          //         decoration: BoxDecoration(
+          //             borderRadius: BorderRadius.all(Radius.circular(8))),
+          //         child: Column(
+          //           children: <Widget>[
+          //             Expanded(
+          //               child: Container(
+          //                 width: 300,
+          //                 decoration: BoxDecoration(
+          //                   image: DecorationImage(
+          //                     image: NetworkImage(
+          //                       // "https://images.unsplash.com/photo-1515276427842-f85802d514a2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80",
+          //                       data.image!,
+          //                     ),
+          //                     fit: BoxFit.cover,
+          //                   ),
+          //                   color: Colors.white,
+          //                   borderRadius: BorderRadius.all(Radius.circular(8)),
+          //                 ),
+          //               ),
+          //               flex: 75,
+          //             ),
+          //           ],
+          //         ),
+          //       );
+          //     },
+          //   ),
+          // ),
+
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.0),
             child: Text(
@@ -54,100 +105,100 @@ class Body extends GetView<HomeController> {
               ],
             ),
           ),
-          const SizedBox(
-            height: 30,
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(
-              "Produk",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ListView(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            children: [
-              InkWell(
-                onTap: () => Get.toNamed(Routes.INDEX_PRODUK),
-                child: menuHorizontal("Produk", "assets/user2.jpg",
-                    const Color(0xff16A085), context),
-              ),
-              InkWell(
-                onTap: () => Get.toNamed(Routes.INDEX_PRODUCT_CATEGORY),
-                child: menuHorizontal("Kategori Produk", "assets/user3.jpg",
-                    const Color(0xff16A085), context),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(
-              "Kegiatan",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ListView(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            children: [
-              InkWell(
-                onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY),
-                child: menuHorizontal("Kegiatan", "assets/user2.jpg",
-                    const Color(0xff16A085), context),
-              ),
-              InkWell(
-                onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY_CATEGORY),
-                child: menuHorizontal("Kategori Kegiatan", "assets/user3.jpg",
-                    const Color(0xff16A085), context),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Text(
-              "Poktan",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          ListView(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            children: [
-              InkWell(
-                onTap: () => Get.toNamed(Routes.INDEX_POKTAN),
-                child: menuHorizontal("Akun Poktan", "assets/user2.jpg",
-                    const Color(0xff16A085), context),
-              ),
-            ],
-          ),
+          // const SizedBox(
+          //   height: 30,
+          // ),
+          // const Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 20.0),
+          //   child: Text(
+          //     "Produk",
+          //     style: TextStyle(
+          //       fontSize: 16,
+          //       fontWeight: FontWeight.bold,
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 20,
+          // ),
+          // ListView(
+          //   shrinkWrap: true,
+          //   physics: const NeverScrollableScrollPhysics(),
+          //   padding: const EdgeInsets.symmetric(horizontal: 20),
+          //   children: [
+          //     InkWell(
+          //       onTap: () => Get.toNamed(Routes.INDEX_PRODUK),
+          //       child: menuHorizontal("Produk", "assets/user2.jpg",
+          //           const Color(0xff16A085), context),
+          //     ),
+          //     InkWell(
+          //       onTap: () => Get.toNamed(Routes.INDEX_PRODUCT_CATEGORY),
+          //       child: menuHorizontal("Kategori Produk", "assets/user3.jpg",
+          //           const Color(0xff16A085), context),
+          //     ),
+          //   ],
+          // ),
+          // const SizedBox(
+          //   height: 30,
+          // ),
+          // const Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 20.0),
+          //   child: Text(
+          //     "Kegiatan",
+          //     style: TextStyle(
+          //       fontSize: 16,
+          //       fontWeight: FontWeight.bold,
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 20,
+          // ),
+          // ListView(
+          //   shrinkWrap: true,
+          //   physics: const NeverScrollableScrollPhysics(),
+          //   padding: const EdgeInsets.symmetric(horizontal: 20),
+          //   children: [
+          //     InkWell(
+          //       onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY),
+          //       child: menuHorizontal("Kegiatan", "assets/user2.jpg",
+          //           const Color(0xff16A085), context),
+          //     ),
+          //     InkWell(
+          //       onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY_CATEGORY),
+          //       child: menuHorizontal("Kategori Kegiatan", "assets/user3.jpg",
+          //           const Color(0xff16A085), context),
+          //     ),
+          //   ],
+          // ),
+          // const SizedBox(
+          //   height: 30,
+          // ),
+          // const Padding(
+          //   padding: EdgeInsets.symmetric(horizontal: 20.0),
+          //   child: Text(
+          //     "Poktan",
+          //     style: TextStyle(
+          //       fontSize: 16,
+          //       fontWeight: FontWeight.bold,
+          //     ),
+          //   ),
+          // ),
+          // const SizedBox(
+          //   height: 20,
+          // ),
+          // ListView(
+          //   shrinkWrap: true,
+          //   physics: const NeverScrollableScrollPhysics(),
+          //   padding: const EdgeInsets.symmetric(horizontal: 20),
+          //   children: [
+          //     InkWell(
+          //       onTap: () => Get.toNamed(Routes.INDEX_POKTAN),
+          //       child: menuHorizontal("Akun Poktan", "assets/user2.jpg",
+          //           const Color(0xff16A085), context),
+          //     ),
+          //   ],
+          // ),
           const SizedBox(height: kDefaultPadding),
         ],
       ),
