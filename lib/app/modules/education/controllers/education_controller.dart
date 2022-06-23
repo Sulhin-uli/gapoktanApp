@@ -19,9 +19,9 @@ class EducationController extends GetxController {
   late TextEditingController category_education_id;
   late TextEditingController title;
   late TextEditingController desc;
+  late TextEditingController seacrh;
   String? thumbnail;
   var isSearch = false.obs;
-  late TextEditingController seacrh;
   var isLoadingButton = true.obs;
   var isLoading = true.obs;
 
