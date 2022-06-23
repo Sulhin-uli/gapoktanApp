@@ -53,15 +53,15 @@ class HomeController extends GetxController {
     );
     menu_home.add(data6);
 
-    final data7 = MenuHome(
-      id: "7",
-      image:
-          "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
-      title: "Produk",
-      color: Colors.green,
-      route: Routes.INDEX_PRODUK,
-    );
-    menu_home.add(data7);
+    // final data7 = MenuHome(
+    //   id: "7",
+    //   image:
+    //       "https://cdn.icon-icons.com/icons2/3361/PNG/512/preferences_user_interface_ux_apps_grid_options_ui_menu_categories_icon_210806.png",
+    //   title: "Produk",
+    //   color: Colors.green,
+    //   route: Routes.INDEX_PRODUK,
+    // );
+    // menu_home.add(data7);
 
     final data8 = MenuHome(
       id: "8",

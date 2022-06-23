@@ -21,11 +21,14 @@ class ProductCategoryProvider extends GetConnect {
   Future<dynamic> getData(
     String token,
   ) async {
-    final response = await get(url, headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
-    });
+    final response = await get(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
+    );
     return response.body;
   }
 
@@ -54,4 +57,9 @@ class ProductCategoryProvider extends GetConnect {
         'Accept': 'application/json',
         'Authorization': 'Bearer $token',
       });
+
+  Future<dynamic> getDatas() async {
+    final response = await get('$url');
+    return response.body;
+  }
 }

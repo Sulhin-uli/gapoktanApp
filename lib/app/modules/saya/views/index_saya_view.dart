@@ -134,11 +134,11 @@ class IndexSayaView extends GetView<SayaController> {
                 leading: Icon(Icons.circle),
                 title: Text('Edukasi'),
               ),
-              ListTile(
-                onTap: () => Get.toNamed(Routes.INDEX_PRODUK),
-                leading: Icon(Icons.circle),
-                title: Text('Produk'),
-              ),
+              // ListTile(
+              //   onTap: () => Get.toNamed(Routes.INDEX_PRODUK),
+              //   leading: Icon(Icons.circle),
+              //   title: Text('Produk'),
+              // ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY),
                 leading: Icon(Icons.circle),

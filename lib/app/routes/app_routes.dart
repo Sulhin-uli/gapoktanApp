@@ -34,11 +34,15 @@ abstract class Routes {
   static const ADD_ACTIVITY_CATEGORY = _Paths.ADD_ACTIVITY_CATEGORY;
   static const EDIT_ACTIVITY_CATEGORY = _Paths.EDIT_ACTIVITY_CATEGORY;
 
-  // Produk
-  static const INDEX_PRODUK = _Paths.INDEX_PRODUK;
-  static const DETAIL_PRODUK = _Paths.DETAIL_PRODUK;
-  static const ADD_PRODUK = _Paths.ADD_PRODUK;
-  static const EDIT_PRODUK = _Paths.EDIT_PRODUK;
+  // Produk old
+  // static const INDEX_PRODUK = _Paths.INDEX_PRODUK;
+  // static const DETAIL_PRODUK = _Paths.DETAIL_PRODUK;
+  // static const ADD_PRODUK = _Paths.ADD_PRODUK;
+  // static const EDIT_PRODUK = _Paths.EDIT_PRODUK;
+  static const SEARCH = _Paths.SEARCH;
+  static const PRODUK = _Paths.PRODUK;
+  static const IMAGE_VIEW = _Paths.IMAGE_VIEW;
+  static const KATEGORI_VIEW = _Paths.KATEGORI_VIEW;
 
   // Kategori Product
   static const INDEX_PRODUCT_CATEGORY = _Paths.INDEX_PRODUCT_CATEGORY;
@@ -108,10 +112,14 @@ abstract class _Paths {
   static const EDIT_ACTIVITY_CATEGORY = '/edit-activity-category';
 
   // produk
-  static const INDEX_PRODUK = '/index-produk';
-  static const DETAIL_PRODUK = '/detail-produk';
-  static const ADD_PRODUK = '/add-produk';
-  static const EDIT_PRODUK = '/edit-produk';
+  // static const INDEX_PRODUK = '/index-produk';
+  // static const DETAIL_PRODUK = '/detail-produk';
+  // static const ADD_PRODUK = '/add-produk';
+  // static const EDIT_PRODUK = '/edit-produk';
+  static const SEARCH = '/search';
+  static const PRODUK = '/produk';
+  static const IMAGE_VIEW = '/image-view';
+  static const KATEGORI_VIEW = '/kategori-view';
 
   // Kategori kegiatan
   static const INDEX_PRODUCT_CATEGORY = '/index-product-category';

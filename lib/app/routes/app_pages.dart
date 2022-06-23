@@ -5,6 +5,9 @@ import 'package:gapoktan_app/app/modules/education/views/education_by_category_v
 import 'package:gapoktan_app/app/modules/education/views/search_education_view.dart';
 import 'package:gapoktan_app/app/modules/education/views/search_form_education_view.dart';
 import 'package:gapoktan_app/app/modules/history_plant/views/detail_history_plant_view.dart';
+import 'package:gapoktan_app/app/modules/produk/views/kategori_produk_view%20.dart';
+import 'package:gapoktan_app/app/modules/produk/views/produk_view.dart';
+import 'package:gapoktan_app/app/modules/produk/views/search_produk_view.dart';
 import 'package:gapoktan_app/app/modules/saya/views/edit_category_product_view.dart';
 import 'package:gapoktan_app/app/modules/saya/views/edit_password_view.dart';
 import 'package:get/get.dart';
@@ -50,10 +53,6 @@ import '../modules/product_category/views/add_category_product_view.dart';
 import '../modules/product_category/views/edit_category_product_view.dart';
 import '../modules/product_category/views/product_category_view.dart';
 import '../modules/produk/bindings/produk_binding.dart';
-import '../modules/produk/views/add_produk_view.dart';
-import '../modules/produk/views/detail_produk_view.dart';
-import '../modules/produk/views/edit_produk_view.dart';
-import '../modules/produk/views/index_produk_view.dart';
 import '../modules/saya/bindings/saya_binding.dart';
 import '../modules/saya/views/index_saya_view.dart';
 import '../modules/tandur/bindings/tandur_binding.dart';
@@ -133,27 +132,50 @@ class AppPages {
       binding: EducationCategoryBinding(),
     ),
 
+    // Produk Old
+    // GetPage(
+    //   name: _Paths.INDEX_PRODUK,
+    //   page: () => IndexProdukView(),
+    //   binding: ProdukBinding(),
+    // ),
+    // GetPage(
+    //   name: _Paths.DETAIL_PRODUK,
+    //   page: () => DetailProdukView(),
+    //   binding: ProdukBinding(),
+    // ),
+    // GetPage(
+    //   name: _Paths.ADD_PRODUK,
+    //   page: () => AddProdukView(),
+    //   // binding: PRODUKBinding(),
+    // ),
+    // GetPage(
+    //   name: _Paths.EDIT_PRODUK,
+    //   page: () => EditProdukView(),
+    //   binding: ProdukBinding(),
+    // ),
+
     // Produk
     GetPage(
-      name: _Paths.INDEX_PRODUK,
-      page: () => IndexProdukView(),
+      name: _Paths.SEARCH,
+      page: () => SearchProdukView(),
       binding: ProdukBinding(),
     ),
     GetPage(
-      name: _Paths.DETAIL_PRODUK,
-      page: () => DetailProdukView(),
+      name: _Paths.PRODUK,
+      page: () => ProdukView(),
       binding: ProdukBinding(),
     ),
+    // GetPage(
+    //   name: _Paths.IMAGE_VIEW,
+    //   page: () => ImageView(),
+    //   // binding: ProdukBinding(),
+    // ),
     GetPage(
-      name: _Paths.ADD_PRODUK,
-      page: () => AddProdukView(),
-      // binding: PRODUKBinding(),
-    ),
-    GetPage(
-      name: _Paths.EDIT_PRODUK,
-      page: () => EditProdukView(),
+      name: _Paths.KATEGORI_VIEW,
+      page: () => KategoriView(),
       binding: ProdukBinding(),
     ),
+
     // Product Kategori
     GetPage(
       name: _Paths.INDEX_PRODUCT_CATEGORY,
