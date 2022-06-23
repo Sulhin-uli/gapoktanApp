@@ -3,6 +3,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/data/models/activity_category_model.dart';
 import 'package:gapoktan_app/app/modules/activity/controllers/activity_controller.dart';
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/base_url.dart';
 
 import 'package:get/get.dart';
@@ -31,11 +32,25 @@ class AddActivityView extends GetView<ActivityController> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Kategori Kegiatan",
-                style: TextStyle(
-                  color: Color(0xff919A92),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Kategori Kegiatan",
+                    style: TextStyle(
+                      color: Color(0xff919A92),
+                    ),
+                  ),
+                  TextButton(
+                      onPressed: () =>
+                          Get.toNamed(Routes.ADD_ACTIVITY_CATEGORY),
+                      child: Text(
+                        "Tambah Kategori",
+                        style: TextStyle(
+                          color: Color(0xff16A085),
+                        ),
+                      ))
+                ],
               ),
               const SizedBox(
                 height: 9,

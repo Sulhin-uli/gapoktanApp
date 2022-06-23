@@ -1,3 +1,6 @@
+import 'package:gapoktan_app/app/modules/activity/views/activity_by_category_view.dart';
+import 'package:gapoktan_app/app/modules/activity/views/search_activity_view.dart';
+import 'package:gapoktan_app/app/modules/activity/views/search_form_activity_view.dart';
 import 'package:gapoktan_app/app/modules/education/views/education_by_category_view.dart';
 import 'package:gapoktan_app/app/modules/education/views/search_education_view.dart';
 import 'package:gapoktan_app/app/modules/education/views/search_form_education_view.dart';
@@ -189,6 +192,22 @@ class AppPages {
       page: () => EditActivityView(),
       binding: ActivityBinding(),
     ),
+    GetPage(
+      name: _Paths.SEARCH_ACTIVITY,
+      page: () => SearchActivityView(),
+      binding: ActivityBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH_FORM_ACTIVITY,
+      page: () => SearchFormActivityView(),
+      binding: ActivityBinding(),
+    ),
+    GetPage(
+      name: _Paths.BY_CATEGORY_ACTIVITY,
+      page: () => ActivityByCategoryView(),
+      binding: ActivityBinding(),
+    ),
+
     // Kategori Kegiatan
     GetPage(
       name: _Paths.INDEX_ACTIVITY_CATEGORY,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/activity_category/controllers/activity_category_controller.dart';
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 
 import 'package:get/get.dart';
 
@@ -10,7 +11,7 @@ class AddCategoryActivityView extends GetView<ActivityCategoryController> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: const BackButton(color: Colors.black),
-        title: const Text(  
+        title: const Text(
           'Tambah Kategori Kegiatan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -24,11 +25,24 @@ class AddCategoryActivityView extends GetView<ActivityCategoryController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 50),
-              const Text(
-                "Nama Kategori",
-                style: TextStyle(
-                  color: Color(0xff919A92),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text(
+                    "Nama Kategori",
+                    style: TextStyle(
+                      color: Color(0xff919A92),
+                    ),
+                  ),
+                  TextButton(
+                      onPressed: () => Get.toNamed(Routes.ACTIVITY_CATEGORY),
+                      child: Text(
+                        "Lihat Kategori",
+                        style: TextStyle(
+                          color: Color(0xff16A085),
+                        ),
+                      ))
+                ],
               ),
               TextFormField(
                 controller: controller.name,

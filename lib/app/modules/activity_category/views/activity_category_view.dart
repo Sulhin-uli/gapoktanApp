@@ -43,13 +43,13 @@ class ActivityCategoryView extends GetView<ActivityCategoryController> {
                 ),
               ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff16A085),
-        foregroundColor: Colors.white,
-        // mini: true,
-        onPressed: () => Get.toNamed(Routes.ADD_ACTIVITY_CATEGORY),
-        child: const Icon(Icons.add),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   backgroundColor: const Color(0xff16A085),
+      //   foregroundColor: Colors.white,
+      //   // mini: true,
+      //   onPressed: () => Get.toNamed(Routes.ADD_ACTIVITY_CATEGORY),
+      //   child: const Icon(Icons.add),
+      // ),
     );
   }
 }

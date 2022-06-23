@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:gapoktan_app/app/modules/education/views/item_view.dart';
-import 'package:gapoktan_app/app/routes/app_pages.dart';
-
+import 'package:gapoktan_app/app/modules/activity/controllers/activity_controller.dart';
+import 'package:gapoktan_app/app/modules/activity/views/item_activity_view.dart';
+import 'package:gapoktan_app/app/modules/activity_category/controllers/activity_category_controller.dart';
 import 'package:get/get.dart';
 
-import '../controllers/education_controller.dart';
-
-class EducationByCategoryView extends GetView<EducationController> {
+class ActivityByCategoryView extends GetView<ActivityController> {
+  final categoryC = Get.find<ActivityCategoryController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +14,7 @@ class EducationByCategoryView extends GetView<EducationController> {
         backgroundColor: Colors.white,
         leading: const BackButton(color: Colors.black),
         title: Text(
-          'Edukasi',
+          'Kegiatan',
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
         actions: [
@@ -49,25 +48,23 @@ class EducationByCategoryView extends GetView<EducationController> {
               } else if (controller.isLoading.isFalse) {
                 return SingleChildScrollView(
                   child: Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(2),
                     child: Column(
                       children: [
-                        GridView.builder(
-                          gridDelegate:
-                              const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2, childAspectRatio: 1 / 1.2),
-                          itemCount: controller.education.length,
+                        ListView.builder(
+                          itemCount: controller.activity.length,
                           shrinkWrap: true,
                           physics: const NeverScrollableScrollPhysics(),
                           itemBuilder: (context, i) {
-                            final data = controller.education[i];
-                            if (data.categoryEducationId!.name ==
+                            // final product = productList[index];
+                            final data = controller.activity[i];
+                            if (data.categoryActivityId!.name ==
                                 Get.arguments) {
-                              return ItemView(data);
+                              return ItemActivityView(data);
                             } else {
                               return Center(
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SvgPicture.asset(
                                       "assets/icons/empty-data.svg",
@@ -75,7 +72,7 @@ class EducationByCategoryView extends GetView<EducationController> {
                                       width: 100,
                                     ),
                                     Text(
-                                      "Data Tidak Ada",
+                                      "Hasil Pencarian Tidak Ada",
                                       style: TextStyle(color: Colors.grey),
                                     )
                                   ],

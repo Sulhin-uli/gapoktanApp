@@ -64,6 +64,21 @@ class DetailActivityView extends GetView<ActivityController> {
                   ),
                 ],
               ),
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                children: [
+                  Text(
+                    "Kategori : ",
+                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                  ),
+                  Text(
+                    data.categoryActivityId!.name!,
+                    style: TextStyle(color: Colors.black.withOpacity(0.6)),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

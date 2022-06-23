@@ -25,6 +25,9 @@ abstract class Routes {
   static const DETAIL_ACTIVITY = _Paths.DETAIL_ACTIVITY;
   static const ADD_ACTIVITY = _Paths.ADD_ACTIVITY;
   static const EDIT_ACTIVITY = _Paths.EDIT_ACTIVITY;
+  static const SEARCH_ACTIVITY = _Paths.SEARCH_ACTIVITY;
+  static const SEARCH_FORM_ACTIVITY = _Paths.SEARCH_FORM_ACTIVITY;
+  static const BY_CATEGORY_ACTIVITY = _Paths.BY_CATEGORY_ACTIVITY;
 
   // Kategori Kegiatan
   static const INDEX_ACTIVITY_CATEGORY = _Paths.INDEX_ACTIVITY_CATEGORY;
@@ -95,6 +98,9 @@ abstract class _Paths {
   static const DETAIL_ACTIVITY = '/detail-activity';
   static const ADD_ACTIVITY = '/add-activity';
   static const EDIT_ACTIVITY = '/edit-activity';
+  static const SEARCH_ACTIVITY = '/search-activity';
+  static const SEARCH_FORM_ACTIVITY = '/search-form-activity';
+  static const BY_CATEGORY_ACTIVITY = '/by-category-activity';
 
   // Kategori kegiatan
   static const INDEX_ACTIVITY_CATEGORY = '/index-activity-category';

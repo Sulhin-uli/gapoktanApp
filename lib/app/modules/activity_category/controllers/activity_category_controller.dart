@@ -29,6 +29,7 @@ class ActivityCategoryController extends GetxController {
         final data = ActivityCategory(
           id: response["data"]["id"],
           name: response["data"]["name"],
+          isActive: response["data"]["is_active"],
           createdAt: response["data"]["created_at"],
           updatedAt: response["data"]["updated_at"],
         );
@@ -50,6 +51,7 @@ class ActivityCategoryController extends GetxController {
           final data = ActivityCategory(
             id: e["id"],
             name: e["name"],
+            isActive: e["is_active"],
             createdAt: e["created_at"],
             updatedAt: e["updated_at"],
           );

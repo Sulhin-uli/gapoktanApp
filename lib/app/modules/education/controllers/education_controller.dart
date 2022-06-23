@@ -23,14 +23,11 @@ class EducationController extends GetxController {
   var isSearch = false.obs;
   late TextEditingController seacrh;
   var isLoadingButton = true.obs;
+  var isLoading = true.obs;
 
   // upload image
   var selectedImagePath = ''.obs;
   var selectedImageSize = ''.obs;
-
-  // old
-  var isUpload = false.obs;
-  var isLoading = true.obs;
 
   @override
   void onInit() {
