@@ -1,34 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gapoktan_app/app/modules/education/views/item_view.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../controllers/education_controller.dart';
 
-class IndexEducationView extends GetView<EducationController> {
+class SearchEducationView extends GetView<EducationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: const BackButton(color: Colors.black),
-        title: Text(
-          'Edukasi',
-          style: TextStyle(color: Colors.black, fontSize: 16),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Get.toNamed(Routes.SEARCH_FORM_EDUCATION);
-            },
-            icon: Icon(
-              Icons.search,
-              color: Colors.grey,
+        title: Container(
+          width: double.infinity,
+          height: 47,
+          decoration: BoxDecoration(
+              color: Colors.grey[200], borderRadius: BorderRadius.circular(5)),
+          child: Center(
+            child: TextField(
+              controller: controller.seacrh,
+              readOnly: true,
+              onTap: () => Get.back(),
+              decoration: InputDecoration(
+                prefixIcon: Icon(
+                  Icons.search,
+                  size: 20,
+                  color: Colors.black,
+                ),
+                // hintText: 'Cari...',
+                border: InputBorder.none,
+              ),
             ),
           ),
-        ],
+        ),
         elevation: 0.5,
       ),
       backgroundColor: Colors.white,
@@ -51,7 +58,28 @@ class IndexEducationView extends GetView<EducationController> {
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
                         final data = controller.education[i];
-                        return ItemView(data);
+                        if (data.title!
+                            .toLowerCase()
+                            .contains(controller.seacrh.text.toLowerCase())) {
+                          return ItemView(data);
+                        } else {
+                          return Center(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/icons/empty-data.svg",
+                                  height: 100,
+                                  width: 100,
+                                ),
+                                Text(
+                                  "Hasil Pencarian Tidak Ada",
+                                  style: TextStyle(color: Colors.grey),
+                                )
+                              ],
+                            ),
+                          );
+                        }
                       },
                     )
                   ],

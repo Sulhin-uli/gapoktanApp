@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 
 import '../controllers/education_controller.dart';
 
-class IndexEducationView extends GetView<EducationController> {
+class EducationByCategoryView extends GetView<EducationController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,7 @@ class IndexEducationView extends GetView<EducationController> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed(Routes.SEARCH_FORM_EDUCATION);
+              Get.back();
             },
             icon: Icon(
               Icons.search,
@@ -51,7 +51,26 @@ class IndexEducationView extends GetView<EducationController> {
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, i) {
                         final data = controller.education[i];
-                        return ItemView(data);
+                        if (data.categoryEducationId!.name == Get.arguments) {
+                          return ItemView(data);
+                        } else {
+                          return Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  "assets/icons/empty-data.svg",
+                                  height: 100,
+                                  width: 100,
+                                ),
+                                Text(
+                                  "Data Tidak Ada",
+                                  style: TextStyle(color: Colors.grey),
+                                )
+                              ],
+                            ),
+                          );
+                        }
                       },
                     )
                   ],

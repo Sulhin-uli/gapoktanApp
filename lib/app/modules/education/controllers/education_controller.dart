@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/data/models/education_category_model.dart';
 import 'package:gapoktan_app/app/data/models/education_model.dart';
 import 'package:gapoktan_app/app/data/models/user_model.dart';
+import 'package:gapoktan_app/app/data/providers/education_category_provider.dart';
 import 'package:gapoktan_app/app/data/providers/education_provider.dart';
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,10 +15,13 @@ import 'package:image_picker/image_picker.dart';
 class EducationController extends GetxController {
   final box = GetStorage();
   var education = List<Education>.empty().obs;
+  var educationCategory = List<EducationCategory>.empty().obs;
   late TextEditingController category_education_id;
   late TextEditingController title;
   late TextEditingController desc;
   String? thumbnail;
+  var isSearch = false.obs;
+  late TextEditingController seacrh;
   var isLoadingButton = true.obs;
 
   // upload image
@@ -25,15 +30,46 @@ class EducationController extends GetxController {
 
   // old
   var isUpload = false.obs;
+  var isLoading = true.obs;
 
   @override
   void onInit() {
     super.onInit();
+    seacrh = TextEditingController();
     category_education_id = TextEditingController();
     title = TextEditingController();
     desc = TextEditingController();
     getData();
+    getDataCategory();
     // getTumbnail();
+  }
+
+  void runSearch(String search) {
+    if (search == "") {
+      dialog("Peringatan", "Kolom tidak boleh kosong");
+    } else {
+      Get.toNamed(Routes.SEARCH_EDUCATION);
+    }
+  }
+
+  void getDataCategory() async {
+    final data = box.read("userData") as Map<String, dynamic>;
+    EducationCategoryProvider().getData(data["token"]).then((response) {
+      try {
+        response["data"].map((e) {
+          final data = EducationCategory(
+            id: e["id"],
+            name: e["name"],
+            isActive: e["is_active"],
+            createdAt: e["created_at"],
+            updatedAt: e["updated_at"],
+          );
+          educationCategory.add(data);
+        }).toList();
+      } catch (e) {
+        print("Error is : " + e.toString());
+      }
+    });
   }
 
   // add data
@@ -127,35 +163,40 @@ class EducationController extends GetxController {
   // get data
   Future getData() async {
     final data = box.read("userData") as Map<String, dynamic>;
-    return EducationProvider().getData(data["token"]).then((response) {
+    try {
       try {
-        response["data"].map((e) {
-          final data = Education(
-            id: e["id"],
-            userId: User(
-              id: e["user_id"]["id"],
-              name: e["user_id"]["name"],
-            ),
-            categoryEducationId: EducationCategory(
-              id: e["category_education_id"]["id"],
-              name: e["category_education_id"]["name"],
-              createdAt: e["category_education_id"]["created_at"],
-              updatedAt: e["category_education_id"]["updated_at"],
-            ),
-            title: e["title"],
-            slug: e["slug"],
-            date: e["date"],
-            file: e["file"],
-            desc: e["desc"],
-            createdAt: e["created_at"],
-            updatedAt: e["updated_at"],
-          );
-          education.add(data);
-        }).toList();
+        isLoading(true);
+        return EducationProvider().getData(data["token"]).then((response) {
+          response["data"].map((e) {
+            final data = Education(
+              id: e["id"],
+              userId: User(
+                id: e["user_id"]["id"],
+                name: e["user_id"]["name"],
+              ),
+              categoryEducationId: EducationCategory(
+                id: e["category_education_id"]["id"],
+                name: e["category_education_id"]["name"],
+                createdAt: e["category_education_id"]["created_at"],
+                updatedAt: e["category_education_id"]["updated_at"],
+              ),
+              title: e["title"],
+              slug: e["slug"],
+              date: e["date"],
+              file: e["file"],
+              desc: e["desc"],
+              createdAt: e["created_at"],
+              updatedAt: e["updated_at"],
+            );
+            education.add(data);
+          }).toList();
+        });
       } catch (e) {
         print("Error is : " + e.toString());
       }
-    });
+    } finally {
+      isLoading(false);
+    }
   }
 
   void getImage(ImageSource imageSource) async {

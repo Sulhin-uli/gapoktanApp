@@ -1,3 +1,6 @@
+import 'package:gapoktan_app/app/modules/education/views/education_by_category_view.dart';
+import 'package:gapoktan_app/app/modules/education/views/search_education_view.dart';
+import 'package:gapoktan_app/app/modules/education/views/search_form_education_view.dart';
 import 'package:gapoktan_app/app/modules/history_plant/views/detail_history_plant_view.dart';
 import 'package:gapoktan_app/app/modules/saya/views/edit_category_product_view.dart';
 import 'package:gapoktan_app/app/modules/saya/views/edit_password_view.dart';
@@ -59,7 +62,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.CHECK_AUTH;
+  // static const INITIAL = Routes.CHECK_AUTH;
 
   static final routes = [
     GetPage(
@@ -99,6 +102,22 @@ class AppPages {
       page: () => EditEducationView(),
       binding: EducationBinding(),
     ),
+    GetPage(
+      name: _Paths.SEARCH_EDUCATION,
+      page: () => SearchEducationView(),
+      binding: EducationBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH_FORM_EDUCATION,
+      page: () => SearchFormEducationiew(),
+      binding: EducationBinding(),
+    ),
+    GetPage(
+      name: _Paths.BY_CATEGORY_EDUCATION,
+      page: () => EducationByCategoryView(),
+      binding: EducationBinding(),
+    ),
+
     // Edukasi Kategori
     GetPage(
       name: _Paths.ADD_EDUCATION_CATEGORY,

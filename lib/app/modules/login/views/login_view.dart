@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:gapoktan_app/app/modules/login/controllers/authcontroller_controller.dart';
 
 import 'package:get/get.dart';
 
 import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
-  LoginController loginController = Get.put(LoginController());
+  final authC = Get.put(AuthcontrollerController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class LoginView extends GetView<LoginController> {
                 ),
               ),
               TextFormField(
-                controller: loginController.email,
+                controller: controller.email,
                 cursorColor: const Color(0xff16A085),
                 decoration: const InputDecoration(
                   helperText: 'Contoh: pedri16@gmail.com',
@@ -60,9 +61,9 @@ class LoginView extends GetView<LoginController> {
               ),
               Obx(
                 () => TextFormField(
-                  controller: loginController.password,
+                  controller: controller.password,
                   cursorColor: const Color(0xff16A085),
-                  obscureText: loginController.hiddenTextPassword.value,
+                  obscureText: controller.hiddenTextPassword.value,
                   decoration: InputDecoration(
                     // fillColor: Color(0xff919A92),
                     enabledBorder: const UnderlineInputBorder(
@@ -76,9 +77,8 @@ class LoginView extends GetView<LoginController> {
                       ),
                     ),
                     suffixIcon: IconButton(
-                      onPressed: () =>
-                          loginController.hiddenTextPassword.toggle(),
-                      icon: loginController.hiddenTextPassword.isTrue
+                      onPressed: () => controller.hiddenTextPassword.toggle(),
+                      icon: controller.hiddenTextPassword.isTrue
                           ? const Icon(
                               Icons.remove_red_eye,
                               color: Color(0xff16A085),
@@ -113,9 +113,8 @@ class LoginView extends GetView<LoginController> {
                     style: ElevatedButton.styleFrom(
                       primary: const Color(0xff16A085), // background
                     ),
-                    onPressed: () => loginController.login(
-                        loginController.email.text,
-                        loginController.password.text),
+                    onPressed: () => authC.login(
+                        controller.email.text, controller.password.text),
                     child: const Text('Masuk'),
                   ),
                 ),

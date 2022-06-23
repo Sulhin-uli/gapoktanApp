@@ -96,9 +96,9 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    getDataItemMenu();
-    loginController.gapoktan.clear();
-    loginController.getDataGapoktan();
+    // getDataItemMenu();
+    // loginController.gapoktan.clear();
+    // loginController.getDataGapoktan();
     super.onInit();
   }
 }

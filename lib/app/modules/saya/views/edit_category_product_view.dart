@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gapoktan_app/app/modules/login/controllers/authcontroller_controller.dart';
 import 'package:gapoktan_app/app/modules/login/controllers/login_controller.dart';
 import 'package:gapoktan_app/app/modules/saya/controllers/saya_controller.dart';
 
@@ -6,13 +7,13 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class EditProfileView extends GetView<SayaController> {
-  final loginC = Get.find<LoginController>();
+  final authC = Get.find<AuthcontrollerController>();
   final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
     final user = box.read("userData") as Map<String, dynamic>;
-    final data = loginC.findGapoktan(user["id"]);
+    final data = authC.findGapoktan(user["id"]);
     controller.chairman.text = data.chairman!;
     controller.city.text = data.city!;
     controller.address.text = data.address!;

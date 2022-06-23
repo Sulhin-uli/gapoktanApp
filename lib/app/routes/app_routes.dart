@@ -12,6 +12,9 @@ abstract class Routes {
   static const DETAIL_EDUCATION = _Paths.DETAIL_EDUCATION;
   static const ADD_EDUCATION = _Paths.ADD_EDUCATION;
   static const EDIT_EDUCATION = _Paths.EDIT_EDUCATION;
+  static const SEARCH_EDUCATION = _Paths.SEARCH_EDUCATION;
+  static const SEARCH_FORM_EDUCATION = _Paths.SEARCH_FORM_EDUCATION;
+  static const BY_CATEGORY_EDUCATION = _Paths.BY_CATEGORY_EDUCATION;
 
   // Kategori Edukasi
   static const ADD_EDUCATION_CATEGORY = _Paths.ADD_EDUCATION_CATEGORY;
@@ -79,6 +82,9 @@ abstract class _Paths {
   static const DETAIL_EDUCATION = '/detail-education';
   static const ADD_EDUCATION = '/add-education';
   static const EDIT_EDUCATION = '/edit-education';
+  static const SEARCH_EDUCATION = '/search-education';
+  static const SEARCH_FORM_EDUCATION = '/search-form-education';
+  static const BY_CATEGORY_EDUCATION = '/by-category-education';
 
   // Kategori Edukasi
   static const ADD_EDUCATION_CATEGORY = '/add-education-category';

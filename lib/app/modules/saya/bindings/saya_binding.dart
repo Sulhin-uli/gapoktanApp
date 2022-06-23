@@ -9,8 +9,8 @@ class SayaBinding extends Bindings {
     Get.lazyPut<SayaController>(
       () => SayaController(),
     );
-    Get.lazyPut<LoginController>(
-      () => LoginController(),
-    );
+    // Get.lazyPut<LoginController>(
+    //   () => LoginController(),
+    // );
   }
 }

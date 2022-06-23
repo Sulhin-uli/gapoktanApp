@@ -94,42 +94,6 @@ class _ItemViewState extends State<ItemView> {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
-            Container(
-              padding: const EdgeInsets.all(8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(),
-                  Row(children: [
-                    InkWell(
-                      onTap: () => Get.toNamed(Routes.EDIT_EDUCATION,
-                          arguments: widget.data.id),
-                      child: const Icon(
-                        Icons.edit,
-                        size: 23,
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        educationC.dialogQuestion(context, widget.data.id);
-                      },
-                      child: const Icon(
-                        Icons.delete,
-                        size: 23,
-                        color: Colors.grey,
-                      ),
-                    )
-                  ]),
-                ],
-              ),
-            )
           ],
         ),
       ),

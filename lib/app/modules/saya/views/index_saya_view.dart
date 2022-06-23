@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/home/controllers/home_controller.dart';
+import 'package:gapoktan_app/app/modules/login/controllers/authcontroller_controller.dart';
 import 'package:gapoktan_app/app/modules/login/controllers/login_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/base_url.dart';
@@ -13,14 +14,14 @@ import 'package:avatar_glow/avatar_glow.dart';
 import '../controllers/saya_controller.dart';
 
 class IndexSayaView extends GetView<SayaController> {
-  final loginC = Get.find<LoginController>();
+  final authC = Get.find<AuthcontrollerController>();
   final homeC = Get.find<HomeController>();
   final box = GetStorage();
 
   @override
   Widget build(BuildContext context) {
     final user = box.read("userData") as Map<String, dynamic>;
-    final data = loginC.findGapoktan(user["id"]);
+    final data = authC.findGapoktan(user["id"]);
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
