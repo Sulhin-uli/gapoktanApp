@@ -23,7 +23,7 @@ class EditActivityView extends GetView<ActivityController> {
     controller.categoryActivityId.text = data.categoryActivityId!.id.toString();
     controller.title.text = data.title!;
     String formattedDate =
-        DateFormat('yyyy-MM-dd').format(DateTime.tryParse(data.date!));
+        DateFormat('yyyy-MM-dd').format(DateTime.tryParse(data.date!)!);
     controller.date.text = formattedDate;
     controller.desc.text = data.desc!;
     // educationCategoryC.changeEditCategory(data.categoryEducationId!);

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/activity/controllers/activity_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
-import 'package:format_indonesia/format_indonesia.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class ItemActivityView extends GetView<ActivityController> {
   const ItemActivityView(this.data);
@@ -37,7 +37,7 @@ class ItemActivityView extends GetView<ActivityController> {
                       height: 6,
                     ),
                     Text(
-                      Waktu(datetime).yMMMMEEEEd(),
+                      DateFormat("EEEE, d MMMM yyyy", "id_ID").format(datetime),
                       style: TextStyle(color: Colors.black.withOpacity(0.6)),
                     ),
                   ],

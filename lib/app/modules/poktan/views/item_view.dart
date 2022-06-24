@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/poktan/controllers/poktan_controller.dart';
 import 'package:gapoktan_app/app/routes/app_pages.dart';
+import 'package:gapoktan_app/app/utils/base_url.dart';
 
 import 'package:get/get.dart';
 
@@ -16,10 +17,15 @@ class ItemView extends GetView<PoktanController> {
         child: Column(
           children: [
             ListTile(
-              leading: const CircleAvatar(
-                backgroundImage: NetworkImage(
-                    'https://www.startupdonut.co.uk/sites/default/files/styles/landing_pages_lists/public/Guy_watson_249x167.png?itok=e_ct04Rx'),
-              ),
+              leading: (data.image == null)
+                  ? CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/noimage.png"),
+                    )
+                  : CircleAvatar(
+                      backgroundImage: NetworkImage(
+                        baseUrlFile + "storage/profile/" + data.image!,
+                      ),
+                    ),
               title: Text(data.userId!.name),
               trailing: Wrap(
                 spacing: 1, // space between two icons

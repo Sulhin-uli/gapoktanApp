@@ -5,6 +5,7 @@ import 'package:gapoktan_app/app/modules/education/views/education_by_category_v
 import 'package:gapoktan_app/app/modules/education/views/search_education_view.dart';
 import 'package:gapoktan_app/app/modules/education/views/search_form_education_view.dart';
 import 'package:gapoktan_app/app/modules/history_plant/views/detail_history_plant_view.dart';
+import 'package:gapoktan_app/app/modules/poktan/views/search_poktan_view.dart';
 import 'package:gapoktan_app/app/modules/produk/views/kategori_produk_view%20.dart';
 import 'package:gapoktan_app/app/modules/produk/views/produk_view.dart';
 import 'package:gapoktan_app/app/modules/produk/views/search_produk_view.dart';
@@ -302,6 +303,11 @@ class AppPages {
       name: _Paths.EDIT_POKTAN,
       page: () => EditPoktanView(),
       // binding: EdukasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.SEARCH_POKTAN,
+      page: () => SearchPoktanView(),
+      binding: PoktanBinding(),
     ),
 
     // SAYA

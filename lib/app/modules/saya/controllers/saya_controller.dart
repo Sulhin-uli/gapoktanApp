@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/data/providers/gapoktan_provider.dart';
 import 'package:gapoktan_app/app/data/providers/user_provider.dart';
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -32,6 +33,29 @@ class SayaController extends GetxController {
     passwordNew = TextEditingController();
     passwordConfirm = TextEditingController();
     super.onInit();
+  }
+
+  void dialogLogout(BuildContext context) {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("Logout?"),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Navigator.pop(context, 'Batal'),
+            child: const Text('Batal'),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context, 'Ya');
+              box.erase();
+              Get.offAndToNamed(Routes.LOGIN);
+            },
+            child: const Text('Ya'),
+          ),
+        ],
+      ),
+    );
   }
 
   void getImage() async {

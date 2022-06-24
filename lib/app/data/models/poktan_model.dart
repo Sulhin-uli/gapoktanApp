@@ -5,6 +5,7 @@ class Poktan {
   int? id;
   User? userId;
   Gapoktan? gapoktanId;
+  String? chairman;
   String? city;
   String? address;
   int? telp;
@@ -15,6 +16,7 @@ class Poktan {
     this.id,
     this.userId,
     this.gapoktanId,
+    this.chairman,
     this.city,
     this.address,
     this.telp,
@@ -24,8 +26,7 @@ class Poktan {
 
   Poktan.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    userId =
-        json['user_id'] != null ? User.fromJson(json['user_id']) : null;
+    userId = json['user_id'] != null ? User.fromJson(json['user_id']) : null;
     gapoktanId = json['gapoktan_id'] != null
         ? Gapoktan.fromJson(json['gapoktan_id'])
         : null;

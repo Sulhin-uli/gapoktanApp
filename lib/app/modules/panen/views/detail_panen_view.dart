@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:format_indonesia/format_indonesia.dart';
 import 'package:gapoktan_app/app/modules/tandur/controllers/tandur_controller.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class DetailPanenView extends GetView<TandurController> {
   @override
@@ -137,7 +137,8 @@ class DetailPanenView extends GetView<TandurController> {
                         SizedBox(
                           width: 150,
                           child: Text(
-                            Waktu(platingDateC).yMMMMEEEEd(),
+                            DateFormat("EEEE, d MMMM yyyy", "id_ID")
+                                .format(platingDateC),
                             style: const TextStyle(
                               color: Color(0xff919A92),
                               fontSize: 14,
@@ -169,7 +170,8 @@ class DetailPanenView extends GetView<TandurController> {
                         SizedBox(
                           width: 150,
                           child: Text(
-                            Waktu(harvestDateC).yMMMMEEEEd(),
+                            DateFormat("EEEE, d MMMM yyyy", "id_ID")
+                                .format(harvestDateC),
                             style: const TextStyle(
                               color: Color(0xff919A92),
                               fontSize: 14,

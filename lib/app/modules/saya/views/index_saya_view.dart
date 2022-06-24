@@ -131,18 +131,30 @@ class IndexSayaView extends GetView<SayaController> {
               ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.INDEX_EDUCATION),
-                leading: Icon(Icons.circle),
-                title: Text('Edukasi'),
+                leading: Image.asset(
+                  "assets/icons/kegiatan.png",
+                  width: 20,
+                  height: 20,
+                ),
+                title: const Text('Edukasi'),
               ),
-              // ListTile(
-              //   onTap: () => Get.toNamed(Routes.INDEX_PRODUK),
-              //   leading: Icon(Icons.circle),
-              //   title: Text('Produk'),
-              // ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.INDEX_ACTIVITY),
-                leading: Icon(Icons.circle),
-                title: Text('Kegiatan'),
+                leading: Image.asset(
+                  "assets/icons/edukasi.png",
+                  width: 20,
+                  height: 20,
+                ),
+                title: const Text('Kegiatan'),
+              ),
+              ListTile(
+                onTap: () => Get.toNamed(Routes.SEARCH),
+                leading: Image.asset(
+                  "assets/icons/produk.png",
+                  width: 20,
+                  height: 20,
+                ),
+                title: const Text('Kegiatan'),
               ),
               Container(
                 margin: EdgeInsets.only(
@@ -155,21 +167,32 @@ class IndexSayaView extends GetView<SayaController> {
               ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.EDIT_PROFILE),
-                leading: Icon(Icons.person),
-                title: Text('Ubah Akun'),
+                leading: Image.asset(
+                  "assets/icons/edit-akun.png",
+                  width: 20,
+                  height: 20,
+                ),
+                title: const Text('Ubah Akun'),
               ),
               ListTile(
                 onTap: () => Get.toNamed(Routes.EDIT_PASSWORD),
-                leading: Icon(Icons.vpn_key),
-                title: Text('Ubah Password'),
+                leading: Image.asset(
+                  "assets/icons/edit-password.png",
+                  width: 20,
+                  height: 20,
+                ),
+                title: const Text('Ubah Password'),
               ),
               GestureDetector(
                 onTap: () {
-                  box.erase();
-                  Get.offAndToNamed(Routes.LOGIN);
+                  controller.dialogLogout(context);
                 },
                 child: ListTile(
-                  leading: Icon(Icons.logout),
+                  leading: Image.asset(
+                    "assets/icons/logout.png",
+                    width: 20,
+                    height: 20,
+                  ),
                   title: Text('Logout'),
                 ),
               ),

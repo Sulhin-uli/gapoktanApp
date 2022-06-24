@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gapoktan_app/app/modules/poktan/controllers/poktan_controller.dart';
+import 'package:gapoktan_app/app/utils/base_url.dart';
 
 import 'package:get/get.dart';
 
@@ -25,11 +26,17 @@ class DetailPoktanView extends GetView<PoktanController> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ListTile(
-                leading: const CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      'https://www.startupdonut.co.uk/sites/default/files/styles/landing_pages_lists/public/Guy_watson_249x167.png?itok=e_ct04Rx'),
-                ),
-                title: Text(data.userId!.name!),
+                leading: (data.image == null)
+                    ? CircleAvatar(
+                        backgroundImage:
+                            AssetImage("assets/images/noimage.png"),
+                      )
+                    : CircleAvatar(
+                        backgroundImage: NetworkImage(
+                          baseUrlFile + "storage/profile/" + data.image!,
+                        ),
+                      ),
+                title: Text(data.userId!.name ?? ""),
               ),
               Divider(
                 color: Colors.black.withOpacity(0.5),
@@ -37,7 +44,7 @@ class DetailPoktanView extends GetView<PoktanController> {
               Container(
                 margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
                 child: const Text(
-                  "Title",
+                  "Detail Poktan",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 16,
@@ -49,22 +56,31 @@ class DetailPoktanView extends GetView<PoktanController> {
                 child: Column(
                   children: [
                     Row(
-                      children: const [
-                        Text(
-                          "Column",
-                          style: TextStyle(
-                            color: Color(0xff919A92),
-                            fontSize: 14,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const SizedBox(
+                          width: 80,
+                          child: Text(
+                            "Nama Poktan",
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 50,
                           ),
                         ),
                         SizedBox(
-                          width: 80,
-                        ),
-                        Text(
-                          "Value",
-                          style: TextStyle(
-                            color: Color(0xff919A92),
-                            fontSize: 14,
+                          width: 150,
+                          child: Text(
+                            data.userId!.name ?? "",
+                            style: const TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ],
@@ -73,22 +89,31 @@ class DetailPoktanView extends GetView<PoktanController> {
                       color: Color(0xff919A92),
                     ),
                     Row(
-                      children: const [
-                        Text(
-                          "Column",
-                          style: TextStyle(
-                            color: Color(0xff919A92),
-                            fontSize: 14,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const SizedBox(
+                          width: 80,
+                          child: Text(
+                            "Nama Ketua",
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 50,
                           ),
                         ),
                         SizedBox(
-                          width: 80,
-                        ),
-                        Text(
-                          "Value",
-                          style: TextStyle(
-                            color: Color(0xff919A92),
-                            fontSize: 14,
+                          width: 150,
+                          child: Text(
+                            data.chairman ?? "",
+                            style: const TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ],
@@ -97,22 +122,99 @@ class DetailPoktanView extends GetView<PoktanController> {
                       color: Color(0xff919A92),
                     ),
                     Row(
-                      children: const [
-                        Text(
-                          "Column",
-                          style: TextStyle(
-                            color: Color(0xff919A92),
-                            fontSize: 14,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const SizedBox(
+                          width: 80,
+                          child: Text(
+                            "Telepon",
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 50,
                           ),
                         ),
                         SizedBox(
-                          width: 80,
+                          width: 150,
+                          child: Text(
+                            data.telp.toString() != null
+                                ? data.telp.toString()
+                                : "",
+                            style: const TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
                         ),
-                        Text(
-                          "Value",
-                          style: TextStyle(
-                            color: Color(0xff919A92),
-                            fontSize: 14,
+                      ],
+                    ),
+                    const Divider(
+                      color: Color(0xff919A92),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const SizedBox(
+                          width: 80,
+                          child: Text(
+                            "Alamat",
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 50,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                          child: Text(
+                            data.address ?? "",
+                            style: const TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Divider(
+                      color: Color(0xff919A92),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const SizedBox(
+                          width: 80,
+                          child: Text(
+                            "Anggota Gapoktan",
+                            style: TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                            width: 50,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 150,
+                          child: Text(
+                            data.gapoktanId!.userId!.name ?? "",
+                            style: const TextStyle(
+                              color: Color(0xff919A92),
+                              fontSize: 14,
+                            ),
                           ),
                         ),
                       ],

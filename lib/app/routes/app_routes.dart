@@ -66,6 +66,7 @@ abstract class Routes {
   static const DETAIL_POKTAN = _Paths.DETAIL_POKTAN;
   static const ADD_POKTAN = _Paths.ADD_POKTAN;
   static const EDIT_POKTAN = _Paths.EDIT_POKTAN;
+  static const SEARCH_POKTAN = _Paths.SEARCH_POKTAN;
 
   // Saya
   static const INDEX_SAYA = _Paths.INDEX_SAYA;
@@ -143,6 +144,7 @@ abstract class _Paths {
   static const DETAIL_POKTAN = '/detail-poktan';
   static const ADD_POKTAN = '/add-poktan';
   static const EDIT_POKTAN = '/edit-poktan';
+  static const SEARCH_POKTAN = '/search-poktan';
 
   // Saya
   static const INDEX_SAYA = '/index-saya';

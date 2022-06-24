@@ -6,22 +6,25 @@ import 'package:gapoktan_app/app/utils/splash_screen.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 import 'app/routes/app_pages.dart';
 
 void main() async {
   await GetStorage.init();
-  runApp(MyApp()
-      // GetMaterialApp(
-      //   debugShowCheckedModeBanner: false,
-      //   title: "Application",
-      //   initialRoute: AppPages.INITIAL,
-      //   getPages: AppPages.routes,
-      //   theme: ThemeData(
-      //     primaryColor: const Color(0xff16A085),
-      //   ),
-      // ),
-      );
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('id_ID', null).then((_) => runApp(MyApp()));
+  // runApp(MyApp()
+  //     // GetMaterialApp(
+  //     //   debugShowCheckedModeBanner: false,
+  //     //   title: "Application",
+  //     //   initialRoute: AppPages.INITIAL,
+  //     //   getPages: AppPages.routes,
+  //     //   theme: ThemeData(
+  //     //     primaryColor: const Color(0xff16A085),
+  //     //   ),
+  //     // ),
+  //     );
 }
 
 class MyApp extends StatelessWidget {

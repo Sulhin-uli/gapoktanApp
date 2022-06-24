@@ -3,6 +3,7 @@ import 'package:gapoktan_app/app/data/models/gapoktan_model.dart';
 import 'package:gapoktan_app/app/data/models/poktan_model.dart';
 import 'package:gapoktan_app/app/data/models/user_model.dart';
 import 'package:gapoktan_app/app/data/providers/poktan_provider.dart';
+import 'package:gapoktan_app/app/routes/app_pages.dart';
 import 'package:gapoktan_app/app/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -14,8 +15,11 @@ class PoktanController extends GetxController {
   late TextEditingController email;
   late TextEditingController password;
   late TextEditingController password2;
+  late TextEditingController seacrh;
   var hiddenTextPassword = true.obs;
   var hiddenTextPassword2 = true.obs;
+  var isLoading = true.obs;
+  var isSearch = false.obs;
 
   @override
   void onInit() {
@@ -24,7 +28,16 @@ class PoktanController extends GetxController {
     email = TextEditingController();
     password = TextEditingController();
     password2 = TextEditingController();
+    seacrh = TextEditingController();
     super.onInit();
+  }
+
+  void runSearch(String search) {
+    if (search == "") {
+      dialog("Peringatan", "Kolom tidak boleh kosong");
+    } else {
+      Get.toNamed(Routes.SEARCH_POKTAN);
+    }
   }
 
   // add data
@@ -79,36 +92,42 @@ class PoktanController extends GetxController {
 
   void getData() async {
     final data = box.read("userData") as Map<String, dynamic>;
-    PoktanProvider().getData(data["token"]).then((response) {
+    try {
       try {
-        response["data"].map((e) {
-          final data = Poktan(
-            id: e["id"],
-            userId: User(
-              id: e["user_id"]["id"],
-              name: e["user_id"]["name"],
-              email: e["user_id"]["email"],
-            ),
-            gapoktanId: Gapoktan(
-              id: e["gapoktan_id"]["id"],
+        isLoading(true);
+        PoktanProvider().getData(data["token"]).then((response) {
+          response["data"].map((e) {
+            final data = Poktan(
+              id: e["id"],
               userId: User(
-                id: e["gapoktan_id"]["user_id"]["id"],
-                name: e["gapoktan_id"]["user_id"]["name"],
-                email: e["gapoktan_id"]["user_id"]["email"],
+                id: e["user_id"]["id"],
+                name: e["user_id"]["name"],
+                email: e["user_id"]["email"],
               ),
-            ),
-            city: e["city"],
-            address: e["address"],
-            telp: e["telp"],
-            image: e["image"],
-            isActive: e["isActive"],
-          );
-          poktan.add(data);
-        }).toList();
+              gapoktanId: Gapoktan(
+                id: e["gapoktan_id"]["id"],
+                userId: User(
+                  id: e["gapoktan_id"]["user_id"]["id"],
+                  name: e["gapoktan_id"]["user_id"]["name"],
+                  email: e["gapoktan_id"]["user_id"]["email"],
+                ),
+              ),
+              city: e["city"],
+              chairman: e["chairman"],
+              address: e["address"],
+              telp: e["telp"],
+              image: e["image"],
+              isActive: e["isActive"],
+            );
+            poktan.add(data);
+          }).toList();
+        });
       } catch (e) {
         print("error is :" + e.toString());
       }
-    });
+    } finally {
+      isLoading(false);
+    }
   }
 
   Poktan findByid(int id) {
